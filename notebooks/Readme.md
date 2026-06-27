@@ -22,6 +22,11 @@ Unified Commerce Lakehouse – Medallion Architecture for a Multi-Channel Retail
 - MinIO
 - AWS
 - Terraform
+## Features
+
+- Medallion Architecture
+- Data Quality
+- Cloud Deployment
 
 ## Status
 🚧 Project Planning Phase

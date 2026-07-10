@@ -9,6 +9,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from src.ingestion.load_dataset import load_dataset
 from src.bronze.save_to_bronze import save_to_bronze
 from src.processing.validate_dataset import validate_dataset
+from src.processing.silver_pipeline import create_silver_layer
 
 
 # Dataset path
@@ -55,5 +56,7 @@ save_to_bronze(
 
 
 validate_dataset(df)
+create_silver_layer()
+
 
 

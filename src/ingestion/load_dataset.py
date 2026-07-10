@@ -2,6 +2,9 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.utils.logger import logger
+
+
 
 def load_dataset(dataset_path):
     """Load the historical dataset.
@@ -21,7 +24,7 @@ def load_dataset(dataset_path):
     if not dataset_path.exists():
         raise FileNotFoundError(f"Dataset not found: {dataset_path}")
 
-    print(f"Loading dataset from {dataset_path}")
+    logger.info(f"Loading dataset from {dataset_path}")
 
     df = pd.read_csv(dataset_path)
 
@@ -29,9 +32,9 @@ def load_dataset(dataset_path):
     if "Unnamed: 0" in df.columns:
         df.drop(columns=["Unnamed: 0"], inplace=True)
 
-    print("Dataset loaded successfully")
-    print(f"Rows    : {df.shape[0]}")
-    print(f"Columns : {df.shape[1]}")
+    logger.info("Dataset loaded successfully")
+    logger.info(f"Rows    : {df.shape[0]}")
+    logger.info(f"Columns : {df.shape[1]}")
 
     return df
 

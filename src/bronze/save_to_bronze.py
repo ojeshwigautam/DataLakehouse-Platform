@@ -1,6 +1,8 @@
 from pathlib import Path
 import pandas as pd
 
+from src.utils.logger import logger
+
 
 def save_to_bronze(df: pd.DataFrame, output_dir):
     """
@@ -15,8 +17,6 @@ def save_to_bronze(df: pd.DataFrame, output_dir):
 
     df.to_csv(output_file, index=False)
 
-    print("=" * 60)
-    print("Bronze Layer Created Successfully")
-    print(f"Saved to : {output_file}")
-    print("=" * 60)
+    logger.info("Bronze Layer Created Successfully")
+    logger.info(f"Saved Bronze Dataset -> {output_file}")
 

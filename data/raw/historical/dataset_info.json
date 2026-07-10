@@ -1,0 +1,10 @@
+{
+  "dataset_name": "Brazilian E-Commerce Public Dataset by Olist",
+  "source": "Kaggle",
+  "domain": "Retail / E-Commerce",
+  "format": "CSV",
+  "layer": "Historical Raw Data",
+  "status": "Ready for Ingestion",
+  "owner": "Ojeshwi Gautam",
+  "project": "Unified Commerce Lakehouse"
+}

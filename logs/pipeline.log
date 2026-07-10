@@ -509,3 +509,632 @@ dtype: object
 2026-07-11 00:06:36,843 | INFO | Duplicates Removed   : 0
 2026-07-11 00:06:36,844 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
 2026-07-11 00:06:36,844 | INFO | Silver Layer Created Successfully
+2026-07-11 00:17:56,866 | INFO | ======================================================================
+2026-07-11 00:17:56,866 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:17:56,867 | INFO | Started : 2026-07-11 00:17:56.866155
+2026-07-11 00:17:56,867 | INFO | ======================================================================
+2026-07-11 00:17:56,867 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:17:56,867 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:17:57,809 | INFO | Dataset loaded successfully
+2026-07-11 00:17:57,809 | INFO | Rows    : 113390
+2026-07-11 00:17:57,809 | INFO | Columns : 38
+2026-07-11 00:17:57,809 | INFO | Step 1 Completed
+2026-07-11 00:17:57,809 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:17:59,545 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:17:59,545 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:17:59,545 | INFO | Step 2 Completed
+2026-07-11 00:17:59,545 | INFO | STEP 3/4 : Validation
+2026-07-11 00:17:59,545 | INFO | ============================================================
+2026-07-11 00:17:59,546 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:17:59,546 | INFO | ============================================================
+2026-07-11 00:17:59,546 | INFO | Rows : 113390
+2026-07-11 00:17:59,546 | INFO | Columns : 38
+2026-07-11 00:17:59,835 | INFO | Duplicate Rows : 0
+2026-07-11 00:17:59,915 | INFO | Missing Values : 0
+2026-07-11 00:17:59,916 | INFO | Data Types
+2026-07-11 00:17:59,916 | INFO | ------------------------------------------------------------
+2026-07-11 00:17:59,916 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:17:59,918 | INFO | Validation Completed Successfully
+2026-07-11 00:17:59,918 | INFO | Step 3 Completed
+2026-07-11 00:17:59,919 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:17:59,919 | INFO | ============================================================
+2026-07-11 00:17:59,919 | INFO | Creating Silver Layer
+2026-07-11 00:17:59,919 | INFO | ============================================================
+2026-07-11 00:18:04,328 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:18:04,329 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:18:04,329 | INFO | Duplicates Removed   : 0
+2026-07-11 00:18:04,329 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:18:04,329 | INFO | Silver Layer Created Successfully
+2026-07-11 00:18:04,341 | INFO | Step 4 Completed
+2026-07-11 00:18:04,341 | INFO | ======================================================================
+2026-07-11 00:18:04,342 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 00:18:04,342 | INFO | Execution Time : 0:00:07.475767
+2026-07-11 00:18:04,342 | INFO | ======================================================================
+2026-07-11 00:19:13,972 | INFO | ======================================================================
+2026-07-11 00:19:13,973 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:19:13,973 | INFO | Started : 2026-07-11 00:19:13.972793
+2026-07-11 00:19:13,973 | INFO | ======================================================================
+2026-07-11 00:19:13,973 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:19:13,973 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:19:14,695 | INFO | Dataset loaded successfully
+2026-07-11 00:19:14,696 | INFO | Rows    : 113390
+2026-07-11 00:19:14,696 | INFO | Columns : 38
+2026-07-11 00:19:14,696 | INFO | Step 1 Completed
+2026-07-11 00:19:14,696 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:19:16,154 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:19:16,154 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:19:16,154 | INFO | Step 2 Completed
+2026-07-11 00:19:16,154 | INFO | STEP 3/4 : Validation
+2026-07-11 00:19:16,154 | INFO | ============================================================
+2026-07-11 00:19:16,155 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:19:16,155 | INFO | ============================================================
+2026-07-11 00:19:16,155 | INFO | Rows : 113390
+2026-07-11 00:19:16,155 | INFO | Columns : 38
+2026-07-11 00:19:16,373 | INFO | Duplicate Rows : 0
+2026-07-11 00:19:16,437 | INFO | Missing Values : 0
+2026-07-11 00:19:16,437 | INFO | Data Types
+2026-07-11 00:19:16,438 | INFO | ------------------------------------------------------------
+2026-07-11 00:19:16,438 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:19:16,440 | INFO | Validation Completed Successfully
+2026-07-11 00:19:16,440 | INFO | Step 3 Completed
+2026-07-11 00:19:16,440 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:19:16,440 | INFO | ============================================================
+2026-07-11 00:19:16,440 | INFO | Creating Silver Layer
+2026-07-11 00:19:16,440 | INFO | ============================================================
+2026-07-11 00:19:18,057 | ERROR | ======================================================================
+2026-07-11 00:19:18,057 | ERROR | PIPELINE FAILED
+2026-07-11 00:19:18,057 | ERROR | [Errno 22] Invalid argument: 'C:\\Users\\Ojeshwi Gautam\\Projects\\DataLakehouse-Platform\\data\\silver\\silver_orders.csv'
+2026-07-11 00:19:18,068 | ERROR | Traceback (most recent call last):
+  File "C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\src\pipeline\etl_pipeline.py", line 57, in run_pipeline
+    create_silver_layer()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\src\processing\silver_pipeline.py", line 87, in create_silver_layer
+    df.to_csv(output_path, index=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\Ojeshwi Gautam\\Projects\\DataLakehouse-Platform\\data\\silver\\silver_orders.csv'
+
+2026-07-11 00:19:18,069 | ERROR | ======================================================================
+2026-07-11 00:20:15,255 | INFO | ============================================================
+2026-07-11 00:20:15,255 | INFO | Creating Silver Layer
+2026-07-11 00:20:15,256 | INFO | ============================================================
+2026-07-11 00:20:19,440 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:20:19,440 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:20:19,440 | INFO | Duplicates Removed   : 0
+2026-07-11 00:20:19,441 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:20:19,441 | INFO | Silver Layer Created Successfully
+2026-07-11 00:20:48,085 | INFO | ======================================================================
+2026-07-11 00:20:48,085 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:20:48,085 | INFO | Started : 2026-07-11 00:20:48.085103
+2026-07-11 00:20:48,085 | INFO | ======================================================================
+2026-07-11 00:20:48,085 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:20:48,086 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:20:49,074 | INFO | Dataset loaded successfully
+2026-07-11 00:20:49,075 | INFO | Rows    : 113390
+2026-07-11 00:20:49,075 | INFO | Columns : 38
+2026-07-11 00:20:49,075 | INFO | Step 1 Completed
+2026-07-11 00:20:49,075 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:20:50,681 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:20:50,681 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:20:50,681 | INFO | Step 2 Completed
+2026-07-11 00:20:50,681 | INFO | STEP 3/4 : Validation
+2026-07-11 00:20:50,681 | INFO | ============================================================
+2026-07-11 00:20:50,682 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:20:50,682 | INFO | ============================================================
+2026-07-11 00:20:50,682 | INFO | Rows : 113390
+2026-07-11 00:20:50,682 | INFO | Columns : 38
+2026-07-11 00:20:50,949 | INFO | Duplicate Rows : 0
+2026-07-11 00:20:51,037 | INFO | Missing Values : 0
+2026-07-11 00:20:51,038 | INFO | Data Types
+2026-07-11 00:20:51,038 | INFO | ------------------------------------------------------------
+2026-07-11 00:20:51,038 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:20:51,040 | INFO | Validation Completed Successfully
+2026-07-11 00:20:51,040 | INFO | Step 3 Completed
+2026-07-11 00:20:51,040 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:20:51,040 | INFO | ============================================================
+2026-07-11 00:20:51,040 | INFO | Creating Silver Layer
+2026-07-11 00:20:51,040 | INFO | ============================================================
+2026-07-11 00:20:55,579 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:20:55,579 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:20:55,579 | INFO | Duplicates Removed   : 0
+2026-07-11 00:20:55,579 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:20:55,579 | INFO | Silver Layer Created Successfully
+2026-07-11 00:20:55,590 | INFO | Step 4 Completed
+2026-07-11 00:20:55,590 | INFO | ======================================================================
+2026-07-11 00:20:55,590 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 00:20:55,590 | INFO | Execution Time : 0:00:07.505162
+2026-07-11 00:20:55,590 | INFO | ======================================================================
+2026-07-11 00:21:21,988 | INFO | ======================================================================
+2026-07-11 00:21:21,989 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:21:21,989 | INFO | Started : 2026-07-11 00:21:21.988817
+2026-07-11 00:21:21,989 | INFO | ======================================================================
+2026-07-11 00:21:21,989 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:21:21,989 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:21:22,724 | INFO | Dataset loaded successfully
+2026-07-11 00:21:22,725 | INFO | Rows    : 113390
+2026-07-11 00:21:22,725 | INFO | Columns : 38
+2026-07-11 00:21:22,725 | INFO | Step 1 Completed
+2026-07-11 00:21:22,725 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:21:24,201 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:21:24,201 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:21:24,201 | INFO | Step 2 Completed
+2026-07-11 00:21:24,201 | INFO | STEP 3/4 : Validation
+2026-07-11 00:21:24,201 | INFO | ============================================================
+2026-07-11 00:21:24,202 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:21:24,202 | INFO | ============================================================
+2026-07-11 00:21:24,202 | INFO | Rows : 113390
+2026-07-11 00:21:24,202 | INFO | Columns : 38
+2026-07-11 00:21:24,425 | INFO | Duplicate Rows : 0
+2026-07-11 00:21:24,489 | INFO | Missing Values : 0
+2026-07-11 00:21:24,490 | INFO | Data Types
+2026-07-11 00:21:24,490 | INFO | ------------------------------------------------------------
+2026-07-11 00:21:24,490 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:21:24,492 | INFO | Validation Completed Successfully
+2026-07-11 00:21:24,492 | INFO | Step 3 Completed
+2026-07-11 00:21:24,492 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:21:24,492 | INFO | ============================================================
+2026-07-11 00:21:24,493 | INFO | Creating Silver Layer
+2026-07-11 00:21:24,493 | INFO | ============================================================
+2026-07-11 00:21:26,138 | ERROR | ======================================================================
+2026-07-11 00:21:26,138 | ERROR | PIPELINE FAILED
+2026-07-11 00:21:26,138 | ERROR | [Errno 22] Invalid argument: 'C:\\Users\\Ojeshwi Gautam\\Projects\\DataLakehouse-Platform\\data\\silver\\silver_orders.csv'
+2026-07-11 00:21:26,143 | ERROR | Traceback (most recent call last):
+  File "C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\src\pipeline\etl_pipeline.py", line 57, in run_pipeline
+    create_silver_layer()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\src\processing\silver_pipeline.py", line 89, in create_silver_layer
+    df.to_csv(str(output_path), index=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\Ojeshwi Gautam\\Projects\\DataLakehouse-Platform\\data\\silver\\silver_orders.csv'
+
+2026-07-11 00:21:26,143 | ERROR | ======================================================================
+2026-07-11 00:29:44,406 | INFO | ======================================================================
+2026-07-11 00:29:44,406 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:29:44,407 | INFO | Started : 2026-07-11 00:29:44.406656
+2026-07-11 00:29:44,407 | INFO | ======================================================================
+2026-07-11 00:29:44,407 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:29:44,407 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:29:45,358 | INFO | Dataset loaded successfully
+2026-07-11 00:29:45,359 | INFO | Rows    : 113390
+2026-07-11 00:29:45,359 | INFO | Columns : 38
+2026-07-11 00:29:45,359 | INFO | Step 1 Completed
+2026-07-11 00:29:45,359 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:29:47,022 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:29:47,022 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:29:47,022 | INFO | Step 2 Completed
+2026-07-11 00:29:47,022 | INFO | STEP 3/4 : Validation
+2026-07-11 00:29:47,022 | INFO | ============================================================
+2026-07-11 00:29:47,022 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:29:47,022 | INFO | ============================================================
+2026-07-11 00:29:47,023 | INFO | Rows : 113390
+2026-07-11 00:29:47,023 | INFO | Columns : 38
+2026-07-11 00:29:47,299 | INFO | Duplicate Rows : 0
+2026-07-11 00:29:47,381 | INFO | Missing Values : 0
+2026-07-11 00:29:47,382 | INFO | Data Types
+2026-07-11 00:29:47,382 | INFO | ------------------------------------------------------------
+2026-07-11 00:29:47,382 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:29:47,384 | INFO | Validation Completed Successfully
+2026-07-11 00:29:47,384 | INFO | Step 3 Completed
+2026-07-11 00:29:47,384 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:29:47,384 | INFO | ============================================================
+2026-07-11 00:29:47,384 | INFO | Creating Silver Layer
+2026-07-11 00:29:47,385 | INFO | ============================================================
+2026-07-11 00:29:51,942 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:29:51,942 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:29:51,942 | INFO | Duplicates Removed   : 0
+2026-07-11 00:29:51,942 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:29:51,942 | INFO | Silver Layer Created Successfully
+2026-07-11 00:29:51,954 | INFO | Step 4 Completed
+2026-07-11 00:29:51,954 | INFO | ======================================================================
+2026-07-11 00:29:51,955 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 00:29:51,955 | INFO | Execution Time : 0:00:07.548199
+2026-07-11 00:29:51,955 | INFO | ======================================================================
+2026-07-11 00:31:27,624 | INFO | ======================================================================
+2026-07-11 00:31:27,624 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:31:27,624 | INFO | Started : 2026-07-11 00:31:27.623988
+2026-07-11 00:31:27,624 | INFO | ======================================================================
+2026-07-11 00:31:27,624 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:31:27,624 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:31:28,386 | INFO | Dataset loaded successfully
+2026-07-11 00:31:28,386 | INFO | Rows    : 113390
+2026-07-11 00:31:28,386 | INFO | Columns : 38
+2026-07-11 00:31:28,386 | INFO | Step 1 Completed
+2026-07-11 00:31:28,386 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:31:29,949 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:31:29,949 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:31:29,949 | INFO | Step 2 Completed
+2026-07-11 00:31:29,949 | INFO | STEP 3/4 : Validation
+2026-07-11 00:31:29,949 | INFO | ============================================================
+2026-07-11 00:31:29,950 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:31:29,950 | INFO | ============================================================
+2026-07-11 00:31:29,950 | INFO | Rows : 113390
+2026-07-11 00:31:29,950 | INFO | Columns : 38
+2026-07-11 00:31:30,182 | INFO | Duplicate Rows : 0
+2026-07-11 00:31:30,248 | INFO | Missing Values : 0
+2026-07-11 00:31:30,248 | INFO | Data Types
+2026-07-11 00:31:30,248 | INFO | ------------------------------------------------------------
+2026-07-11 00:31:30,249 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:31:30,250 | INFO | Validation Completed Successfully
+2026-07-11 00:31:30,250 | INFO | Step 3 Completed
+2026-07-11 00:31:30,251 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:31:30,251 | INFO | ============================================================
+2026-07-11 00:31:30,251 | INFO | Creating Silver Layer
+2026-07-11 00:31:30,251 | INFO | ============================================================
+2026-07-11 00:31:34,106 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:31:34,106 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:31:34,107 | INFO | Duplicates Removed   : 0
+2026-07-11 00:31:34,107 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:31:34,107 | INFO | Silver Layer Created Successfully
+2026-07-11 00:31:34,117 | INFO | Step 4 Completed
+2026-07-11 00:31:34,117 | INFO | ======================================================================
+2026-07-11 00:31:34,117 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 00:31:34,117 | INFO | Execution Time : 0:00:06.493659
+2026-07-11 00:31:34,118 | INFO | ======================================================================
+2026-07-11 00:32:52,035 | INFO | ======================================================================
+2026-07-11 00:32:52,036 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 00:32:52,036 | INFO | Started : 2026-07-11 00:32:52.035893
+2026-07-11 00:32:52,036 | INFO | ======================================================================
+2026-07-11 00:32:52,036 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 00:32:52,036 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:32:52,766 | INFO | Dataset loaded successfully
+2026-07-11 00:32:52,766 | INFO | Rows    : 113390
+2026-07-11 00:32:52,767 | INFO | Columns : 38
+2026-07-11 00:32:52,767 | INFO | Step 1 Completed
+2026-07-11 00:32:52,767 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 00:32:54,303 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:32:54,304 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:32:54,304 | INFO | Step 2 Completed
+2026-07-11 00:32:54,304 | INFO | STEP 3/4 : Validation
+2026-07-11 00:32:54,304 | INFO | ============================================================
+2026-07-11 00:32:54,304 | INFO | DATA VALIDATION REPORT
+2026-07-11 00:32:54,304 | INFO | ============================================================
+2026-07-11 00:32:54,304 | INFO | Rows : 113390
+2026-07-11 00:32:54,304 | INFO | Columns : 38
+2026-07-11 00:32:54,528 | INFO | Duplicate Rows : 0
+2026-07-11 00:32:54,593 | INFO | Missing Values : 0
+2026-07-11 00:32:54,593 | INFO | Data Types
+2026-07-11 00:32:54,593 | INFO | ------------------------------------------------------------
+2026-07-11 00:32:54,593 | INFO | order_id                          object
+order_item_id                      int64
+customer_id                       object
+customer_unique_id                object
+customer_zip_code_prefix           int64
+customer_city                     object
+customer_state                    object
+product_id                        object
+product_category_name             object
+product_name_lenght              float64
+product_description_lenght       float64
+product_photos_qty               float64
+product_weight_g                 float64
+product_length_cm                float64
+product_height_cm                float64
+product_width_cm                 float64
+seller_id                         object
+seller_city                       object
+seller_state                      object
+seller_zip_code_prefix             int64
+payment_type                      object
+payment_sequential                 int64
+payment_installments               int64
+price                            float64
+freight_value                    float64
+payment_value                    float64
+shipping_limit_date               object
+order_purchase_timestamp          object
+order_approved_at                 object
+order_delivered_carrier_date      object
+order_delivered_customer_date     object
+order_estimated_delivery_date     object
+day_of_purchase                   object
+month_of_purchase                 object
+year_of_purchase                   int64
+month/year_of_purchase            object
+order_status                      object
+order_unique_id                   object
+dtype: object
+2026-07-11 00:32:54,595 | INFO | Validation Completed Successfully
+2026-07-11 00:32:54,595 | INFO | Step 3 Completed
+2026-07-11 00:32:54,596 | INFO | STEP 4/4 : Silver Layer
+2026-07-11 00:32:54,596 | INFO | ============================================================
+2026-07-11 00:32:54,596 | INFO | Creating Silver Layer
+2026-07-11 00:32:54,596 | INFO | ============================================================
+2026-07-11 00:32:58,395 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:32:58,396 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:32:58,396 | INFO | Duplicates Removed   : 0
+2026-07-11 00:32:58,396 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:32:58,396 | INFO | Silver Layer Created Successfully
+2026-07-11 00:32:58,406 | INFO | Step 4 Completed
+2026-07-11 00:32:58,406 | INFO | ======================================================================
+2026-07-11 00:32:58,406 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 00:32:58,407 | INFO | Execution Time : 0:00:06.370750
+2026-07-11 00:32:58,407 | INFO | ======================================================================

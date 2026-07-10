@@ -84,7 +84,14 @@ def create_silver_layer():
 
     output_path = SILVER_DIR / "silver_orders.csv"
 
-    df.to_csv(output_path, index=False)
+    # Ensure directories exist and use an explicit string path for pandas
+    SILVER_DIR.mkdir(parents=True, exist_ok=True)
+
+    
+
+    df.to_csv(str(output_path), index=False)
+
+
 
     logger.info(f"Rows Before Cleaning : {rows_before}")
     logger.info(f"Rows After Cleaning  : {len(df)}")

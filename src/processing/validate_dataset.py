@@ -1,27 +1,31 @@
 import pandas as pd
 
-from src.utils.logger import logger
-
 
 def validate_dataset(df: pd.DataFrame):
-    """Validate dataset quality before processing."""
+    """
+    Validate dataset quality before processing.
+    """
 
-    logger.info("=" * 60)
-    logger.info("DATA VALIDATION REPORT")
-    logger.info("=" * 60)
+    print("=" * 60)
+    print("DATA VALIDATION REPORT")
+    print("=" * 60)
 
-    logger.info(f"Rows : {len(df)}")
-    logger.info(f"Columns : {len(df.columns)}")
+    print(f"\nRows : {len(df)}")
+    print(f"Columns : {len(df.columns)}")
 
     duplicate_rows = df.duplicated().sum()
-    logger.info(f"Duplicate Rows : {duplicate_rows}")
+
+    print(f"\nDuplicate Rows : {duplicate_rows}")
 
     missing_values = df.isnull().sum().sum()
-    logger.info(f"Missing Values : {missing_values}")
 
-    logger.info("Data Types")
-    logger.info("-" * 60)
-    logger.info(df.dtypes)
+    print(f"Missing Values : {missing_values}")
 
-    logger.info("Validation Completed Successfully")
+    print("\nData Types")
+
+    print("-" * 60)
+
+    print(df.dtypes)
+
+    print("\nValidation Completed Successfully")
 

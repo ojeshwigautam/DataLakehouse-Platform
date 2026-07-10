@@ -1138,3 +1138,961 @@ dtype: object
 2026-07-11 00:32:58,406 | INFO | PIPELINE EXECUTED SUCCESSFULLY
 2026-07-11 00:32:58,407 | INFO | Execution Time : 0:00:06.370750
 2026-07-11 00:32:58,407 | INFO | ======================================================================
+2026-07-11 00:48:49,962 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:48:50,870 | INFO | Dataset loaded successfully
+2026-07-11 00:48:50,870 | INFO | Rows    : 113390
+2026-07-11 00:48:50,871 | INFO | Columns : 38
+2026-07-11 00:48:52,918 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:48:52,918 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:48:53,319 | INFO | ============================================================
+2026-07-11 00:48:53,319 | INFO | Creating Silver Layer
+2026-07-11 00:48:53,319 | INFO | ============================================================
+2026-07-11 00:48:57,870 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:48:57,870 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:48:57,870 | INFO | Duplicates Removed   : 0
+2026-07-11 00:48:57,870 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:48:57,870 | INFO | Silver Layer Created Successfully
+2026-07-11 00:49:26,473 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:49:27,404 | INFO | Dataset loaded successfully
+2026-07-11 00:49:27,405 | INFO | Rows    : 113390
+2026-07-11 00:49:27,405 | INFO | Columns : 38
+2026-07-11 00:49:29,371 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:49:29,371 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:49:29,744 | INFO | ============================================================
+2026-07-11 00:49:29,744 | INFO | Creating Silver Layer
+2026-07-11 00:49:29,744 | INFO | ============================================================
+2026-07-11 00:49:34,423 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:49:34,424 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:49:34,424 | INFO | Duplicates Removed   : 0
+2026-07-11 00:49:34,424 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:49:34,424 | INFO | Silver Layer Created Successfully
+2026-07-11 00:49:41,802 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:49:42,637 | INFO | Dataset loaded successfully
+2026-07-11 00:49:42,637 | INFO | Rows    : 113390
+2026-07-11 00:49:42,637 | INFO | Columns : 38
+2026-07-11 00:49:44,564 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:49:44,564 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:49:44,995 | INFO | ============================================================
+2026-07-11 00:49:44,995 | INFO | Creating Silver Layer
+2026-07-11 00:49:44,995 | INFO | ============================================================
+2026-07-11 00:50:22,458 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:50:23,381 | INFO | Dataset loaded successfully
+2026-07-11 00:50:23,381 | INFO | Rows    : 113390
+2026-07-11 00:50:23,381 | INFO | Columns : 38
+2026-07-11 00:50:25,276 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:50:25,276 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:50:25,669 | INFO | ============================================================
+2026-07-11 00:50:25,670 | INFO | Creating Silver Layer
+2026-07-11 00:50:25,670 | INFO | ============================================================
+2026-07-11 00:50:30,479 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:50:30,479 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:50:30,480 | INFO | Duplicates Removed   : 0
+2026-07-11 00:50:30,480 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:50:30,480 | INFO | Silver Layer Created Successfully
+2026-07-11 00:50:40,749 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:50:41,737 | INFO | Dataset loaded successfully
+2026-07-11 00:50:41,737 | INFO | Rows    : 113390
+2026-07-11 00:50:41,737 | INFO | Columns : 38
+2026-07-11 00:50:43,672 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:50:43,672 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:50:44,090 | INFO | ============================================================
+2026-07-11 00:50:44,090 | INFO | Creating Silver Layer
+2026-07-11 00:50:44,090 | INFO | ============================================================
+2026-07-11 00:50:48,779 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:50:48,779 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:50:48,779 | INFO | Duplicates Removed   : 0
+2026-07-11 00:50:48,779 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:50:48,779 | INFO | Silver Layer Created Successfully
+2026-07-11 00:51:06,802 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:51:07,668 | INFO | Dataset loaded successfully
+2026-07-11 00:51:07,668 | INFO | Rows    : 113390
+2026-07-11 00:51:07,669 | INFO | Columns : 38
+2026-07-11 00:51:09,514 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:51:09,514 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:51:09,885 | INFO | ============================================================
+2026-07-11 00:51:09,885 | INFO | Creating Silver Layer
+2026-07-11 00:51:09,885 | INFO | ============================================================
+2026-07-11 00:51:14,712 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:51:14,712 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:51:14,713 | INFO | Duplicates Removed   : 0
+2026-07-11 00:51:14,713 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:51:14,713 | INFO | Silver Layer Created Successfully
+2026-07-11 00:51:30,860 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:51:31,821 | INFO | Dataset loaded successfully
+2026-07-11 00:51:31,821 | INFO | Rows    : 113390
+2026-07-11 00:51:31,822 | INFO | Columns : 38
+2026-07-11 00:51:33,719 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:51:33,719 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:51:34,212 | INFO | ============================================================
+2026-07-11 00:51:34,212 | INFO | Creating Silver Layer
+2026-07-11 00:51:34,213 | INFO | ============================================================
+2026-07-11 00:51:40,244 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:51:40,244 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:51:40,244 | INFO | Duplicates Removed   : 0
+2026-07-11 00:51:40,244 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:51:40,244 | INFO | Silver Layer Created Successfully
+2026-07-11 00:51:57,900 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:51:58,846 | INFO | Dataset loaded successfully
+2026-07-11 00:51:58,847 | INFO | Rows    : 113390
+2026-07-11 00:51:58,847 | INFO | Columns : 38
+2026-07-11 00:52:00,924 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:52:00,924 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:52:01,399 | INFO | ============================================================
+2026-07-11 00:52:01,399 | INFO | Creating Silver Layer
+2026-07-11 00:52:01,399 | INFO | ============================================================
+2026-07-11 00:52:06,765 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:52:06,765 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:52:06,765 | INFO | Duplicates Removed   : 0
+2026-07-11 00:52:06,766 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:52:06,766 | INFO | Silver Layer Created Successfully
+2026-07-11 00:58:09,687 | INFO | ============================================================
+2026-07-11 00:58:09,687 | INFO | Creating Gold Layer
+2026-07-11 00:58:09,688 | INFO | ============================================================
+2026-07-11 00:58:10,642 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 00:58:10,674 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 00:58:44,045 | INFO | ============================================================
+2026-07-11 00:58:44,045 | INFO | Creating Gold Layer
+2026-07-11 00:58:44,045 | INFO | ============================================================
+2026-07-11 00:58:45,003 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 00:58:45,031 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 00:59:13,812 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 00:59:14,790 | INFO | Dataset loaded successfully
+2026-07-11 00:59:14,790 | INFO | Rows    : 113390
+2026-07-11 00:59:14,790 | INFO | Columns : 38
+2026-07-11 00:59:16,837 | INFO | Bronze Layer Created Successfully
+2026-07-11 00:59:16,838 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 00:59:17,280 | INFO | ============================================================
+2026-07-11 00:59:17,280 | INFO | Creating Silver Layer
+2026-07-11 00:59:17,280 | INFO | ============================================================
+2026-07-11 00:59:22,665 | INFO | Rows Before Cleaning : 113390
+2026-07-11 00:59:22,666 | INFO | Rows After Cleaning  : 113390
+2026-07-11 00:59:22,666 | INFO | Duplicates Removed   : 0
+2026-07-11 00:59:22,666 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 00:59:22,666 | INFO | Silver Layer Created Successfully
+2026-07-11 00:59:59,608 | INFO | ============================================================
+2026-07-11 00:59:59,609 | INFO | Creating Gold Layer
+2026-07-11 00:59:59,609 | INFO | ============================================================
+2026-07-11 01:00:00,428 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:00:00,458 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:04:30,344 | INFO | ============================================================
+2026-07-11 01:04:30,345 | INFO | Creating Gold Layer
+2026-07-11 01:04:30,345 | INFO | ============================================================
+2026-07-11 01:04:31,551 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:04:31,594 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:05:00,337 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:05:01,682 | INFO | Dataset loaded successfully
+2026-07-11 01:05:01,682 | INFO | Rows    : 113390
+2026-07-11 01:05:01,682 | INFO | Columns : 38
+2026-07-11 01:05:33,589 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:05:35,099 | INFO | Dataset loaded successfully
+2026-07-11 01:05:35,099 | INFO | Rows    : 113390
+2026-07-11 01:05:35,099 | INFO | Columns : 38
+2026-07-11 01:05:38,271 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:05:38,272 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:05:38,827 | INFO | ============================================================
+2026-07-11 01:05:38,827 | INFO | Creating Silver Layer
+2026-07-11 01:05:38,827 | INFO | ============================================================
+2026-07-11 01:05:45,005 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:05:45,005 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:05:45,005 | INFO | Duplicates Removed   : 0
+2026-07-11 01:05:45,005 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:05:45,006 | INFO | Silver Layer Created Successfully
+2026-07-11 01:10:18,646 | INFO | ============================================================
+2026-07-11 01:10:18,647 | INFO | Creating Gold Layer
+2026-07-11 01:10:18,647 | INFO | ============================================================
+2026-07-11 01:10:20,203 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:10:20,248 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:10:20,277 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:10:20,301 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:10:20,325 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:10:39,680 | INFO | ============================================================
+2026-07-11 01:10:39,681 | INFO | Creating Gold Layer
+2026-07-11 01:10:39,681 | INFO | ============================================================
+2026-07-11 01:10:41,190 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:10:41,241 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:10:41,265 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:10:41,286 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:10:41,308 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:11:00,661 | INFO | ============================================================
+2026-07-11 01:11:00,662 | INFO | Creating Gold Layer
+2026-07-11 01:11:00,662 | INFO | ============================================================
+2026-07-11 01:11:02,278 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:11:02,323 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:11:02,349 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:11:02,369 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:11:02,392 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:11:20,116 | INFO | ============================================================
+2026-07-11 01:11:20,117 | INFO | Creating Gold Layer
+2026-07-11 01:11:20,117 | INFO | ============================================================
+2026-07-11 01:11:21,604 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:11:21,652 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:11:21,678 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:11:21,703 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:11:21,730 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:11:22,782 | INFO | ============================================================
+2026-07-11 01:11:22,783 | INFO | Creating Gold Layer
+2026-07-11 01:11:22,783 | INFO | ============================================================
+2026-07-11 01:11:24,290 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:11:24,333 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:11:24,357 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:11:24,377 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:11:24,399 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:11:43,905 | INFO | ============================================================
+2026-07-11 01:11:43,905 | INFO | Creating Gold Layer
+2026-07-11 01:11:43,906 | INFO | ============================================================
+2026-07-11 01:11:45,223 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:11:45,259 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:11:45,281 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:11:45,297 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:11:45,316 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:12:02,627 | INFO | ============================================================
+2026-07-11 01:12:02,627 | INFO | Creating Gold Layer
+2026-07-11 01:12:02,628 | INFO | ============================================================
+2026-07-11 01:12:03,863 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:12:03,899 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:12:03,918 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:12:03,934 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:12:03,952 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:12:21,133 | INFO | ============================================================
+2026-07-11 01:12:21,133 | INFO | Creating Gold Layer
+2026-07-11 01:12:21,133 | INFO | ============================================================
+2026-07-11 01:12:22,269 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:12:22,308 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:12:22,327 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:12:22,344 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:12:22,362 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:12:42,189 | INFO | ============================================================
+2026-07-11 01:12:42,190 | INFO | Creating Gold Layer
+2026-07-11 01:12:42,191 | INFO | ============================================================
+2026-07-11 01:12:43,907 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:12:43,952 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:12:43,979 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:12:44,004 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:12:44,027 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:13:01,243 | INFO | ============================================================
+2026-07-11 01:13:01,243 | INFO | Creating Gold Layer
+2026-07-11 01:13:01,244 | INFO | ============================================================
+2026-07-11 01:13:02,847 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:13:02,888 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:13:02,910 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:13:02,930 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:13:02,950 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:13:38,270 | INFO | ============================================================
+2026-07-11 01:13:38,270 | INFO | Creating Gold Layer
+2026-07-11 01:13:38,271 | INFO | ============================================================
+2026-07-11 01:13:39,787 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:13:39,831 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:13:39,857 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:13:39,879 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:13:39,903 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:15:37,086 | INFO | ============================================================
+2026-07-11 01:15:37,087 | INFO | Creating Gold Layer
+2026-07-11 01:15:37,087 | INFO | ============================================================
+2026-07-11 01:15:38,719 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:15:38,765 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:15:38,791 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:15:38,814 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:15:38,839 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:15:38,875 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:15:39,051 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:15:39,063 | INFO | ============================================================
+2026-07-11 01:15:39,064 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:15:39,064 | INFO | ============================================================
+2026-07-11 01:16:49,550 | INFO | ============================================================
+2026-07-11 01:16:49,550 | INFO | Creating Gold Layer
+2026-07-11 01:16:49,550 | INFO | ============================================================
+2026-07-11 01:16:51,133 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:16:51,179 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:16:51,204 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:16:51,226 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:16:51,250 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:16:51,284 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:16:51,452 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:16:51,464 | INFO | ============================================================
+2026-07-11 01:16:51,464 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:16:51,465 | INFO | ============================================================
+2026-07-11 01:17:14,595 | INFO | ============================================================
+2026-07-11 01:17:14,596 | INFO | Creating Gold Layer
+2026-07-11 01:17:14,596 | INFO | ============================================================
+2026-07-11 01:17:16,181 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:17:16,225 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:17:16,251 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:17:16,272 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:17:16,294 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:17:16,328 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:17:16,484 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:17:16,496 | INFO | ============================================================
+2026-07-11 01:17:16,497 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:17:16,497 | INFO | ============================================================
+2026-07-11 01:17:38,051 | INFO | ============================================================
+2026-07-11 01:17:38,052 | INFO | Creating Gold Layer
+2026-07-11 01:17:38,052 | INFO | ============================================================
+2026-07-11 01:17:39,614 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:17:39,667 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:17:39,696 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:17:39,722 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:17:39,744 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:17:39,787 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:17:39,965 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:17:39,977 | INFO | ============================================================
+2026-07-11 01:17:39,978 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:17:39,978 | INFO | ============================================================
+2026-07-11 01:17:58,128 | INFO | ============================================================
+2026-07-11 01:17:58,128 | INFO | Creating Gold Layer
+2026-07-11 01:17:58,128 | INFO | ============================================================
+2026-07-11 01:17:59,775 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:17:59,832 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:17:59,858 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:17:59,880 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:17:59,902 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:17:59,941 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:18:00,106 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:18:00,121 | INFO | ============================================================
+2026-07-11 01:18:00,122 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:18:00,122 | INFO | ============================================================
+2026-07-11 01:18:07,960 | INFO | ============================================================
+2026-07-11 01:18:07,960 | INFO | Creating Gold Layer
+2026-07-11 01:18:07,961 | INFO | ============================================================
+2026-07-11 01:18:09,479 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:18:09,526 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:18:09,553 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:18:09,573 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:18:09,598 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:18:09,632 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:18:09,772 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:18:09,783 | INFO | ============================================================
+2026-07-11 01:18:09,784 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:18:09,784 | INFO | ============================================================
+2026-07-11 01:21:22,439 | INFO | ======================================================================
+2026-07-11 01:21:22,440 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:21:22,440 | INFO | Started : 2026-07-11 01:21:22.439473
+2026-07-11 01:21:22,440 | INFO | ======================================================================
+2026-07-11 01:21:22,441 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:21:22,442 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:21:23,924 | INFO | Dataset loaded successfully
+2026-07-11 01:21:23,925 | INFO | Rows    : 113390
+2026-07-11 01:21:23,925 | INFO | Columns : 38
+2026-07-11 01:21:23,925 | INFO | Step 1 Completed
+2026-07-11 01:21:23,925 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:21:27,079 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:21:27,080 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:21:27,080 | INFO | Step 2 Completed
+2026-07-11 01:21:27,080 | INFO | STEP 3/4 : Validation
+2026-07-11 01:21:27,650 | INFO | Step 3 Completed
+2026-07-11 01:21:27,650 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:21:27,651 | INFO | ============================================================
+2026-07-11 01:21:27,651 | INFO | Creating Silver Layer
+2026-07-11 01:21:27,651 | INFO | ============================================================
+2026-07-11 01:21:33,244 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:21:33,245 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:21:33,245 | INFO | Duplicates Removed   : 0
+2026-07-11 01:21:33,245 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:21:33,245 | INFO | Silver Layer Created Successfully
+2026-07-11 01:21:33,258 | INFO | Step 4 Completed
+2026-07-11 01:21:33,258 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:21:33,258 | INFO | ============================================================
+2026-07-11 01:21:33,258 | INFO | Creating Gold Layer
+2026-07-11 01:21:33,259 | INFO | ============================================================
+2026-07-11 01:21:34,309 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:21:34,344 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:21:34,362 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:21:34,376 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:21:34,394 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:21:34,417 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:21:34,528 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:21:34,537 | INFO | ============================================================
+2026-07-11 01:21:34,537 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:21:34,538 | INFO | ============================================================
+2026-07-11 01:21:34,557 | INFO | Step 5 Completed
+2026-07-11 01:21:34,557 | INFO | ======================================================================
+2026-07-11 01:21:34,557 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:21:34,557 | INFO | Execution Time : 0:00:12.118020
+2026-07-11 01:21:34,557 | INFO | ======================================================================
+2026-07-11 01:21:38,510 | INFO | ======================================================================
+2026-07-11 01:21:38,510 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:21:38,511 | INFO | Started : 2026-07-11 01:21:38.509981
+2026-07-11 01:21:38,511 | INFO | ======================================================================
+2026-07-11 01:21:38,511 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:21:38,512 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:21:40,187 | INFO | Dataset loaded successfully
+2026-07-11 01:21:40,188 | INFO | Rows    : 113390
+2026-07-11 01:21:40,188 | INFO | Columns : 38
+2026-07-11 01:21:40,188 | INFO | Step 1 Completed
+2026-07-11 01:21:40,188 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:21:43,394 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:21:43,394 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:21:43,394 | INFO | Step 2 Completed
+2026-07-11 01:21:43,394 | INFO | STEP 3/4 : Validation
+2026-07-11 01:21:43,969 | INFO | Step 3 Completed
+2026-07-11 01:21:43,970 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:21:43,970 | INFO | ============================================================
+2026-07-11 01:21:43,970 | INFO | Creating Silver Layer
+2026-07-11 01:21:43,970 | INFO | ============================================================
+2026-07-11 01:21:49,872 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:21:49,872 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:21:49,872 | INFO | Duplicates Removed   : 0
+2026-07-11 01:21:49,873 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:21:49,873 | INFO | Silver Layer Created Successfully
+2026-07-11 01:21:49,884 | INFO | Step 4 Completed
+2026-07-11 01:21:49,885 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:21:49,885 | INFO | ============================================================
+2026-07-11 01:21:49,885 | INFO | Creating Gold Layer
+2026-07-11 01:21:49,886 | INFO | ============================================================
+2026-07-11 01:21:51,222 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:21:51,273 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:21:51,299 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:21:51,315 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:21:51,334 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:21:51,361 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:21:51,488 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:21:51,500 | INFO | ============================================================
+2026-07-11 01:21:51,500 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:21:51,500 | INFO | ============================================================
+2026-07-11 01:21:51,523 | INFO | Step 5 Completed
+2026-07-11 01:21:51,524 | INFO | ======================================================================
+2026-07-11 01:21:51,524 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:21:51,524 | INFO | Execution Time : 0:00:13.014363
+2026-07-11 01:21:51,525 | INFO | ======================================================================
+2026-07-11 01:22:10,322 | INFO | ======================================================================
+2026-07-11 01:22:10,323 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:22:10,323 | INFO | Started : 2026-07-11 01:22:10.322777
+2026-07-11 01:22:10,324 | INFO | ======================================================================
+2026-07-11 01:22:10,324 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:22:10,324 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:22:11,973 | INFO | Dataset loaded successfully
+2026-07-11 01:22:11,973 | INFO | Rows    : 113390
+2026-07-11 01:22:11,974 | INFO | Columns : 38
+2026-07-11 01:22:11,974 | INFO | Step 1 Completed
+2026-07-11 01:22:11,974 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:22:14,961 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:22:14,961 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:22:14,962 | INFO | Step 2 Completed
+2026-07-11 01:22:14,962 | INFO | STEP 3/4 : Validation
+2026-07-11 01:22:15,519 | INFO | Step 3 Completed
+2026-07-11 01:22:15,519 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:22:15,519 | INFO | ============================================================
+2026-07-11 01:22:15,519 | INFO | Creating Silver Layer
+2026-07-11 01:22:15,520 | INFO | ============================================================
+2026-07-11 01:22:21,304 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:22:21,304 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:22:21,305 | INFO | Duplicates Removed   : 0
+2026-07-11 01:22:21,305 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:22:21,305 | INFO | Silver Layer Created Successfully
+2026-07-11 01:22:21,318 | INFO | Step 4 Completed
+2026-07-11 01:22:21,319 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:22:21,319 | INFO | ============================================================
+2026-07-11 01:22:21,319 | INFO | Creating Gold Layer
+2026-07-11 01:22:21,319 | INFO | ============================================================
+2026-07-11 01:22:22,684 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:22:22,725 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:22:22,746 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:22:22,765 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:22:22,782 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:22:22,808 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:22:22,932 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:22:22,943 | INFO | ============================================================
+2026-07-11 01:22:22,943 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:22:22,943 | INFO | ============================================================
+2026-07-11 01:22:22,965 | INFO | Step 5 Completed
+2026-07-11 01:22:22,965 | INFO | ======================================================================
+2026-07-11 01:22:22,965 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:22:22,965 | INFO | Execution Time : 0:00:12.642816
+2026-07-11 01:22:22,966 | INFO | ======================================================================
+2026-07-11 01:22:43,506 | INFO | ======================================================================
+2026-07-11 01:22:43,507 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:22:43,507 | INFO | Started : 2026-07-11 01:22:43.506812
+2026-07-11 01:22:43,507 | INFO | ======================================================================
+2026-07-11 01:22:43,508 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:22:43,508 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:22:45,000 | INFO | Dataset loaded successfully
+2026-07-11 01:22:45,000 | INFO | Rows    : 113390
+2026-07-11 01:22:45,000 | INFO | Columns : 38
+2026-07-11 01:22:45,001 | INFO | Step 1 Completed
+2026-07-11 01:22:45,001 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:22:50,986 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:22:50,987 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:22:50,987 | INFO | Step 2 Completed
+2026-07-11 01:22:50,987 | INFO | STEP 3/4 : Validation
+2026-07-11 01:22:51,570 | INFO | Step 3 Completed
+2026-07-11 01:22:51,570 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:22:51,571 | INFO | ============================================================
+2026-07-11 01:22:51,571 | INFO | Creating Silver Layer
+2026-07-11 01:22:51,571 | INFO | ============================================================
+2026-07-11 01:22:58,076 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:22:58,076 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:22:58,076 | INFO | Duplicates Removed   : 0
+2026-07-11 01:22:58,076 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:22:58,077 | INFO | Silver Layer Created Successfully
+2026-07-11 01:22:58,092 | INFO | Step 4 Completed
+2026-07-11 01:22:58,093 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:22:58,093 | INFO | ============================================================
+2026-07-11 01:22:58,093 | INFO | Creating Gold Layer
+2026-07-11 01:22:58,093 | INFO | ============================================================
+2026-07-11 01:22:59,517 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:22:59,558 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:22:59,582 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:22:59,599 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:22:59,616 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:22:59,643 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:22:59,765 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:22:59,776 | INFO | ============================================================
+2026-07-11 01:22:59,776 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:22:59,777 | INFO | ============================================================
+2026-07-11 01:22:59,800 | INFO | Step 5 Completed
+2026-07-11 01:22:59,800 | INFO | ======================================================================
+2026-07-11 01:22:59,800 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:22:59,800 | INFO | Execution Time : 0:00:16.293591
+2026-07-11 01:22:59,800 | INFO | ======================================================================
+2026-07-11 01:23:10,721 | INFO | ======================================================================
+2026-07-11 01:23:10,721 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:23:10,721 | INFO | Started : 2026-07-11 01:23:10.721204
+2026-07-11 01:23:10,722 | INFO | ======================================================================
+2026-07-11 01:23:10,722 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:23:10,722 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:23:12,141 | INFO | Dataset loaded successfully
+2026-07-11 01:23:12,142 | INFO | Rows    : 113390
+2026-07-11 01:23:12,142 | INFO | Columns : 38
+2026-07-11 01:23:12,142 | INFO | Step 1 Completed
+2026-07-11 01:23:12,142 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:23:14,660 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:23:14,660 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:23:14,661 | INFO | Step 2 Completed
+2026-07-11 01:23:14,661 | INFO | STEP 3/4 : Validation
+2026-07-11 01:23:15,009 | INFO | Step 3 Completed
+2026-07-11 01:23:15,009 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:23:15,009 | INFO | ============================================================
+2026-07-11 01:23:15,009 | INFO | Creating Silver Layer
+2026-07-11 01:23:15,010 | INFO | ============================================================
+2026-07-11 01:23:19,855 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:23:19,856 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:23:19,856 | INFO | Duplicates Removed   : 0
+2026-07-11 01:23:19,856 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:23:19,856 | INFO | Silver Layer Created Successfully
+2026-07-11 01:23:19,870 | INFO | Step 4 Completed
+2026-07-11 01:23:19,870 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:23:19,870 | INFO | ============================================================
+2026-07-11 01:23:19,871 | INFO | Creating Gold Layer
+2026-07-11 01:23:19,871 | INFO | ============================================================
+2026-07-11 01:23:20,949 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:23:20,989 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:23:21,008 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:23:21,024 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:23:21,040 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:23:21,063 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:23:21,177 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:23:21,186 | INFO | ============================================================
+2026-07-11 01:23:21,187 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:23:21,187 | INFO | ============================================================
+2026-07-11 01:23:21,209 | INFO | Step 5 Completed
+2026-07-11 01:23:21,209 | INFO | ======================================================================
+2026-07-11 01:23:21,209 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:23:21,209 | INFO | Execution Time : 0:00:10.488299
+2026-07-11 01:23:21,210 | INFO | ======================================================================
+2026-07-11 01:23:28,747 | INFO | ======================================================================
+2026-07-11 01:23:28,748 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:23:28,748 | INFO | Started : 2026-07-11 01:23:28.747807
+2026-07-11 01:23:28,748 | INFO | ======================================================================
+2026-07-11 01:23:28,749 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:23:28,749 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:23:30,075 | INFO | Dataset loaded successfully
+2026-07-11 01:23:30,076 | INFO | Rows    : 113390
+2026-07-11 01:23:30,076 | INFO | Columns : 38
+2026-07-11 01:23:30,076 | INFO | Step 1 Completed
+2026-07-11 01:23:30,076 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:23:32,715 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:23:32,715 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:23:32,716 | INFO | Step 2 Completed
+2026-07-11 01:23:32,716 | INFO | STEP 3/4 : Validation
+2026-07-11 01:23:33,209 | INFO | Step 3 Completed
+2026-07-11 01:23:33,209 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:23:33,210 | INFO | ============================================================
+2026-07-11 01:23:33,210 | INFO | Creating Silver Layer
+2026-07-11 01:23:33,210 | INFO | ============================================================
+2026-07-11 01:23:35,629 | ERROR | ======================================================================
+2026-07-11 01:23:35,629 | ERROR | PIPELINE FAILED
+2026-07-11 01:23:35,629 | ERROR | [Errno 22] Invalid argument: 'C:\\Users\\Ojeshwi Gautam\\Projects\\DataLakehouse-Platform\\data\\silver\\silver_orders.csv'
+2026-07-11 01:23:35,635 | ERROR | Traceback (most recent call last):
+  File "C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\src\pipeline\etl_pipeline.py", line 59, in run_pipeline
+    create_silver_layer()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\src\processing\silver_pipeline.py", line 93, in create_silver_layer
+    df.to_csv(str(output_path), index=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "C:\Users\Ojeshwi Gautam\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\Ojeshwi Gautam\\Projects\\DataLakehouse-Platform\\data\\silver\\silver_orders.csv'
+
+2026-07-11 01:23:35,635 | ERROR | ======================================================================
+2026-07-11 01:23:36,631 | INFO | ======================================================================
+2026-07-11 01:23:36,632 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:23:36,632 | INFO | Started : 2026-07-11 01:23:36.631809
+2026-07-11 01:23:36,632 | INFO | ======================================================================
+2026-07-11 01:23:36,632 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:23:36,633 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:23:37,689 | INFO | Dataset loaded successfully
+2026-07-11 01:23:37,689 | INFO | Rows    : 113390
+2026-07-11 01:23:37,689 | INFO | Columns : 38
+2026-07-11 01:23:37,689 | INFO | Step 1 Completed
+2026-07-11 01:23:37,689 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:23:39,690 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:23:39,690 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:23:39,690 | INFO | Step 2 Completed
+2026-07-11 01:23:39,690 | INFO | STEP 3/4 : Validation
+2026-07-11 01:23:40,110 | INFO | Step 3 Completed
+2026-07-11 01:23:40,110 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:23:40,111 | INFO | ============================================================
+2026-07-11 01:23:40,111 | INFO | Creating Silver Layer
+2026-07-11 01:23:40,111 | INFO | ============================================================
+2026-07-11 01:23:44,965 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:23:44,965 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:23:44,965 | INFO | Duplicates Removed   : 0
+2026-07-11 01:23:44,966 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:23:44,966 | INFO | Silver Layer Created Successfully
+2026-07-11 01:23:44,977 | INFO | Step 4 Completed
+2026-07-11 01:23:44,977 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:23:44,978 | INFO | ============================================================
+2026-07-11 01:23:44,978 | INFO | Creating Gold Layer
+2026-07-11 01:23:44,978 | INFO | ============================================================
+2026-07-11 01:23:46,090 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:23:46,125 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:23:46,145 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:23:46,161 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:23:46,179 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:23:46,203 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:23:46,316 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:23:46,326 | INFO | ============================================================
+2026-07-11 01:23:46,326 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:23:46,327 | INFO | ============================================================
+2026-07-11 01:23:46,347 | INFO | Step 5 Completed
+2026-07-11 01:23:46,348 | INFO | ======================================================================
+2026-07-11 01:23:46,348 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:23:46,348 | INFO | Execution Time : 0:00:09.716352
+2026-07-11 01:23:46,348 | INFO | ======================================================================
+2026-07-11 01:24:02,502 | INFO | ======================================================================
+2026-07-11 01:24:02,502 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:24:02,503 | INFO | Started : 2026-07-11 01:24:02.502223
+2026-07-11 01:24:02,503 | INFO | ======================================================================
+2026-07-11 01:24:02,503 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:24:02,504 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:24:03,900 | INFO | Dataset loaded successfully
+2026-07-11 01:24:03,901 | INFO | Rows    : 113390
+2026-07-11 01:24:03,901 | INFO | Columns : 38
+2026-07-11 01:24:03,901 | INFO | Step 1 Completed
+2026-07-11 01:24:03,901 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:24:06,644 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:24:06,644 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:24:06,644 | INFO | Step 2 Completed
+2026-07-11 01:24:06,645 | INFO | STEP 3/4 : Validation
+2026-07-11 01:24:07,211 | INFO | Step 3 Completed
+2026-07-11 01:24:07,212 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:24:07,212 | INFO | ============================================================
+2026-07-11 01:24:07,212 | INFO | Creating Silver Layer
+2026-07-11 01:24:07,212 | INFO | ============================================================
+2026-07-11 01:24:12,742 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:24:12,743 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:24:12,743 | INFO | Duplicates Removed   : 0
+2026-07-11 01:24:12,743 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:24:12,743 | INFO | Silver Layer Created Successfully
+2026-07-11 01:24:12,756 | INFO | Step 4 Completed
+2026-07-11 01:24:12,756 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:24:12,756 | INFO | ============================================================
+2026-07-11 01:24:12,756 | INFO | Creating Gold Layer
+2026-07-11 01:24:12,757 | INFO | ============================================================
+2026-07-11 01:24:12,768 | INFO | ======================================================================
+2026-07-11 01:24:12,769 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:24:12,769 | INFO | Started : 2026-07-11 01:24:12.768749
+2026-07-11 01:24:12,769 | INFO | ======================================================================
+2026-07-11 01:24:12,769 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:24:12,769 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:24:13,934 | INFO | Dataset loaded successfully
+2026-07-11 01:24:13,934 | INFO | Rows    : 113390
+2026-07-11 01:24:13,935 | INFO | Columns : 38
+2026-07-11 01:24:13,935 | INFO | Step 1 Completed
+2026-07-11 01:24:13,935 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:24:14,025 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:24:14,066 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:24:14,086 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:24:14,103 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:24:14,123 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:24:14,149 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:24:14,283 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:24:14,295 | INFO | ============================================================
+2026-07-11 01:24:14,295 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:24:14,295 | INFO | ============================================================
+2026-07-11 01:24:14,319 | INFO | Step 5 Completed
+2026-07-11 01:24:14,320 | INFO | ======================================================================
+2026-07-11 01:24:14,320 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:24:14,320 | INFO | Execution Time : 0:00:11.817906
+2026-07-11 01:24:14,320 | INFO | ======================================================================
+2026-07-11 01:24:15,917 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:24:15,918 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:24:15,918 | INFO | Step 2 Completed
+2026-07-11 01:24:15,918 | INFO | STEP 3/4 : Validation
+2026-07-11 01:24:16,394 | INFO | Step 3 Completed
+2026-07-11 01:24:16,394 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:24:16,394 | INFO | ============================================================
+2026-07-11 01:24:16,395 | INFO | Creating Silver Layer
+2026-07-11 01:24:16,395 | INFO | ============================================================
+2026-07-11 01:24:21,422 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:24:21,423 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:24:21,423 | INFO | Duplicates Removed   : 0
+2026-07-11 01:24:21,423 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:24:21,423 | INFO | Silver Layer Created Successfully
+2026-07-11 01:24:21,434 | INFO | Step 4 Completed
+2026-07-11 01:24:21,435 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:24:21,435 | INFO | ============================================================
+2026-07-11 01:24:21,435 | INFO | Creating Gold Layer
+2026-07-11 01:24:21,435 | INFO | ============================================================
+2026-07-11 01:24:22,493 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:24:22,528 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:24:22,546 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:24:22,560 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:24:22,576 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:24:22,599 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:24:22,708 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:24:22,719 | INFO | ============================================================
+2026-07-11 01:24:22,719 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:24:22,719 | INFO | ============================================================
+2026-07-11 01:24:22,739 | INFO | Step 5 Completed
+2026-07-11 01:24:22,739 | INFO | ======================================================================
+2026-07-11 01:24:22,739 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:24:22,740 | INFO | Execution Time : 0:00:09.970882
+2026-07-11 01:24:22,740 | INFO | ======================================================================
+2026-07-11 01:24:29,482 | INFO | ======================================================================
+2026-07-11 01:24:29,483 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:24:29,483 | INFO | Started : 2026-07-11 01:24:29.482846
+2026-07-11 01:24:29,483 | INFO | ======================================================================
+2026-07-11 01:24:29,484 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:24:29,484 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:24:30,952 | INFO | Dataset loaded successfully
+2026-07-11 01:24:30,952 | INFO | Rows    : 113390
+2026-07-11 01:24:30,953 | INFO | Columns : 38
+2026-07-11 01:24:30,953 | INFO | Step 1 Completed
+2026-07-11 01:24:30,953 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:24:33,793 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:24:33,794 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:24:33,794 | INFO | Step 2 Completed
+2026-07-11 01:24:33,794 | INFO | STEP 3/4 : Validation
+2026-07-11 01:24:34,250 | INFO | Step 3 Completed
+2026-07-11 01:24:34,250 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:24:34,250 | INFO | ============================================================
+2026-07-11 01:24:34,251 | INFO | Creating Silver Layer
+2026-07-11 01:24:34,251 | INFO | ============================================================
+2026-07-11 01:24:39,352 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:24:39,352 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:24:39,352 | INFO | Duplicates Removed   : 0
+2026-07-11 01:24:39,352 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:24:39,352 | INFO | Silver Layer Created Successfully
+2026-07-11 01:24:39,366 | INFO | Step 4 Completed
+2026-07-11 01:24:39,366 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:24:39,366 | INFO | ============================================================
+2026-07-11 01:24:39,366 | INFO | Creating Gold Layer
+2026-07-11 01:24:39,367 | INFO | ============================================================
+2026-07-11 01:24:40,479 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:24:40,515 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:24:40,534 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:24:40,550 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:24:40,567 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:24:40,592 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:24:40,709 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:24:40,720 | INFO | ============================================================
+2026-07-11 01:24:40,720 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:24:40,721 | INFO | ============================================================
+2026-07-11 01:24:40,742 | INFO | Step 5 Completed
+2026-07-11 01:24:40,742 | INFO | ======================================================================
+2026-07-11 01:24:40,742 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:24:40,742 | INFO | Execution Time : 0:00:11.259528
+2026-07-11 01:24:40,743 | INFO | ======================================================================
+2026-07-11 01:24:55,573 | INFO | ======================================================================
+2026-07-11 01:24:55,573 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:24:55,573 | INFO | Started : 2026-07-11 01:24:55.573056
+2026-07-11 01:24:55,573 | INFO | ======================================================================
+2026-07-11 01:24:55,573 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:24:55,574 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:24:56,909 | INFO | Dataset loaded successfully
+2026-07-11 01:24:56,910 | INFO | Rows    : 113390
+2026-07-11 01:24:56,910 | INFO | Columns : 38
+2026-07-11 01:24:56,910 | INFO | Step 1 Completed
+2026-07-11 01:24:56,911 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:24:59,120 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:24:59,121 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:24:59,121 | INFO | Step 2 Completed
+2026-07-11 01:24:59,121 | INFO | STEP 3/4 : Validation
+2026-07-11 01:24:59,574 | INFO | Step 3 Completed
+2026-07-11 01:24:59,575 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:24:59,575 | INFO | ============================================================
+2026-07-11 01:24:59,575 | INFO | Creating Silver Layer
+2026-07-11 01:24:59,575 | INFO | ============================================================
+2026-07-11 01:25:05,724 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:25:05,724 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:25:05,724 | INFO | Duplicates Removed   : 0
+2026-07-11 01:25:05,725 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:25:05,725 | INFO | Silver Layer Created Successfully
+2026-07-11 01:25:05,738 | INFO | Step 4 Completed
+2026-07-11 01:25:05,738 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:25:05,739 | INFO | ============================================================
+2026-07-11 01:25:05,739 | INFO | Creating Gold Layer
+2026-07-11 01:25:05,739 | INFO | ============================================================
+2026-07-11 01:25:07,088 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:25:07,130 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:25:07,153 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:25:07,169 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:25:07,189 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:25:07,220 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:25:07,349 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:25:07,360 | INFO | ============================================================
+2026-07-11 01:25:07,361 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:25:07,361 | INFO | ============================================================
+2026-07-11 01:25:07,387 | INFO | Step 5 Completed
+2026-07-11 01:25:07,387 | INFO | ======================================================================
+2026-07-11 01:25:07,387 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:25:07,387 | INFO | Execution Time : 0:00:11.814353
+2026-07-11 01:25:07,388 | INFO | ======================================================================
+2026-07-11 01:30:06,813 | INFO | ======================================================================
+2026-07-11 01:30:06,814 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:30:06,814 | INFO | Started : 2026-07-11 01:30:06.813580
+2026-07-11 01:30:06,814 | INFO | ======================================================================
+2026-07-11 01:30:06,815 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:30:06,815 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:30:08,334 | INFO | Dataset loaded successfully
+2026-07-11 01:30:08,334 | INFO | Rows    : 113390
+2026-07-11 01:30:08,334 | INFO | Columns : 38
+2026-07-11 01:30:08,335 | INFO | Step 1 Completed
+2026-07-11 01:30:08,335 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:30:10,763 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:30:10,763 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:30:10,764 | INFO | Step 2 Completed
+2026-07-11 01:30:10,764 | INFO | STEP 3/4 : Validation
+2026-07-11 01:30:11,238 | INFO | Step 3 Completed
+2026-07-11 01:30:11,238 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:30:11,238 | INFO | ============================================================
+2026-07-11 01:30:11,238 | INFO | Creating Silver Layer
+2026-07-11 01:30:11,239 | INFO | ============================================================
+2026-07-11 01:30:16,551 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:30:16,551 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:30:16,551 | INFO | Duplicates Removed   : 0
+2026-07-11 01:30:16,551 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:30:16,551 | INFO | Silver Layer Created Successfully
+2026-07-11 01:30:16,562 | INFO | Step 4 Completed
+2026-07-11 01:30:16,562 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:30:16,562 | INFO | ============================================================
+2026-07-11 01:30:16,563 | INFO | Creating Gold Layer
+2026-07-11 01:30:16,563 | INFO | ============================================================
+2026-07-11 01:30:17,623 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:30:17,657 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:30:17,676 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:30:17,693 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:30:17,710 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:30:17,734 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:30:17,843 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:30:17,852 | INFO | ============================================================
+2026-07-11 01:30:17,852 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:30:17,853 | INFO | ============================================================
+2026-07-11 01:30:17,872 | INFO | Step 5 Completed
+2026-07-11 01:30:17,873 | INFO | ======================================================================
+2026-07-11 01:30:17,873 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:30:17,873 | INFO | ======================================================================
+2026-07-11 01:30:17,873 | INFO | 
+2026-07-11 01:30:17,874 | INFO | PIPELINE SUMMARY
+2026-07-11 01:30:17,874 | INFO | ----------------------------------------------------------------------
+2026-07-11 01:30:17,874 | INFO | Raw Dataset        : olist_ecommerce_dataset.csv
+2026-07-11 01:30:17,874 | INFO | Bronze Dataset     : bronze_orders.csv
+2026-07-11 01:30:17,874 | INFO | Silver Dataset     : silver_orders.csv
+2026-07-11 01:30:17,874 | INFO | 
+2026-07-11 01:30:17,875 | INFO | Gold Datasets Generated : 7
+2026-07-11 01:30:17,890 | INFO | 
+2026-07-11 01:30:17,891 | INFO | Execution Time     : 0:00:11.058996
+2026-07-11 01:30:17,891 | INFO | Pipeline Status    : SUCCESS
+2026-07-11 01:30:17,891 | INFO | ======================================================================
+2026-07-11 01:34:11,648 | INFO | ======================================================================
+2026-07-11 01:34:11,649 | INFO | UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE
+2026-07-11 01:34:11,649 | INFO | Started : 2026-07-11 01:34:11.648874
+2026-07-11 01:34:11,649 | INFO | ======================================================================
+2026-07-11 01:34:11,650 | INFO | STEP 1/4 : Loading Dataset
+2026-07-11 01:34:11,650 | INFO | Loading dataset from C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\raw\historical\olist_ecommerce_dataset.csv
+2026-07-11 01:34:13,035 | INFO | Dataset loaded successfully
+2026-07-11 01:34:13,036 | INFO | Rows    : 113390
+2026-07-11 01:34:13,036 | INFO | Columns : 38
+2026-07-11 01:34:13,036 | INFO | Step 1 Completed
+2026-07-11 01:34:13,037 | INFO | STEP 2/4 : Bronze Layer
+2026-07-11 01:34:15,743 | INFO | Bronze Layer Created Successfully
+2026-07-11 01:34:15,743 | INFO | Saved Bronze Dataset -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\bronze\historical\bronze_orders.csv
+2026-07-11 01:34:15,743 | INFO | Step 2 Completed
+2026-07-11 01:34:15,743 | INFO | STEP 3/4 : Validation
+2026-07-11 01:34:16,214 | INFO | Step 3 Completed
+2026-07-11 01:34:16,214 | INFO | STEP 4/5 : Silver Layer
+2026-07-11 01:34:16,215 | INFO | ============================================================
+2026-07-11 01:34:16,215 | INFO | Creating Silver Layer
+2026-07-11 01:34:16,215 | INFO | ============================================================
+2026-07-11 01:34:21,447 | INFO | Rows Before Cleaning : 113390
+2026-07-11 01:34:21,447 | INFO | Rows After Cleaning  : 113390
+2026-07-11 01:34:21,447 | INFO | Duplicates Removed   : 0
+2026-07-11 01:34:21,447 | INFO | Silver Dataset Saved : C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\silver\silver_orders.csv
+2026-07-11 01:34:21,448 | INFO | Silver Layer Created Successfully
+2026-07-11 01:34:21,461 | INFO | Step 4 Completed
+2026-07-11 01:34:21,461 | INFO | STEP 5/5 : Gold Layer
+2026-07-11 01:34:21,462 | INFO | ============================================================
+2026-07-11 01:34:21,463 | INFO | Creating Gold Layer
+2026-07-11 01:34:21,463 | INFO | ============================================================
+2026-07-11 01:34:22,445 | INFO | Daily Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\daily_sales.csv
+2026-07-11 01:34:22,480 | INFO | Monthly Sales created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\monthly_sales.csv
+2026-07-11 01:34:22,497 | INFO | Top Products created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_products.csv
+2026-07-11 01:34:22,512 | INFO | Top States created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\top_states.csv
+2026-07-11 01:34:22,529 | INFO | Payment Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\payment_summary.csv
+2026-07-11 01:34:22,553 | INFO | Seller Performance created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\seller_performance.csv
+2026-07-11 01:34:22,658 | INFO | Delivery Summary created -> C:\Users\Ojeshwi Gautam\Projects\DataLakehouse-Platform\data\gold\delivery_summary.csv
+2026-07-11 01:34:22,668 | INFO | ============================================================
+2026-07-11 01:34:22,669 | INFO | Gold Layer Completed Successfully
+2026-07-11 01:34:22,669 | INFO | ============================================================
+2026-07-11 01:34:22,689 | INFO | Step 5 Completed
+2026-07-11 01:34:22,690 | INFO | ======================================================================
+2026-07-11 01:34:22,690 | INFO | PIPELINE EXECUTED SUCCESSFULLY
+2026-07-11 01:34:22,690 | INFO | ======================================================================
+2026-07-11 01:34:22,690 | INFO | 
+2026-07-11 01:34:22,691 | INFO | PIPELINE SUMMARY
+2026-07-11 01:34:22,691 | INFO | ----------------------------------------------------------------------
+2026-07-11 01:34:22,691 | INFO | Raw Dataset        : olist_ecommerce_dataset.csv
+2026-07-11 01:34:22,691 | INFO | Bronze Dataset     : bronze_orders.csv
+2026-07-11 01:34:22,691 | INFO | Silver Dataset     : silver_orders.csv
+2026-07-11 01:34:22,691 | INFO | 
+2026-07-11 01:34:22,692 | INFO | Gold Datasets Generated : 7
+2026-07-11 01:34:22,692 | INFO | [OK] daily_sales.csv
+2026-07-11 01:34:22,692 | INFO | [OK] delivery_summary.csv
+2026-07-11 01:34:22,692 | INFO | [OK] monthly_sales.csv
+2026-07-11 01:34:22,692 | INFO | [OK] payment_summary.csv
+2026-07-11 01:34:22,692 | INFO | [OK] seller_performance.csv
+2026-07-11 01:34:22,692 | INFO | [OK] top_products.csv
+2026-07-11 01:34:22,693 | INFO | [OK] top_states.csv
+2026-07-11 01:34:22,693 | INFO | 
+2026-07-11 01:34:22,693 | INFO | Execution Time     : 0:00:11.040980
+2026-07-11 01:34:22,693 | INFO | Pipeline Status    : SUCCESS
+2026-07-11 01:34:22,693 | INFO | ======================================================================

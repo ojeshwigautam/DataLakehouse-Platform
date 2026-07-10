@@ -8,6 +8,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.ingestion.load_dataset import load_dataset
 from src.bronze.save_to_bronze import save_to_bronze
+from src.processing.validate_dataset import validate_dataset
+
 
 # Dataset path
 DATASET_PATH = Path("data/raw/historical/olist_ecommerce_dataset.csv")
@@ -50,4 +52,7 @@ save_to_bronze(
     df,
     "data/bronze/historical"
 )
+
+validate_dataset(df)
+
 

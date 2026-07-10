@@ -12,7 +12,7 @@ from src.processing.validate_dataset import validate_dataset
 
 
 # Dataset path
-DATASET_PATH = Path("data/raw/historical/olist_ecommerce_dataset.csv")
+from src.config.settings import RAW_DATASET, BRONZE_DIR
 
 
 print("=" * 60)
@@ -21,7 +21,7 @@ print("Dataset Inspection")
 print("=" * 60)
 
 # Read dataset
-df = load_dataset(DATASET_PATH)
+df = load_dataset(RAW_DATASET)
 
 
 # Remove unwanted index column if present
@@ -50,8 +50,9 @@ print(df.head())
 
 save_to_bronze(
     df,
-    "data/bronze/historical"
+    BRONZE_DIR
 )
+
 
 validate_dataset(df)
 

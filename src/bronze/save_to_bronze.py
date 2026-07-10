@@ -4,7 +4,10 @@ import pandas as pd
 from src.utils.logger import logger
 
 
-def save_to_bronze(df: pd.DataFrame, output_dir):
+from src.config.settings import BRONZE_DIR
+
+
+def save_to_bronze(df: pd.DataFrame, output_dir=BRONZE_DIR):
     """
     Save the raw dataframe into Bronze Layer.
     """

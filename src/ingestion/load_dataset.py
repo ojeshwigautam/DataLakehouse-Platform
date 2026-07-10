@@ -6,7 +6,10 @@ from src.utils.logger import logger
 
 
 
-def load_dataset(dataset_path):
+from src.config.settings import RAW_DATASET
+
+
+def load_dataset(dataset_path=RAW_DATASET):
     """Load the historical dataset.
 
     Parameters
@@ -20,6 +23,7 @@ def load_dataset(dataset_path):
     """
 
     dataset_path = Path(dataset_path)
+
 
     if not dataset_path.exists():
         raise FileNotFoundError(f"Dataset not found: {dataset_path}")

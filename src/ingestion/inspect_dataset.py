@@ -1,8 +1,17 @@
-import pandas as pd
 from pathlib import Path
+
+# Allow running this script directly (python src/ingestion/inspect_dataset.py)
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.ingestion.load_dataset import load_dataset
+from src.bronze.save_to_bronze import save_to_bronze
 
 # Dataset path
 DATASET_PATH = Path("data/raw/historical/olist_ecommerce_dataset.csv")
+
 
 print("=" * 60)
 print("UNIFIED COMMERCE LAKEHOUSE")
@@ -10,7 +19,8 @@ print("Dataset Inspection")
 print("=" * 60)
 
 # Read dataset
-df = pd.read_csv(DATASET_PATH)
+df = load_dataset(DATASET_PATH)
+
 
 # Remove unwanted index column if present
 if "Unnamed: 0" in df.columns:
@@ -35,3 +45,9 @@ df.info()
 print("\nFirst Five Records")
 print("-" * 60)
 print(df.head())
+
+save_to_bronze(
+    df,
+    "data/bronze/historical"
+)
+

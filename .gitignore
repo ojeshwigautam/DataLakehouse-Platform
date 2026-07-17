@@ -8,3 +8,28 @@ env
 .env
 __pycache__/
 *.pyc
+
+# -------------------------------------------------
+# Generated Pipeline Data
+# -------------------------------------------------
+
+# Bronze incremental outputs
+data/bronze/incremental/
+
+# Silver generated outputs
+data/silver/*.csv
+
+# Gold generated outputs
+data/gold/*.csv
+
+# Processed incremental batches
+data/processed/
+
+# Exported reports/files
+data/exports/
+
+# -------------------------------------------------
+# Runtime Logs
+# -------------------------------------------------
+
+logs/*.log

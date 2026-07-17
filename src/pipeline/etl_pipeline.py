@@ -18,6 +18,15 @@ from src.processing.silver_pipeline import create_silver_layer
 from src.gold.gold_pipeline import create_gold_layer
 from src.database.load_gold_tables import load_gold_tables
 from src.database.validate_tables import validate_postgresql_tables
+from src.database.pipeline_audit import (
+    start_pipeline_audit,
+    complete_pipeline_audit,
+    fail_pipeline_audit,
+)
+
+
+
+
 
 
 
@@ -33,12 +42,23 @@ def run_pipeline():
 
     start_time = datetime.now()
 
+    run_id = None
+    incremental_files = []
+
     logger.info("=" * 70)
     logger.info("UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE")
     logger.info(f"Started : {start_time}")
     logger.info("=" * 70)
 
     try:
+        run_id = start_pipeline_audit()
+
+        logger.info("=" * 70)
+        logger.info("UNIFIED COMMERCE LAKEHOUSE ETL PIPELINE")
+        logger.info(f"Run ID  : {run_id}")
+        logger.info(f"Started : {start_time}")
+        logger.info("=" * 70)
+
         # -------------------------------------------------
         # Step 1 - Load
         # -------------------------------------------------
@@ -182,6 +202,12 @@ def run_pipeline():
 
         logger.info("=" * 70)
 
+        complete_pipeline_audit(
+            run_id=run_id,
+            start_time=start_time,
+            incremental_batches=len(incremental_files),
+        )
+
         return True
 
 
@@ -191,5 +217,18 @@ def run_pipeline():
         logger.error(error)
         logger.error(traceback.format_exc())
         logger.error("=" * 70)
+
+        if run_id is not None:
+            try:
+                fail_pipeline_audit(
+                    run_id=run_id,
+                    start_time=start_time,
+                    error_message=str(error),
+                )
+            except Exception as audit_error:
+                logger.error(
+                    f"Failed to update pipeline audit: {audit_error}"
+                )
+
         return False
 

@@ -15,6 +15,10 @@ from src.bronze.save_to_bronze import save_to_bronze
 from src.processing.validate_dataset import validate_dataset
 from src.processing.silver_pipeline import create_silver_layer
 from src.gold.gold_pipeline import create_gold_layer
+from src.database.load_gold_tables import load_gold_tables
+
+
+
 
 
 def run_pipeline():
@@ -31,7 +35,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 1 - Load
         # -------------------------------------------------
-        logger.info("STEP 1/4 : Loading Dataset")
+        logger.info("STEP 1/6 : Loading Dataset")
+
 
         df = load_dataset(RAW_DATASET)
 
@@ -40,7 +45,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 2 - Bronze
         # -------------------------------------------------
-        logger.info("STEP 2/4 : Bronze Layer")
+        logger.info("STEP 2/6 : Bronze Layer")
+
 
         save_to_bronze(df)
 
@@ -49,7 +55,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 3 - Validation
         # -------------------------------------------------
-        logger.info("STEP 3/4 : Validation")
+        logger.info("STEP 3/6 : Validation")
+
 
 
         validate_dataset(df)
@@ -60,22 +67,27 @@ def run_pipeline():
         # Step 4 - Silver
         # -------------------------------------------------
 
-        logger.info("STEP 4/5 : Silver Layer")
+        logger.info("STEP 4/6 : Silver Layer")
 
         create_silver_layer()
 
         logger.info("Step 4 Completed")
 
+
         # -------------------------------------------------
         # Step 5 - Gold
         # -------------------------------------------------
 
-        logger.info("STEP 5/5 : Gold Layer")
+        logger.info("STEP 5/6 : Gold Layer")
 
         create_gold_layer()
-
-
         logger.info("Step 5 Completed")
+
+
+        logger.info("STEP 6/6 : PostgreSQL Database")
+        loaded_tables = load_gold_tables()
+        logger.info("Step 6 Completed")
+
 
         end_time = datetime.now()
         execution_time = end_time - start_time
@@ -102,8 +114,15 @@ def run_pipeline():
             logger.info(f"[OK] {file.name}")
 
         logger.info("")
+        logger.info(f"PostgreSQL Tables Loaded : {len(loaded_tables)}")
+
+        for table in loaded_tables:
+            logger.info(f"[OK] {table}")
+
+        logger.info("")
         logger.info(f"Execution Time     : {execution_time}")
         logger.info("Pipeline Status    : SUCCESS")
+
 
         logger.info("=" * 70)
 

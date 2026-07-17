@@ -11,12 +11,14 @@ from src.config.settings import (
 from src.utils.logger import logger
 
 from src.ingestion.load_dataset import load_dataset
+from src.ingestion.incremental_ingestion import process_incremental_files
 from src.bronze.save_to_bronze import save_to_bronze
 from src.processing.validate_dataset import validate_dataset
 from src.processing.silver_pipeline import create_silver_layer
 from src.gold.gold_pipeline import create_gold_layer
 from src.database.load_gold_tables import load_gold_tables
 from src.database.validate_tables import validate_postgresql_tables
+
 
 
 
@@ -40,7 +42,7 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 1 - Load
         # -------------------------------------------------
-        logger.info("STEP 1/7 : Loading Dataset")
+        logger.info("STEP 1/8 : Loading Dataset")
 
 
 
@@ -51,7 +53,7 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 2 - Bronze
         # -------------------------------------------------
-        logger.info("STEP 2/7 : Bronze Layer")
+        logger.info("STEP 2/8 : Historical Bronze Layer")
 
 
 
@@ -60,9 +62,24 @@ def run_pipeline():
         logger.info("Step 2 Completed")
 
         # -------------------------------------------------
-        # Step 3 - Validation
+        # Step 3: Incremental Data Ingestion
         # -------------------------------------------------
-        logger.info("STEP 3/7 : Data Validation")
+
+        logger.info("STEP 3/8 : Incremental Data Ingestion")
+
+        incremental_files = process_incremental_files()
+
+        logger.info(
+            f"Incremental batches processed : {len(incremental_files)}"
+        )
+
+        logger.info("Step 3 Completed")
+
+        # -------------------------------------------------
+        # Step 4 - Validation
+        # -------------------------------------------------
+        logger.info("STEP 4/8 : Data Validation")
+
 
 
 
@@ -70,37 +87,40 @@ def run_pipeline():
 
         validate_dataset(df)
 
-        logger.info("Step 3 Completed")
+        logger.info("Step 4 Completed")
 
         # -------------------------------------------------
-        # Step 4 - Silver
+        # Step 5 - Silver
         # -------------------------------------------------
 
-        logger.info("STEP 4/7 : Silver Layer")
+        logger.info("STEP 5/8 : Silver Layer")
 
 
         create_silver_layer()
 
-        logger.info("Step 4 Completed")
-
-
-        # -------------------------------------------------
-        # Step 5 - Gold
-        # -------------------------------------------------
-
-        logger.info("STEP 5/7 : Gold Layer")
-
-
-        create_gold_layer()
         logger.info("Step 5 Completed")
 
 
-        logger.info("STEP 6/7 : PostgreSQL Loading")
+        # -------------------------------------------------
+        # Step 6 - Gold
+        # -------------------------------------------------
 
-        loaded_tables = load_gold_tables()
+        logger.info("STEP 6/8 : Gold Layer")
+
+
+
+        create_gold_layer()
         logger.info("Step 6 Completed")
 
-        logger.info("STEP 7/7 : PostgreSQL Validation")
+
+        logger.info("STEP 7/8 : PostgreSQL Loading")
+
+
+        loaded_tables = load_gold_tables()
+        logger.info("Step 7 Completed")
+
+        logger.info("STEP 8/8 : PostgreSQL Validation")
+
 
         database_valid = validate_postgresql_tables()
 
@@ -109,7 +129,7 @@ def run_pipeline():
                 "PostgreSQL database validation failed"
             )
 
-        logger.info("Step 7 Completed")
+        logger.info("Step 8 Completed")
 
 
         end_time = datetime.now()
@@ -131,7 +151,20 @@ def run_pipeline():
         logger.info(f"Silver Dataset     : {SILVER_DATASET.name}")
 
         logger.info("")
+        logger.info("Incremental Processing")
+        logger.info("-" * 70)
+        logger.info(
+            f"Incremental Batches Processed : {len(incremental_files)}"
+        )
+
+        for file_path in incremental_files:
+            logger.info(
+                f"[OK] {file_path.name}"
+            )
+
+        logger.info("")
         logger.info(f"Gold Datasets Generated : {len(gold_files)}")
+
 
         for file in gold_files:
             logger.info(f"[OK] {file.name}")

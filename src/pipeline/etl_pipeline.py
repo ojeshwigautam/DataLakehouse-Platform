@@ -14,8 +14,10 @@ from src.ingestion.load_dataset import load_dataset
 from src.ingestion.incremental_ingestion import process_incremental_files
 from src.bronze.save_to_bronze import save_to_bronze
 from src.processing.validate_dataset import validate_dataset
+from src.processing.data_quality import run_data_quality_checks
 from src.processing.silver_pipeline import create_silver_layer
 from src.gold.gold_pipeline import create_gold_layer
+
 from src.database.load_gold_tables import load_gold_tables
 from src.database.validate_tables import validate_postgresql_tables
 from src.database.pipeline_audit import (
@@ -62,7 +64,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 1 - Load
         # -------------------------------------------------
-        logger.info("STEP 1/8 : Loading Dataset")
+        logger.info("STEP 1/7 : Loading Dataset")
+
 
 
 
@@ -73,7 +76,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 2 - Bronze
         # -------------------------------------------------
-        logger.info("STEP 2/8 : Historical Bronze Layer")
+        logger.info("STEP 2/7 : Bronze Layer")
+
 
 
 
@@ -85,7 +89,8 @@ def run_pipeline():
         # Step 3: Incremental Data Ingestion
         # -------------------------------------------------
 
-        logger.info("STEP 3/8 : Incremental Data Ingestion")
+        logger.info("STEP 3/7 : Validation")
+
 
         incremental_files = process_incremental_files()
 
@@ -98,7 +103,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 4 - Validation
         # -------------------------------------------------
-        logger.info("STEP 4/8 : Data Validation")
+        logger.info("STEP 3/7 : Validation")
+
 
 
 
@@ -107,13 +113,28 @@ def run_pipeline():
 
         validate_dataset(df)
 
-        logger.info("Step 4 Completed")
+        logger.info("Step 3 Completed")
+
+        # -------------------------------------------------
+        # Step 4 - Data Quality Checks
+        # -------------------------------------------------
+
+        logger.info(
+            "STEP 4/7 : Data Quality Checks"
+        )
+
+        run_data_quality_checks(df)
+
+        logger.info(
+            "Step 4 Completed"
+        )
 
         # -------------------------------------------------
         # Step 5 - Silver
         # -------------------------------------------------
 
-        logger.info("STEP 5/8 : Silver Layer")
+        logger.info("STEP 5/7 : Silver Layer")
+
 
 
         create_silver_layer()
@@ -125,7 +146,8 @@ def run_pipeline():
         # Step 6 - Gold
         # -------------------------------------------------
 
-        logger.info("STEP 6/8 : Gold Layer")
+        logger.info("STEP 6/7 : Gold Layer")
+
 
 
 
@@ -133,7 +155,8 @@ def run_pipeline():
         logger.info("Step 6 Completed")
 
 
-        logger.info("STEP 7/8 : PostgreSQL Loading")
+        logger.info("STEP 7/7 : PostgreSQL Database")
+
 
 
         loaded_tables = load_gold_tables()

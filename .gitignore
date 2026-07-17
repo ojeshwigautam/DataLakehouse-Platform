@@ -5,3 +5,6 @@ __pycache__/
 .idea/
 env
 *.log
+.env
+__pycache__/
+*.pyc

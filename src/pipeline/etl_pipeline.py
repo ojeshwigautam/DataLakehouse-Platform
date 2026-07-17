@@ -16,6 +16,10 @@ from src.processing.validate_dataset import validate_dataset
 from src.processing.silver_pipeline import create_silver_layer
 from src.gold.gold_pipeline import create_gold_layer
 from src.database.load_gold_tables import load_gold_tables
+from src.database.validate_tables import validate_postgresql_tables
+
+
+
 
 
 
@@ -23,6 +27,7 @@ from src.database.load_gold_tables import load_gold_tables
 
 def run_pipeline():
     """Execute the complete ETL pipeline."""
+
 
     start_time = datetime.now()
 
@@ -35,7 +40,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 1 - Load
         # -------------------------------------------------
-        logger.info("STEP 1/6 : Loading Dataset")
+        logger.info("STEP 1/7 : Loading Dataset")
+
 
 
         df = load_dataset(RAW_DATASET)
@@ -45,7 +51,8 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 2 - Bronze
         # -------------------------------------------------
-        logger.info("STEP 2/6 : Bronze Layer")
+        logger.info("STEP 2/7 : Bronze Layer")
+
 
 
         save_to_bronze(df)
@@ -55,7 +62,9 @@ def run_pipeline():
         # -------------------------------------------------
         # Step 3 - Validation
         # -------------------------------------------------
-        logger.info("STEP 3/6 : Validation")
+        logger.info("STEP 3/7 : Data Validation")
+
+
 
 
 
@@ -67,7 +76,8 @@ def run_pipeline():
         # Step 4 - Silver
         # -------------------------------------------------
 
-        logger.info("STEP 4/6 : Silver Layer")
+        logger.info("STEP 4/7 : Silver Layer")
+
 
         create_silver_layer()
 
@@ -78,15 +88,28 @@ def run_pipeline():
         # Step 5 - Gold
         # -------------------------------------------------
 
-        logger.info("STEP 5/6 : Gold Layer")
+        logger.info("STEP 5/7 : Gold Layer")
+
 
         create_gold_layer()
         logger.info("Step 5 Completed")
 
 
-        logger.info("STEP 6/6 : PostgreSQL Database")
+        logger.info("STEP 6/7 : PostgreSQL Loading")
+
         loaded_tables = load_gold_tables()
         logger.info("Step 6 Completed")
+
+        logger.info("STEP 7/7 : PostgreSQL Validation")
+
+        database_valid = validate_postgresql_tables()
+
+        if not database_valid:
+            raise RuntimeError(
+                "PostgreSQL database validation failed"
+            )
+
+        logger.info("Step 7 Completed")
 
 
         end_time = datetime.now()

@@ -13,7 +13,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
 
 RAW_DATA_DIR = DATA_DIR / "raw" / "historical"
+INCREMENTAL_DATA_DIR = DATA_DIR / "raw" / "incremental"
+
 BRONZE_DIR = DATA_DIR / "bronze" / "historical"
+BRONZE_INCREMENTAL_DIR = DATA_DIR / "bronze" / "incremental"
+
 SILVER_DIR = (DATA_DIR / "silver").resolve()
 GOLD_DIR = DATA_DIR / "gold"
 PROCESSED_DIR = DATA_DIR / "processed"
@@ -54,7 +58,9 @@ GOLD_DELIVERY_SUMMARY = GOLD_DIR / "delivery_summary.csv"
 
 for directory in [
     RAW_DATA_DIR,
+    INCREMENTAL_DATA_DIR,
     BRONZE_DIR,
+    BRONZE_INCREMENTAL_DIR,
     SILVER_DIR,
     GOLD_DIR,
     PROCESSED_DIR,

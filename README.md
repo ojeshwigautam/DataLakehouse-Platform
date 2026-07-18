@@ -17,14 +17,6 @@
 
 ---
 
-
-```mermaid
-flowchart TD
-A --> B
-B --> C
-```
-
-
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -171,31 +163,25 @@ and consumed by Power BI dashboards.
 
 ```mermaid
 flowchart TD
+    A["Raw CSV Dataset"] --> B["Batch Registry Check"]
+    B --> C{"Already Processed?"}
 
-A[Raw CSV Dataset] --> B[Batch Registry Check]
+    C -- Yes --> D["Skip Batch"]
+    C -- No --> E["Bronze Layer"]
 
-B --> C{Already Processed?}
+    E --> F["Data Validation"]
+    F --> G{"Validation Passed?"}
 
-C -->|Yes| D[Skip Batch]
-C -->|No| E[Bronze Layer]
+    G -- No --> H["Quarantine Records"]
+    G -- Yes --> I["Silver Layer"]
 
-E --> F[Data Validation]
+    I --> J["Gold Layer"]
+    J --> K["PostgreSQL Warehouse"]
 
-F --> G{Validation Passed?}
-
-G -->|No| H[Quarantine Records]
-G -->|Yes| I[Silver Layer]
-
-I --> J[Gold Layer]
-
-J --> K[PostgreSQL Warehouse]
-
-K --> L[Power BI Dashboard]
-
-K --> M[Audit Log]
+    K --> L["Power BI Dashboard"]
+    K --> M["Audit Log"]
 ```
 
----
 
 ## Features
 

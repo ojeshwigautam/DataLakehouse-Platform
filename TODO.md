@@ -1,11 +1,8 @@
-# TODO - CSV to Parquet Migration
-
-- [x] Update `src/config/settings.py` dataset constants to use `.parquet` (keep `RAW_DATASET` as `.csv`).
-- [x] Update `src/bronze/save_to_bronze.py` to write `bronze_orders.parquet`.
-- [x] Update `src/ingestion/incremental_ingestion.py` to discover `*.parquet`, write batches as parquet, and archive accordingly.
-- [x] Update `src/processing/silver_pipeline.py` to discover incremental bronze `*.parquet` and output `silver_orders.parquet`.
-- [x] Update `src/database/load_gold_tables.py` `GOLD_TABLES` keys to use `*.parquet` filenames.
-- [x] Run pipeline via `python main.py`.
-- [ ] Run tests (`pytest -q`) if available/expected by repo.
-
+- [ ] Expand `src/spark/config.py` to centralize PROJECT_ROOT, BRONZE_PATH, SILVER_PATH, APP_NAME, SHUFFLE_PARTITIONS, PARQUET_COMPRESSION
+- [ ] Update `src/spark/session.py` to configure Spark with AQE, shuffle partitions, parquet compression
+- [ ] Implement `clean_orders(df)` in `src/spark/transforms.py`
+- [ ] Implement Spark DataFrame validations in `src/spark/validators.py`
+- [ ] Refactor `src/spark/silver_pipeline.py` into an orchestrator (logging, metrics, read/transform/validate/write)
+- [ ] Create `docs/spark/silver_pipeline.md`
+- [ ] Run tests / smoke checks (`pytest -q`, and/or `python scripts/test_spark.py`)
 

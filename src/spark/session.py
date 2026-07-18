@@ -1,30 +1,28 @@
 from pyspark.sql import SparkSession
 
 from src.spark.config import (
-    SPARK_APP_NAME,
+    APP_NAME,
+    PARQUET_COMPRESSION,
+    SHUFFLE_PARTITIONS,
     SPARK_MASTER,
-    SPARK_SHUFFLE_PARTITIONS,
-    SPARK_PARQUET_COMPRESSION,
 )
 
 
 def get_spark() -> SparkSession:
     spark = (
         SparkSession.builder
-        .appName(SPARK_APP_NAME)
+        .appName(APP_NAME)
         .master(SPARK_MASTER)
-        .config(
-            "spark.sql.shuffle.partitions",
-            SPARK_SHUFFLE_PARTITIONS,
-        )
+        .config("spark.sql.shuffle.partitions", SHUFFLE_PARTITIONS)
+        .config("spark.sql.adaptive.enabled", "true")
         .config(
             "spark.sql.parquet.compression.codec",
-            SPARK_PARQUET_COMPRESSION,
+            PARQUET_COMPRESSION,
         )
         .getOrCreate()
     )
 
     spark.sparkContext.setLogLevel("WARN")
-
     return spark
+
 

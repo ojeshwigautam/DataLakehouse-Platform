@@ -1,106 +1,52 @@
-from pyspark.sql.functions import (
-    trim,
-    lower,
-    upper,
-    col,
-    to_timestamp,
-)
+import logging
+import time
 
+from src.spark.config import BRONZE_PATH, SILVER_PATH
 from src.spark.readers import read_parquet
-from src.spark.writers import write_parquet
-from src.config.settings import (
-    BRONZE_DATASET,
-    SILVER_DIR,
-)
 from src.spark.session import get_spark
+from src.spark.transforms import clean_orders
+from src.spark.validators import validate_silver_orders
+from src.spark.writers import write_parquet
+
+logger = logging.getLogger(__name__)
 
 
-def create_spark_silver():
+def create_spark_silver() -> None:
+    logging.basicConfig(level=logging.INFO)
 
     spark = get_spark()
+    start_time = time.perf_counter()
 
-    df = read_parquet(BRONZE_DATASET)
+    logger.info("=" * 60)
+    logger.info("Reading Bronze layer...")
 
-    # Remove duplicates
-    df = df.dropDuplicates(["order_unique_id"])
+    bronze_df = read_parquet(BRONZE_PATH)
+    input_rows = bronze_df.count()
 
-    # Clean text columns
-    string_columns = [
-        field.name
-        for field in df.schema.fields
-        if field.dataType.simpleString() == "string"
-    ]
+    logger.info("Cleaning records (Silver transformations)...")
+    silver_df = clean_orders(bronze_df)
 
-    for column in string_columns:
-        df = df.withColumn(column, trim(col(column)))
+    logger.info("Validating Silver dataset...")
+    validate_silver_orders(silver_df)
 
-    # Standardize cities
-    if "customer_city" in df.columns:
-        df = df.withColumn(
-            "customer_city",
-            lower(col("customer_city")),
-        )
+    output_rows = silver_df.count()
 
-    if "seller_city" in df.columns:
-        df = df.withColumn(
-            "seller_city",
-            lower(col("seller_city")),
-        )
+    logger.info("Writing Silver layer...")
+    write_parquet(silver_df, SILVER_PATH)
 
-    # Standardize states
-    if "customer_state" in df.columns:
-        df = df.withColumn(
-            "customer_state",
-            upper(col("customer_state")),
-        )
+    duration_sec = time.perf_counter() - start_time
 
-    if "seller_state" in df.columns:
-        df = df.withColumn(
-            "seller_state",
-            upper(col("seller_state")),
-        )
-
-    # Convert timestamps
-
-    timestamp_columns = [
-        "shipping_limit_date",
-        "order_purchase_timestamp",
-        "order_approved_at",
-        "order_delivered_carrier_date",
-        "order_delivered_customer_date",
-        "order_estimated_delivery_date",
-    ]
-
-    for column in timestamp_columns:
-        if column in df.columns:
-            df = df.withColumn(
-                column,
-                to_timestamp(col(column)),
-            )
-
-    # Remove invalid values
-
-    for column in [
-        "price",
-        "payment_value",
-        "freight_value",
-    ]:
-        if column in df.columns:
-            df = df.filter(col(column) >= 0)
-
-    output = SILVER_DIR / "silver_orders_spark.parquet"
-
-    write_parquet(df, output)
-
-    print("=" * 60)
-    print("Spark Silver Created")
-    print("=" * 60)
-
-    print(df.count())
+    logger.info("=" * 60)
+    logger.info("Spark Silver Pipeline Metrics")
+    logger.info(f"Input Rows  : {input_rows}")
+    logger.info(f"Output Rows : {output_rows}")
+    logger.info(f"Duration    : {duration_sec:.1f} sec")
+    logger.info("=" * 60)
 
     spark.stop()
 
 
 if __name__ == "__main__":
     create_spark_silver()
+
 

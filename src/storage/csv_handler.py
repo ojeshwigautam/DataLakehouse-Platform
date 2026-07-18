@@ -10,7 +10,11 @@ class CsvHandler:
     @staticmethod
     def read(path: Union[str, Path], **kwargs) -> pd.DataFrame:
         path = Path(path)
-        return pd.read_csv(path, **kwargs)
+        return pd.read_csv(
+    path,
+    low_memory=False,
+    **kwargs
+)
 
     @staticmethod
     def write(df: pd.DataFrame, path: Union[str, Path], **kwargs) -> None:

@@ -17,6 +17,10 @@ class ParquetHandler:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
 
-        # Default pandas parquet writer behavior.
-        df.to_parquet(path, **kwargs)
-
+        df.to_parquet(
+    path,
+    engine="pyarrow",
+    compression="snappy",
+    index=False,
+    **kwargs
+)

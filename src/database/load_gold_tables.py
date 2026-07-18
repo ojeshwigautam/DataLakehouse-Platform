@@ -11,13 +11,13 @@ from src.utils.logger import logger
 
 
 GOLD_TABLES = {
-    "daily_sales.csv": "daily_sales",
-    "monthly_sales.csv": "monthly_sales",
-    "top_products.csv": "top_products",
-    "top_states.csv": "top_states",
-    "payment_summary.csv": "payment_summary",
-    "seller_performance.csv": "seller_performance",
-    "delivery_summary.csv": "delivery_summary",
+    "daily_sales.parquet": "daily_sales",
+    "monthly_sales.parquet": "monthly_sales",
+    "top_products.parquet": "top_products",
+    "top_states.parquet": "top_states",
+    "payment_summary.parquet": "payment_summary",
+    "seller_performance.parquet": "seller_performance",
+    "delivery_summary.parquet": "delivery_summary",
 }
 
 

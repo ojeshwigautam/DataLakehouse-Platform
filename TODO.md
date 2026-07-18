@@ -1,13 +1,11 @@
-# TODO
+# TODO - CSV to Parquet Migration
 
-## Incremental Bronze → Silver Merge
+- [x] Update `src/config/settings.py` dataset constants to use `.parquet` (keep `RAW_DATASET` as `.csv`).
+- [x] Update `src/bronze/save_to_bronze.py` to write `bronze_orders.parquet`.
+- [x] Update `src/ingestion/incremental_ingestion.py` to discover `*.parquet`, write batches as parquet, and archive accordingly.
+- [x] Update `src/processing/silver_pipeline.py` to discover incremental bronze `*.parquet` and output `silver_orders.parquet`.
+- [x] Update `src/database/load_gold_tables.py` `GOLD_TABLES` keys to use `*.parquet` filenames.
+- [x] Run pipeline via `python main.py`.
+- [ ] Run tests (`pytest -q`) if available/expected by repo.
 
-- [ ] Update `src/processing/silver_pipeline.py`
-  - [ ] Modify imports to include `BRONZE_INCREMENTAL_DIR`
-  - [ ] Add `load_bronze_data()` above `create_silver_layer()`
-  - [ ] Update `create_silver_layer()` to use `load_bronze_data()`
-  - [ ] Improve deduplication using `order_unique_id` with `keep="last"`
-  - [ ] Improve Silver metrics logging (before/after/duplicates/saved path)
-- [ ] Test by running `python -m src.processing.silver_pipeline`
-- [ ] Validate logs confirm historical + incremental rows loaded and correct dedup behavior
 

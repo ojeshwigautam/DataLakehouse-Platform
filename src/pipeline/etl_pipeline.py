@@ -178,8 +178,9 @@ def run_pipeline():
         end_time = datetime.now()
         execution_time = end_time - start_time
 
-        # Count generated Gold datasets
-        gold_files = list(GOLD_DIR.glob("*.csv"))
+        # Count generated Gold datasets (Gold layer writes Parquet files)
+        gold_files = list(GOLD_DIR.glob("*.parquet"))
+
 
         logger.info("=" * 70)
         logger.info("PIPELINE EXECUTED SUCCESSFULLY")

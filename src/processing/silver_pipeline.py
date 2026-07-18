@@ -3,9 +3,7 @@ import pandas as pd
 
 from src.storage.file_handler import FileHandler
 
-
 from src.config.settings import (
-
     BRONZE_DATASET,
     BRONZE_INCREMENTAL_DIR,
     SILVER_DIR,
@@ -14,58 +12,35 @@ from src.utils.logger import logger
 
 
 def load_bronze_data():
-    """
-    Load historical Bronze data and merge available
-    incremental Bronze batches.
-    """
+    """Load historical Bronze data and merge available incremental Bronze batches."""
 
     logger.info("Loading Historical Bronze Dataset")
 
     historical_df = FileHandler.read(BRONZE_DATASET)
 
-    logger.info(
-        f"Historical Bronze Rows : {len(historical_df)}"
-    )
+    logger.info(f"Historical Bronze Rows : {len(historical_df)}")
 
     dataframes = [historical_df]
 
-    # Find all incremental Bronze CSV files
-    incremental_files = sorted(
-        BRONZE_INCREMENTAL_DIR.glob("*.csv")
-    )
+    # Find all incremental Bronze Parquet files
+    incremental_files = sorted(BRONZE_INCREMENTAL_DIR.glob("*.parquet"))
 
-    logger.info(
-        f"Incremental Bronze Files Found : "
-        f"{len(incremental_files)}"
-    )
+    logger.info(f"Incremental Bronze Files Found : {len(incremental_files)}")
 
     for file_path in incremental_files:
-
-        logger.info(
-            f"Loading Incremental Bronze -> "
-            f"{file_path.name}"
-        )
+        logger.info(f"Loading Incremental Bronze -> {file_path.name}")
 
         incremental_df = FileHandler.read(file_path)
 
-        logger.info(
-            f"Incremental Rows Loaded : {len(incremental_df)}"
-        )
+        logger.info(f"Incremental Rows Loaded : {len(incremental_df)}")
 
         dataframes.append(incremental_df)
 
-    # Combine historical and incremental datasets
-    combined_df = pd.concat(
-        dataframes,
-        ignore_index=True,
-    )
+    combined_df = pd.concat(dataframes, ignore_index=True)
 
-    logger.info(
-        f"Combined Bronze Rows : {len(combined_df)}"
-    )
+    logger.info(f"Combined Bronze Rows : {len(combined_df)}")
 
     return combined_df
-
 
 
 def create_silver_layer():
@@ -81,47 +56,31 @@ def create_silver_layer():
 
     rows_before = len(df)
 
-
     # -------------------------------------------------
     # Remove Duplicate Records
     # -------------------------------------------------
 
     if "order_unique_id" in df.columns:
-
-        logger.info(
-            "Deduplicating using order_unique_id"
-        )
-
-        df = df.drop_duplicates(
-            subset=["order_unique_id"],
-            keep="last",
-        )
-
+        logger.info("Deduplicating using order_unique_id")
+        df = df.drop_duplicates(subset=["order_unique_id"], keep="last")
     else:
-
-        logger.warning(
-            "order_unique_id not found. "
-            "Using full-row deduplication."
-        )
-
+        logger.warning("order_unique_id not found. Using full-row deduplication.")
         df = df.drop_duplicates()
 
-    duplicates_removed = (
-        rows_before - len(df)
-    )
-
+    duplicates_removed = rows_before - len(df)
 
     # -------------------------------------------------
     # Clean text columns
     # -------------------------------------------------
-    object_columns = df.select_dtypes(include="object").columns
 
+    object_columns = df.select_dtypes(include="object").columns
     for column in object_columns:
         df[column] = df[column].astype(str).str.strip()
 
     # -------------------------------------------------
     # Standardize city names
     # -------------------------------------------------
+
     if "customer_city" in df.columns:
         df["customer_city"] = df["customer_city"].str.lower()
 
@@ -131,6 +90,7 @@ def create_silver_layer():
     # -------------------------------------------------
     # Standardize state names
     # -------------------------------------------------
+
     if "customer_state" in df.columns:
         df["customer_state"] = df["customer_state"].str.upper()
 
@@ -140,6 +100,7 @@ def create_silver_layer():
     # -------------------------------------------------
     # Convert timestamp columns
     # -------------------------------------------------
+
     date_columns = [
         "shipping_limit_date",
         "order_purchase_timestamp",
@@ -156,11 +117,8 @@ def create_silver_layer():
     # -------------------------------------------------
     # Remove invalid numeric values
     # -------------------------------------------------
-    numeric_columns = [
-        "price",
-        "payment_value",
-        "freight_value",
-    ]
+
+    numeric_columns = ["price", "payment_value", "freight_value"]
 
     for column in numeric_columns:
         if column in df.columns:
@@ -170,36 +128,18 @@ def create_silver_layer():
     # Save Silver dataset
     # -------------------------------------------------
 
-    SILVER_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
+    SILVER_DIR.mkdir(parents=True, exist_ok=True)
 
-    output_path = (
-        SILVER_DIR
-        / "silver_orders.csv"
-    )
+    output_path = SILVER_DIR / "silver_orders.parquet"
 
     FileHandler.write(df, str(output_path))
 
     rows_after = len(df)
 
-    logger.info(
-        f"Rows Before Cleaning : {rows_before}"
-    )
-
-    logger.info(
-        f"Rows After Cleaning  : {rows_after}"
-    )
-
-    logger.info(
-        f"Duplicates Removed   : {duplicates_removed}"
-    )
-
-    logger.info(
-        f"Silver Dataset Saved : {output_path}"
-    )
-
+    logger.info(f"Rows Before Cleaning : {rows_before}")
+    logger.info(f"Rows After Cleaning  : {rows_after}")
+    logger.info(f"Duplicates Removed   : {duplicates_removed}")
+    logger.info(f"Silver Dataset Saved : {output_path}")
 
     logger.info("Silver Layer Created Successfully")
 

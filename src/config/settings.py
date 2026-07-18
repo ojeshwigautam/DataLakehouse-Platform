@@ -31,8 +31,8 @@ EXPORT_DIR = DATA_DIR / "exports"
 # -------------------------------------------------
 
 RAW_DATASET = RAW_DATA_DIR / "olist_ecommerce_dataset.csv"
-BRONZE_DATASET = BRONZE_DIR / "bronze_orders.csv"
-SILVER_DATASET = SILVER_DIR / "silver_orders.csv"
+BRONZE_DATASET = BRONZE_DIR / "bronze_orders.parquet"
+SILVER_DATASET = SILVER_DIR / "silver_orders.parquet"
 
 
 # -------------------------------------------------
@@ -46,13 +46,13 @@ LOG_DIR.mkdir(exist_ok=True)
 # Gold Layer Output Files
 # -------------------------------------------------
 
-GOLD_DAILY_SALES = GOLD_DIR / "daily_sales.csv"
-GOLD_MONTHLY_SALES = GOLD_DIR / "monthly_sales.csv"
-GOLD_TOP_PRODUCTS = GOLD_DIR / "top_products.csv"
-GOLD_TOP_STATES = GOLD_DIR / "top_states.csv"
-GOLD_PAYMENT_SUMMARY = GOLD_DIR / "payment_summary.csv"
-GOLD_SELLER_PERFORMANCE = GOLD_DIR / "seller_performance.csv"
-GOLD_DELIVERY_SUMMARY = GOLD_DIR / "delivery_summary.csv"
+GOLD_DAILY_SALES = GOLD_DIR / "daily_sales.parquet"
+GOLD_MONTHLY_SALES = GOLD_DIR / "monthly_sales.parquet"
+GOLD_TOP_PRODUCTS = GOLD_DIR / "top_products.parquet"
+GOLD_TOP_STATES = GOLD_DIR / "top_states.parquet"
+GOLD_PAYMENT_SUMMARY = GOLD_DIR / "payment_summary.parquet"
+GOLD_SELLER_PERFORMANCE = GOLD_DIR / "seller_performance.parquet"
+GOLD_DELIVERY_SUMMARY = GOLD_DIR / "delivery_summary.parquet"
 
 
 # -------------------------------------------------

@@ -1,0 +1,11 @@
+{
+  "pipeline": "spark_silver",
+  "timestamp": "2026-07-18T10:21:41Z",
+  "status": "SUCCESS",
+  "bronze_rows": 113390,
+  "silver_rows": 108640,
+  "duplicates_removed": 4750,
+  "schema_validation": "PASS",
+  "null_validation": "PASS",
+  "duration_seconds": 19.475
+}

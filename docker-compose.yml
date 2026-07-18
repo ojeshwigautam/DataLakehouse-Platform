@@ -4,6 +4,8 @@ services:
     image: postgres:18
     container_name: commerce_lakehouse_postgres
 
+    restart: unless-stopped
+
     environment:
       POSTGRES_DB: commerce_lakehouse
       POSTGRES_USER: postgres
@@ -25,12 +27,17 @@ services:
       timeout: 5s
       retries: 10
 
+    networks:
+      - commerce-network
+
   etl:
     build:
       context: .
       dockerfile: Dockerfile
 
     container_name: commerce_lakehouse_etl
+
+    restart: on-failure
 
     depends_on:
       postgres:
@@ -47,6 +54,15 @@ services:
       - ./data:/app/data
       - ./logs:/app/logs
 
+    healthcheck:
+      test: ["CMD", "python", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+    networks:
+      - commerce-network
+
   spark:
     image: apache/spark:4.2.0
     container_name: commerce_spark
@@ -62,11 +78,15 @@ services:
     environment:
       SPARK_HOME: /opt/spark
       PYTHONPATH: /workspace
+
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: commerce_lakehouse
       DB_USER: postgres
       DB_PASSWORD: postgres
+
+      SPARK_DRIVER_MEMORY: 2g
+      SPARK_EXECUTOR_MEMORY: 2g
 
     command: tail -f /dev/null
 
@@ -74,7 +94,13 @@ services:
       postgres:
         condition: service_healthy
 
+    networks:
+      - commerce-network
+
+networks:
+  commerce-network:
+    driver: bridge
+
 volumes:
   postgres_data:
-
 

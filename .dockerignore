@@ -39,3 +39,33 @@ docs
 data/raw/historical/
 data/bronze/historical/
 
+# OS
+.DS_Store
+Thumbs.db
+
+# GitHub
+.github
+
+# Tests
+tests
+
+# Coverage
+.coverage
+htmlcov
+
+# Build
+build
+dist
+*.egg-info
+
+# Jupyter
+.ipynb_checkpoints
+
+# Spark temp
+spark-warehouse
+metastore_db
+
+# Airflow
+airflow.db
+
+

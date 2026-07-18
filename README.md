@@ -418,6 +418,7 @@ DataLakehouse-Platform/
 ### ✅ Implemented (Version 1.0)
 
 - Medallion Architecture (Bronze → Silver → Gold)
+
 - Automated ETL Pipeline
 - PostgreSQL Integration
 - Docker Containerization
@@ -440,3 +441,26 @@ DataLakehouse-Platform/
 - Data Quality Gates
 - Cloud Deployment
 - Production Monitoring Stack
+
+---
+
+# 🐳 Docker (Compose)
+
+Build and run the platform locally with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+Stop the stack:
+
+```bash
+docker compose down
+```
+
+## Containers
+
+- **PostgreSQL**: Runs the `commerce_lakehouse` database (analytics warehouse).
+- **Spark**: Spark runtime container used for ETL transformations (joins/aggregations/reconcilations).
+- **ETL Pipeline**: The Python ETL service (`main.py`) that orchestrates ingestion/validation and loads into PostgreSQL.
+

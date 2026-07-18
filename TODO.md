@@ -1,12 +1,8 @@
-# TODO - CI + Dependencies
+# TODO
 
-## Plan
-- [x] Update `.github/workflows/ci.yml` to match the provided CI spec (Python 3.14, Java 25, pip caching, Spark verification, run pytest).
-- [x] Update `requirements.txt` to include the missing dependencies required by the CI Spark job.
-- [x] Validate that workflow YAML is syntactically correct and repo remains buildable.
-
-
-
-
-
+- [ ] Inspect src/storage/parquet_handler.py implementation for write() method.
+- [ ] Update ParquetHandler.write(): add `import shutil` and remove existing file/dir before writing.
+- [ ] Ensure path parent directory is created.
+- [ ] Fix indentation/formatting of df.to_parquet call.
+- [ ] Run unit tests / minimal verification (pytest).
 

@@ -58,7 +58,7 @@ data through a fully automated, orchestrated, and validated pipeline.
 | Processing | Apache Spark (PySpark) |
 | Storage | Apache Parquet |
 | Warehouse | PostgreSQL |
-| Orchestration | Apache Airflow |
+| Pipeline | Python ETL Orchestration |
 | Status | Production Ready |
 
 ---
@@ -126,7 +126,7 @@ Core challenges this platform solves:
                                   Monitoring
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ORCHESTRATION    Apache Airflow DAG
+PIPELINE Python  ETL Orchestration
 CONTAINERS       Docker Compose
 CI/CD            GitHub Actions
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -200,9 +200,6 @@ flowchart TD
 ```
 unified-commerce-lakehouse/
 │
-├── airflow/
-│   └── dags/                   # Airflow DAG definitions
-│
 ├── architecture/               # System diagrams
 ├── dashboards/                 # Power BI files
 │
@@ -250,7 +247,7 @@ unified-commerce-lakehouse/
 |---|---|
 | Language | Python 3.11, SQL |
 | Processing | Apache Spark 3.5, PySpark, Pandas |
-| Orchestration | Apache Airflow 2.8 |
+| Pipeline | Python ETL Orchestration |
 | Storage | Apache Parquet, AWS S3 |
 | Warehouse | PostgreSQL 15, SQLAlchemy |
 | Data Quality | Great Expectations |
@@ -275,7 +272,7 @@ unified-commerce-lakehouse/
 ### Clone and Configure
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/unified-commerce-lakehouse.git
+git clone git clone https://github.com/ojeshwigautam/DataLakehouse-Platform.git
 cd unified-commerce-lakehouse
 
 python -m venv venv
@@ -298,9 +295,6 @@ docker-compose up -d
 # Verify
 docker-compose ps
 
-# Airflow UI → http://localhost:8080
-# Username: admin | Password: admin
-```
 
 ---
 
@@ -364,8 +358,14 @@ Every push to `main` or `develop` triggers:
 
 ```yaml
 Jobs:
-  lint    → black + flake8
-  test    → pytest + coverage report
+
+Install Dependencies
+
+Execute PyTest Suite
+
+Validate Spark Transformations
+
+Verify ETL Pipeline
 ```
 
 ```mermaid
@@ -411,17 +411,19 @@ same input always produces identical output.
 
 ## Data Validation
 
-Great Expectations validates every dataset before layer progression.
+The platform performs automated schema and data quality validation before promoting data to downstream layers.
 
-Checks performed:
-- Required columns must not be null
-- Numeric amounts must be positive
-- Dates must fall within valid ranges
-- String columns must match expected value sets
+Validation checks include:
 
-Records failing validation are written to a quarantine path with
-the failure reason logged. The pipeline never silently drops data.
+- Required columns
+- Null value detection
+- Data type validation
+- Positive numeric validation
+- Date validation
+- Duplicate detection
+- Business rule validation
 
+Records failing validation are quarantined with detailed failure reasons, ensuring reliable downstream analytics while preserving traceability.
 ---
 
 ## Logging
@@ -440,7 +442,6 @@ Every pipeline run produces:
 | Screenshot | Path |
 |---|---|
 | Pipeline success log | `docs/screenshots/pipeline-success.png` |
-| Airflow DAG view | `docs/screenshots/airflow-dag.png` |
 | Power BI dashboard | `docs/screenshots/powerbi-dashboard.png` |
 | GitHub Actions CI | `docs/screenshots/github-actions.png` |
 | PostgreSQL tables | `docs/screenshots/postgres-tables.png` |
@@ -453,7 +454,6 @@ Every pipeline run produces:
 - [ ] Add Apache Iceberg for ACID transactions on S3
 - [ ] Implement real-time ingestion with Apache Kafka
 - [ ] Add natural language query layer with LangChain
-- [ ] Deploy Airflow to AWS MWAA
 - [ ] Add dbt lineage documentation
 
 ---
@@ -485,8 +485,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 **Ojeshwi Gautam**
 B.Tech CSE (AI & Data Engineering) · Lovely Professional University
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](www.linkedin.com/in/ojeshwi-gautam 
-)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/ojeshwi-gautam)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/ojeshwigautam)
 
 ---

@@ -47,6 +47,36 @@ services:
       - ./data:/app/data
       - ./logs:/app/logs
 
+  spark:
+    image: apache/spark:4.2.0
+    container_name: commerce_spark
+
+    working_dir: /workspace
+
+    volumes:
+      - ./:/workspace
+
+    stdin_open: true
+    tty: true
+
+    environment:
+      SPARK_HOME: /opt/spark
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: commerce_lakehouse
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+
+    command: tail -f /dev/null
+
+
+    
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   postgres_data:
+
 

@@ -5,4 +5,12 @@ python-dotenv
 pytest
 psutil
 
+pyspark
+pytest-cov
+pyarrow
+great-expectations
+apache-airflow
+boto3
+
+
 

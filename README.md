@@ -3,7 +3,7 @@
 > An end-to-end Data Engineering platform implementing Medallion Architecture
 > (Bronze → Silver → Gold) with Apache Spark, Docker, PostgreSQL, and
 > production-ready ETL pipelines on the Brazilian Olist E-Commerce Dataset.
-
+[![Spark ETL CI](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5-E25A1C?style=flat-square&logo=apachespark&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat-square&logo=postgresql&logoColor=white)

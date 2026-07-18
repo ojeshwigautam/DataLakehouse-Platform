@@ -61,6 +61,7 @@ services:
 
     environment:
       SPARK_HOME: /opt/spark
+      PYTHONPATH: /workspace
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: commerce_lakehouse
@@ -68,9 +69,6 @@ services:
       DB_PASSWORD: postgres
 
     command: tail -f /dev/null
-
-
-    
 
     depends_on:
       postgres:

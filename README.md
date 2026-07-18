@@ -1,411 +1,241 @@
-# 🚀 Unified Commerce Lakehouse Platform
+# 🏗️ Unified Commerce Lakehouse
 
-[![Spark ETL CI](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml)
+> An end-to-end Data Engineering platform implementing Medallion Architecture
+> (Bronze → Silver → Gold) with Apache Spark, Docker, PostgreSQL, and
+> production-ready ETL pipelines on the Brazilian Olist E-Commerce Dataset.
 
-> **A Production-Inspired End-to-End Data Engineering Platform implementing a Medallion (Bronze–Silver–Gold) Architecture with automated ETL pipelines, PostgreSQL integration, Apache Airflow orchestration, Docker containerization, pipeline monitoring, audit logging, and CI/CD automation.**
-
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-336791?style=for-the-badge&logo=postgresql)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker)
-![Apache Airflow](https://img.shields.io/badge/Apache-Airflow-C01717?style=for-the-badge&logo=apacheairflow)
-![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-2088FF?style=for-the-badge&logo=githubactions)
-![Pytest](https://img.shields.io/badge/Tested-Pytest-success?style=for-the-badge&logo=pytest)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
-</div>
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5-E25A1C?style=flat-square&logo=apachespark&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+![Great Expectations](https://img.shields.io/badge/Data%20Quality-Great%20Expectations-FF6B6B?style=flat-square)
+![AWS S3](https://img.shields.io/badge/AWS-S3%20Ready-FF9900?style=flat-square&logo=amazons3&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=flat-square)
 
 ---
 
-# 📖 Table of Contents
+## Table of Contents
 
-- [Project Overview](#-project-overview)
-- [Business Problem](#-business-problem)
-- [Project Objectives](#-project-objectives)
-- [Key Features](#-key-features)
-- [System Architecture](#-system-architecture)
-- [Data Pipeline Workflow](#-data-pipeline-workflow)
-- [Medallion Architecture](#-medallion-architecture)
-- [Repository Structure](#-repository-structure)
-- *(Technology Stack, Installation, Docker, Airflow, PostgreSQL, Testing, Monitoring, Roadmap and other sections continue below.)*
-
----
-
-# 📌 Project Overview
-
-Modern organizations generate massive amounts of transactional data every day. Transforming raw operational data into clean, reliable, and analytics-ready datasets requires scalable ETL pipelines, robust validation mechanisms, workflow orchestration, monitoring, and dependable storage.
-
-The **Unified Commerce Lakehouse Platform** is a **production-inspired Data Engineering project** designed to simulate how modern data platforms process transactional data using a layered Medallion Architecture.
-
-Starting from raw e-commerce records, the platform automates the complete ETL lifecycle:
-
-- Ingests raw transactional datasets
-- Preserves immutable source data
-- Cleanses and validates records
-- Applies business transformations
-- Produces analytics-ready datasets
-- Loads curated tables into PostgreSQL
-- Tracks pipeline executions
-- Monitors pipeline health
-- Automates workflows using Apache Airflow
-- Runs inside reproducible Docker environments
-
-The project emphasizes modular design, maintainability, observability, reproducibility, and software engineering best practices commonly used in modern Data Engineering teams.
+- [Project Overview](#project-overview)
+- [Business Problem](#business-problem)
+- [Architecture Overview](#architecture-overview)
+- [Medallion Architecture](#medallion-architecture)
+- [Pipeline Flow](#pipeline-flow)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Technology Stack](#technology-stack)
+- [Installation](#installation)
+- [Running with Docker](#running-with-docker)
+- [Running Locally](#running-locally)
+- [Running Tests](#running-tests)
+- [GitHub Actions](#github-actions)
+- [Gold Layer](#gold-layer)
+- [Incremental Processing](#incremental-processing)
+- [Data Validation](#data-validation)
+- [Logging](#logging)
+- [Screenshots](#screenshots)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
 
 ---
 
-# 🎯 Business Problem
+## Project Overview
 
-E-commerce businesses continuously generate transactional data from customers, orders, sellers, payments, deliveries, and products.
+The **Unified Commerce Lakehouse** is a production-style Data Engineering
+platform that processes 113,390+ rows of multi-channel retail transaction
+data through a fully automated, orchestrated, and validated pipeline.
 
-Raw operational data is typically:
-
-- Distributed across multiple sources
-- Inconsistent in formatting
-- Contains duplicate records
-- Contains missing values
-- Difficult to analyze directly
-- Unsuitable for BI dashboards
-- Not optimized for reporting
-
-Business teams require reliable datasets that support:
-
-- Sales reporting
-- Revenue analysis
-- Product performance
-- Seller performance
-- Regional insights
-- Payment analysis
-- Delivery analytics
-
-Without a structured ETL pipeline, organizations spend significant engineering effort repeatedly cleaning and transforming data before analysis.
+| Attribute | Detail |
+|---|---|
+| Dataset | Brazilian Olist E-Commerce |
+| Records | 113,390+ rows · 38 columns |
+| Architecture | Medallion (Bronze / Silver / Gold) |
+| Processing | Apache Spark (PySpark) |
+| Storage | Apache Parquet |
+| Warehouse | PostgreSQL |
+| Orchestration | Apache Airflow |
+| Status | Production Ready |
 
 ---
 
-# 🎯 Project Objectives
+## Business Problem
 
-The primary objective of this project is to demonstrate how an end-to-end Data Engineering platform can transform raw operational data into trusted analytical datasets.
+Multi-channel retail businesses generate transactional data across
+websites, mobile apps, stores, and marketplaces — each in different
+formats with inconsistent schemas and varying data quality.
 
-The project focuses on implementing:
+Core challenges this platform solves:
 
-✅ Layered Medallion Architecture
-
-✅ Modular ETL pipeline
-
-✅ Automated data ingestion
-
-✅ Data validation framework
-
-✅ Data cleaning and transformation
-
-✅ Business aggregation logic
-
-✅ PostgreSQL warehouse integration
-
-✅ Pipeline execution monitoring
-
-✅ Audit logging
-
-✅ Workflow orchestration using Apache Airflow
-
-✅ Docker-based reproducible deployment
-
-✅ Automated testing
-
-✅ CI/CD automation using GitHub Actions
+- No single source of truth across fragmented data sources
+- Duplicate records, null values, and schema mismatches in raw data
+- No historical traceability when transformations overwrite source data
+- Manual pipelines with no failure recovery or idempotency guarantees
+- Inability to answer business questions: daily revenue, top products,
+  regional performance, seller rankings, delivery KPIs
 
 ---
 
-# ✨ Key Features
-
-## Data Engineering
-
-- Medallion Architecture (Bronze → Silver → Gold)
-- Modular ETL pipeline
-- Configurable project structure
-- Incremental ingestion framework
-- Business-level aggregations
-- Analytics-ready datasets
-
----
-
-## Data Quality
-
-- Missing value validation
-- Duplicate detection
-- Schema validation
-- Dataset profiling
-- Validation reporting
-
----
-
-## Database Integration
-
-- PostgreSQL integration
-- Automatic table creation
-- Batch loading
-- Transaction handling
-- SQLAlchemy ORM support
-
----
-
-## Pipeline Observability
-
-- Pipeline metrics
-- Success rate monitoring
-- Execution duration tracking
-- Audit logging
-- Pipeline statistics
-- Structured logging
-
----
-
-## Workflow Automation
-
-- Apache Airflow DAG
-- Scheduled execution
-- Manual triggering
-- Retry support
-- Task orchestration
-
----
-
-## DevOps
-
-- Docker containers
-- Docker Compose
-- Environment configuration
-- GitHub Actions CI
-- Modular configuration
-
----
-
-## Software Engineering
-
-- Modular codebase
-- Object-oriented design
-- Configuration management
-- Logging framework
-- Unit testing
-- Clean project structure
-
----
-
-# 🏗 System Architecture
-
-The platform follows a layered architecture inspired by enterprise Data Engineering systems.
+## Architecture Overview
 
 ```
+┌──────────────────────────────────────────────────────┐
+│                   DATA SOURCES                       │
+│          Brazilian Olist E-Commerce CSV              │
+│               113,390+ Records                       │
+└─────────────────────┬────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────────────┐
+│               INGESTION LAYER                        │
+│     Incremental Batch Detection · Batch Registry     │
+│            Idempotency Enforcement                   │
+└─────────────────────┬────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────────────┐
+│                BRONZE LAYER                          │
+│      Immutable Raw Copy · Parquet · AWS S3           │
+│             Partitioned by Date                      │
+└─────────────────────┬────────────────────────────────┘
+                      │
+              Great Expectations
+               Data Validation
+                      │
+                      ▼
+┌──────────────────────────────────────────────────────┐
+│                SILVER LAYER                          │
+│         Apache Spark Distributed ETL                 │
+│   Deduplication · Null Handling · Type Casting       │
+│          Parquet · AWS S3 Ready                      │
+└─────────────────────┬────────────────────────────────┘
+                      │
+                      ▼
+┌──────────────────────────────────────────────────────┐
+│                 GOLD LAYER                           │
+│       Business Aggregations · 7 Analytics Tables     │
+│           PostgreSQL Warehouse                       │
+└──────────┬───────────────────────────┬───────────────┘
+           │                           │
+           ▼                           ▼
+    Power BI Dashboards          Audit Logging
+                                  Monitoring
 
-┌────────────────────────────────────────────┐
-│          Historical CSV Dataset            │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│          Data Ingestion Module             │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│            Bronze Layer                    │
-│      Raw Immutable Dataset Storage         │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│        Data Validation Framework           │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│            Silver Layer                    │
-│   Cleaning • Standardization • Processing  │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│             Gold Layer                     │
-│      Business Aggregation & Analytics      │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│          PostgreSQL Warehouse              │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│ Pipeline Monitoring & Audit Logging        │
-└────────────────────────────────────────────┘
-                     │
-                     ▼
-┌────────────────────────────────────────────┐
-│       Apache Airflow Orchestration         │
-└────────────────────────────────────────────┘
-
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ORCHESTRATION    Apache Airflow DAG
+CONTAINERS       Docker Compose
+CI/CD            GitHub Actions
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
 
-# 🔄 Data Pipeline Workflow
+## Medallion Architecture
 
-The platform executes the following workflow during every pipeline run:
+### 🥉 Bronze — Raw Immutable Zone
+Stores data exactly as received. No transformations applied.
+Partitioned by ingestion date on AWS S3 in Parquet format.
+Serves as the audit trail and reprocessing source for all
+downstream layers.
 
+### 🥈 Silver — Cleaned and Standardized Zone
+Apache Spark performs distributed ETL: deduplication, null
+handling, type casting, and string standardization. Great
+Expectations validates every dataset before it progresses.
+Rejected records are quarantined with failure reasons logged —
+never silently dropped.
+
+### 🥇 Gold — Business Analytics Zone
+Business aggregations and KPI calculations on clean Silver data.
+Seven analytics-ready tables served through PostgreSQL warehouse
+and consumed by Power BI dashboards.
+
+---
+
+## Pipeline Flow
+
+```mermaid
+flowchart TD
+    A[Raw CSV Dataset] --> B[Batch Registry Check]
+    B --> C{Already Processed?}
+    C -->|Yes| D[Skip - Idempotency]
+    C -->|No| E[Bronze Layer - Parquet - S3]
+    E --> F[Great Expectations Validation]
+    F --> G{Validation Pass?}
+    G -->|No| H[Quarantine - Log Failure]
+    G -->|Yes| I[Silver Layer - Spark ETL]
+    I --> J[Gold Aggregations]
+    J --> K[PostgreSQL Warehouse]
+    K --> L[Power BI Dashboards]
+    K --> M[Audit Log]
 ```
 
-Historical Dataset
+---
 
-↓
+## Features
 
-Data Ingestion
+| Feature | Description |
+|---|---|
+| Medallion Architecture | Bronze / Silver / Gold separation of concerns |
+| Distributed ETL | Apache Spark for scalable data processing |
+| Incremental Ingestion | Batch Registry with idempotency guarantees |
+| Data Validation | Great Expectations with quarantine for rejected records |
+| Audit Logging | Every pipeline run logged with row counts and duration |
+| Parquet Storage | Columnar format with Snappy compression |
+| AWS S3 Ready | Cloud storage abstraction layer |
+| Docker Compose | Single command platform startup |
+| GitHub Actions CI/CD | Automated testing on every push |
+| pytest Suite | Unit, integration, and reconciliation tests |
+| PostgreSQL Warehouse | Indexed analytics tables |
+| Production Logging | Structured logs to file and console |
 
-↓
+---
 
-Bronze Layer
-
-↓
-
-Data Validation
-
-↓
-
-Silver Processing
-
-↓
-
-Business Transformations
-
-↓
-
-Gold Layer
-
-↓
-
-PostgreSQL Loading
-
-↓
-
-Pipeline Metrics
-
-↓
-
-Audit Logging
-
-↓
-
-Airflow Scheduling
+## Project Structure
 
 ```
-
-Each stage is independently modular, allowing future extensions without affecting the remaining pipeline.
-
----
-
-# 🥇 Medallion Architecture
-
-The project follows the industry-standard **Bronze → Silver → Gold** architecture used in modern data lakehouse platforms.
-
----
-
-## 🟤 Bronze Layer
-
-Purpose:
-
-Store raw immutable source data exactly as received.
-
-Responsibilities:
-
-- Preserve original records
-- Maintain raw historical data
-- Support reproducibility
-- Enable debugging
-- Act as single source of truth
-
-No business transformations occur in this layer.
-
----
-
-## ⚪ Silver Layer
-
-Purpose:
-
-Transform raw data into clean, standardized datasets.
-
-Responsibilities:
-
-- Data cleaning
-- Missing value handling
-- Duplicate removal
-- Schema consistency
-- Type conversions
-- Validation
-- Standardization
-
-This layer produces trusted datasets suitable for downstream processing.
-
----
-
-## 🟡 Gold Layer
-
-Purpose:
-
-Create analytics-ready datasets optimized for reporting and business intelligence.
-
-Current Gold datasets include:
-
-- Daily Sales
-- Monthly Sales
-- Top Products
-- Top States
-- Seller Performance
-- Payment Summary
-- Delivery Summary
-
-These datasets are automatically loaded into PostgreSQL for analytical querying.
-
----
-
-# 📂 Repository Structure
-
-```text
-DataLakehouse-Platform/
+unified-commerce-lakehouse/
 │
-├── airflow/                 # Apache Airflow DAGs and configuration
-├── architecture/            # System architecture diagrams
-├── dashboards/              # Dashboard resources
+├── airflow/
+│   └── dags/                   # Airflow DAG definitions
+│
+├── architecture/               # System diagrams
+├── dashboards/                 # Power BI files
+│
 ├── data/
-│   ├── raw/
-│   ├── bronze/
-│   ├── silver/
-│   ├── gold/
-│   └── processed/
+│   ├── raw/                    # Source CSV (git-ignored)
+│   ├── bronze/                 # Bronze Parquet (git-ignored)
+│   ├── silver/                 # Silver Parquet (git-ignored)
+│   └── gold/                   # Gold Parquet (git-ignored)
 │
-├── docker/                  # Docker-related resources
-├── docs/                    # Project documentation
-├── logs/                    # Pipeline execution logs
-├── notebooks/               # Exploratory notebooks
-├── sql/                     # SQL scripts
+├── docker/                     # Dockerfile configurations
+├── docs/                       # ADRs and documentation
+├── logs/                       # Pipeline logs (git-ignored)
+├── sql/                        # DDL and queries
+│
 ├── src/
-│   ├── bronze/
-│   ├── config/
-│   ├── database/
-│   ├── gold/
-│   ├── monitoring/
-│   ├── pipeline/
-│   ├── processing/
-│   ├── utils/
-│   └── validation/
+│   ├── bronze/                 # Bronze ingestion logic
+│   ├── config/                 # Centralized settings
+│   ├── database/               # PostgreSQL loader
+│   ├── gold/                   # Gold aggregation logic
+│   ├── monitoring/             # Metrics and audit
+│   ├── pipeline/               # ETL orchestration
+│   ├── processing/             # Spark Silver processor
+│   ├── spark/                  # SparkSession factory
+│   ├── validation/             # Great Expectations suites
+│   └── utils/                  # Logger and helpers
 │
-├── terraform/               # Reserved for future cloud infrastructure
-├── tests/                   # Unit and integration tests
+├── terraform/                  # AWS IaC
+├── tests/
+│   ├── unit/                   # Unit tests
+│   └── integration/            # Integration tests
 │
 ├── .env.example
+├── .github/workflows/ci.yml
 ├── docker-compose.yml
-├── docker-compose.airflow.yml
-├── Dockerfile
-├── Dockerfile.airflow
 ├── main.py
 ├── requirements.txt
 └── README.md
@@ -413,54 +243,251 @@ DataLakehouse-Platform/
 
 ---
 
-## 📌 Current Implementation Status
+## Technology Stack
 
-### ✅ Implemented (Version 1.0)
-
-- Medallion Architecture (Bronze → Silver → Gold)
-
-- Automated ETL Pipeline
-- PostgreSQL Integration
-- Docker Containerization
-- Apache Airflow Orchestration
-- Pipeline Monitoring
-- Pipeline Audit Logging
-- GitHub Actions CI
-- Unit Testing
-- Incremental Processing Framework
-- Structured Logging
-- Modular Project Architecture
-
-### 🚧 Planned for Version 2
-
-- Apache Spark Processing
-- Parquet Storage
-- AWS S3 Data Lake
-- Terraform Infrastructure
-- Advanced Incremental Processing
-- Data Quality Gates
-- Cloud Deployment
-- Production Monitoring Stack
+| Category | Technology |
+|---|---|
+| Language | Python 3.11, SQL |
+| Processing | Apache Spark 3.5, PySpark, Pandas |
+| Orchestration | Apache Airflow 2.8 |
+| Storage | Apache Parquet, AWS S3 |
+| Warehouse | PostgreSQL 15, SQLAlchemy |
+| Data Quality | Great Expectations |
+| Containers | Docker, Docker Compose |
+| IaC | Terraform |
+| CI/CD | GitHub Actions |
+| Testing | pytest, Spark Unit Tests |
+| Monitoring | Audit Logging, Pipeline Metrics |
+| Visualization | Power BI |
 
 ---
 
-# 🐳 Docker (Compose)
+## Installation
 
-Build and run the platform locally with Docker Compose:
+### Prerequisites
+
+- Python 3.11+
+- Docker Desktop
+- AWS CLI configured
+- Git
+
+### Clone and Configure
 
 ```bash
-docker compose up --build
+git clone https://github.com/YOUR_USERNAME/unified-commerce-lakehouse.git
+cd unified-commerce-lakehouse
+
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+pip install -r requirements.txt
+
+cp .env.example .env
+# Edit .env with your credentials
 ```
 
-Stop the stack:
+---
+
+## Running with Docker
 
 ```bash
-docker compose down
+# Start all services
+docker-compose up -d
+
+# Verify
+docker-compose ps
+
+# Airflow UI → http://localhost:8080
+# Username: admin | Password: admin
 ```
 
-## Containers
+---
 
-- **PostgreSQL**: Runs the `commerce_lakehouse` database (analytics warehouse).
-- **Spark**: Spark runtime container used for ETL transformations (joins/aggregations/reconcilations).
-- **ETL Pipeline**: The Python ETL service (`main.py`) that orchestrates ingestion/validation and loads into PostgreSQL.
+## Running Locally
 
+```bash
+# Run full pipeline
+python main.py
+
+# Run incremental batch
+python -c "
+from src.ingestion.incremental_ingester import IncrementalIngester
+from src.config.settings import RAW_DATASET
+ingester = IncrementalIngester()
+ingester.run_incremental(RAW_DATASET, batch_number=1)
+ingester.run_incremental(RAW_DATASET, batch_number=1)  # skipped
+ingester.run_incremental(RAW_DATASET, batch_number=2)  # processed
+"
+```
+
+Expected output:
+
+```
+======================================================================
+  UNIFIED COMMERCE LAKEHOUSE — ETL PIPELINE v2.0
+  Engine: Apache Spark | Storage: Parquet | Format: Snappy
+======================================================================
+Step 1/5: Loading raw dataset          ✓  113,390 rows
+Step 2/5: Saving to Bronze             ✓  Parquet · S3
+Step 3/5: Validation                   ✓  Passed
+Step 4/5: Silver — Apache Spark        ✓  113,201 records
+Step 5/5: Gold                         ✓  7 tables loaded
+======================================================================
+  PIPELINE COMPLETE ✓
+======================================================================
+```
+
+---
+
+## Running Tests
+
+```bash
+# Full test suite
+pytest tests/ -v
+
+# With coverage
+pytest tests/ -v --cov=src --cov-report=html
+
+# Unit tests only
+pytest tests/unit/ -v
+
+# Integration tests only
+pytest tests/integration/ -v
+```
+
+---
+
+## GitHub Actions
+
+Every push to `main` or `develop` triggers:
+
+```yaml
+Jobs:
+  lint    → black + flake8
+  test    → pytest + coverage report
+```
+
+```mermaid
+flowchart LR
+    A[Git Push] --> B[Lint Check]
+    B --> C[Unit Tests]
+    C --> D[Integration Tests]
+    D --> E{All Pass?}
+    E -->|Yes| F[✅ Build Green]
+    E -->|No| G[❌ Build Failed]
+```
+
+---
+
+## Gold Layer
+
+| Table | Business Question | Key Columns |
+|---|---|---|
+| `daily_sales` | Revenue by day | total_orders, total_revenue, avg_order_value |
+| `monthly_sales` | MoM growth trends | mom_growth_pct, revenue_per_customer |
+| `top_products` | Best performing products | revenue_rank, units_sold, freight_pct |
+| `top_states` | Regional distribution | revenue_share_pct, unique_customers |
+| `payment_summary` | Payment method breakdown | transaction_share_pct, avg_installments |
+| `seller_performance` | Seller tier classification | performance_tier, avg_revenue_per_order |
+| `delivery_summary` | Delivery time by region | avg_delivery_days, late_delivery_rate |
+
+---
+
+## Incremental Processing
+
+The Batch Registry tracks every processed file with a unique key.
+On each pipeline run:
+
+1. Incoming batch is checked against the registry
+2. Already-processed batches are skipped automatically
+3. New batches are processed and registered
+4. Registry stores: batch key, timestamp, records processed, status
+
+This guarantees **idempotency** — running the pipeline twice on the
+same input always produces identical output.
+
+---
+
+## Data Validation
+
+Great Expectations validates every dataset before layer progression.
+
+Checks performed:
+- Required columns must not be null
+- Numeric amounts must be positive
+- Dates must fall within valid ranges
+- String columns must match expected value sets
+
+Records failing validation are written to a quarantine path with
+the failure reason logged. The pipeline never silently drops data.
+
+---
+
+## Logging
+
+Every pipeline run produces:
+
+- Console output with INFO level
+- File log at `logs/YYYY-MM-DD.log` with DEBUG level
+- Audit record: run timestamp, rows read, rows written, duration, status
+- Structured format for downstream log aggregation tools
+
+---
+
+## Screenshots
+
+| Screenshot | Path |
+|---|---|
+| Pipeline success log | `docs/screenshots/pipeline-success.png` |
+| Airflow DAG view | `docs/screenshots/airflow-dag.png` |
+| Power BI dashboard | `docs/screenshots/powerbi-dashboard.png` |
+| GitHub Actions CI | `docs/screenshots/github-actions.png` |
+| PostgreSQL tables | `docs/screenshots/postgres-tables.png` |
+
+---
+
+## Future Enhancements
+
+- [ ] Migrate to AWS Glue for fully managed Spark execution
+- [ ] Add Apache Iceberg for ACID transactions on S3
+- [ ] Implement real-time ingestion with Apache Kafka
+- [ ] Add natural language query layer with LangChain
+- [ ] Deploy Airflow to AWS MWAA
+- [ ] Add dbt lineage documentation
+
+---
+
+## Contributing
+
+```bash
+# Fork → branch → commit → PR
+
+git checkout -b feat/your-feature
+git commit -m "feat(silver): add schema evolution handling"
+git push origin feat/your-feature
+```
+
+- Follow `conventional commits` format
+- All PRs must pass CI before merge
+- Add tests for new functionality
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+## Author
+
+**Ojeshwi Gautam**
+B.Tech CSE (AI & Data Engineering) · Lovely Professional University
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](www.linkedin.com/in/ojeshwi-gautam 
+)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/ojeshwigautam)
+
+---
+
+> ⭐ Star this repository if it helped you understand production Data Engineering patterns.

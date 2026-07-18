@@ -1,5 +1,7 @@
 # 🚀 Unified Commerce Lakehouse Platform
 
+[![Spark ETL CI](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml)
+
 > **A Production-Inspired End-to-End Data Engineering Platform implementing a Medallion (Bronze–Silver–Gold) Architecture with automated ETL pipelines, PostgreSQL integration, Apache Airflow orchestration, Docker containerization, pipeline monitoring, audit logging, and CI/CD automation.**
 
 <div align="center">

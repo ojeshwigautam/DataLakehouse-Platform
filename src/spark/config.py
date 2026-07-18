@@ -1,0 +1,8 @@
+SPARK_APP_NAME = "Unified Commerce Lakehouse"
+
+SPARK_MASTER = "local[*]"
+
+SPARK_SHUFFLE_PARTITIONS = 8
+
+SPARK_PARQUET_COMPRESSION = "snappy"
+

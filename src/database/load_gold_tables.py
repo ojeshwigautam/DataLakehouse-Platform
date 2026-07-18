@@ -2,7 +2,10 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.storage.file_handler import FileHandler
+
 from src.config.settings import GOLD_DIR
+
 from src.database.connection import get_database_engine
 from src.utils.logger import logger
 
@@ -46,7 +49,7 @@ def load_gold_tables():
                 f"Loading {file_name} -> PostgreSQL table: {table_name}"
             )
 
-            df = pd.read_csv(file_path)
+            df = FileHandler.read(file_path)
 
             df.to_sql(
                 name=table_name,

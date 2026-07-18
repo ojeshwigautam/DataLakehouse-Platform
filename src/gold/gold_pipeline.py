@@ -1,6 +1,9 @@
 import pandas as pd
 
+from src.storage.file_handler import FileHandler
+
 from src.utils.logger import logger
+
 
 from src.config.settings import (
     SILVER_DATASET,
@@ -27,7 +30,7 @@ def _find_column(df, possible_names):
 
 def _save(df, output_path, name):
     GOLD_DIR.mkdir(parents=True, exist_ok=True)
-    df.to_csv(output_path, index=False)
+    FileHandler.write(df, output_path)
     logger.info(f"{name} created -> {output_path}")
 
 
@@ -262,7 +265,7 @@ def create_gold_layer():
     logger.info("Creating Gold Layer")
     logger.info("=" * 60)
 
-    df = pd.read_csv(SILVER_DATASET)
+    df = FileHandler.read(SILVER_DATASET)
     df = _prepare_dates(df)
 
     _create_daily_sales(df)

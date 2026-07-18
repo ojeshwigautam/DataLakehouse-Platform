@@ -1,8 +1,11 @@
 from pathlib import Path
 import pandas as pd
 
+from src.storage.file_handler import FileHandler
+
 
 from src.config.settings import (
+
     BRONZE_DATASET,
     BRONZE_INCREMENTAL_DIR,
     SILVER_DIR,
@@ -18,7 +21,7 @@ def load_bronze_data():
 
     logger.info("Loading Historical Bronze Dataset")
 
-    historical_df = pd.read_csv(BRONZE_DATASET)
+    historical_df = FileHandler.read(BRONZE_DATASET)
 
     logger.info(
         f"Historical Bronze Rows : {len(historical_df)}"
@@ -43,7 +46,7 @@ def load_bronze_data():
             f"{file_path.name}"
         )
 
-        incremental_df = pd.read_csv(file_path)
+        incremental_df = FileHandler.read(file_path)
 
         logger.info(
             f"Incremental Rows Loaded : {len(incremental_df)}"
@@ -177,10 +180,7 @@ def create_silver_layer():
         / "silver_orders.csv"
     )
 
-    df.to_csv(
-        str(output_path),
-        index=False,
-    )
+    FileHandler.write(df, str(output_path))
 
     rows_after = len(df)
 

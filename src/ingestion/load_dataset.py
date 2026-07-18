@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import pandas as pd
+from src.storage.file_handler import FileHandler
 
 from src.utils.logger import logger
 
@@ -30,7 +30,7 @@ def load_dataset(dataset_path=RAW_DATASET):
 
     logger.info(f"Loading dataset from {dataset_path}")
 
-    df = pd.read_csv(dataset_path)
+    df = FileHandler.read(dataset_path)
 
     # Remove accidental index column
     if "Unnamed: 0" in df.columns:

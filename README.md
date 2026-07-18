@@ -163,18 +163,28 @@ and consumed by Power BI dashboards.
 
 ```mermaid
 flowchart TD
-    A[Raw CSV Dataset] --> B[Batch Registry Check]
-    B --> C{Already Processed?}
-    C -->|Yes| D[Skip - Idempotency]
-    C -->|No| E[Bronze Layer - Parquet - S3]
-    E --> F[Great Expectations Validation]
-    F --> G{Validation Pass?}
-    G -->|No| H[Quarantine - Log Failure]
-    G -->|Yes| I[Silver Layer - Spark ETL]
-    I --> J[Gold Aggregations]
-    J --> K[PostgreSQL Warehouse]
-    K --> L[Power BI Dashboards]
-    K --> M[Audit Log]
+
+A[Raw CSV Dataset] --> B[Batch Registry Check]
+
+B --> C{Already Processed?}
+
+C -->|Yes| D[Skip Batch]
+C -->|No| E[Bronze Layer]
+
+E --> F[Data Validation]
+
+F --> G{Validation Passed?}
+
+G -->|No| H[Quarantine Records]
+G -->|Yes| I[Silver Layer]
+
+I --> J[Gold Layer]
+
+J --> K[PostgreSQL Warehouse]
+
+K --> L[Power BI Dashboard]
+
+K --> M[Audit Log]
 ```
 
 ---

@@ -1,8 +1,18 @@
-- [ ] Expand `src/spark/config.py` to centralize PROJECT_ROOT, BRONZE_PATH, SILVER_PATH, APP_NAME, SHUFFLE_PARTITIONS, PARQUET_COMPRESSION
-- [ ] Update `src/spark/session.py` to configure Spark with AQE, shuffle partitions, parquet compression
-- [ ] Implement `clean_orders(df)` in `src/spark/transforms.py`
-- [ ] Implement Spark DataFrame validations in `src/spark/validators.py`
-- [ ] Refactor `src/spark/silver_pipeline.py` into an orchestrator (logging, metrics, read/transform/validate/write)
-- [ ] Create `docs/spark/silver_pipeline.md`
-- [ ] Run tests / smoke checks (`pytest -q`, and/or `python scripts/test_spark.py`)
+# TODO
+
+## DataLakehouse-Platform: Spark Gold Layer
+
+- [x] Create `src/spark/gold_transforms.py` with modular transformation functions.
+- [x] Create `src/spark/gold_validators.py` with gold dataset validation logic.
+- [x] Extend `src/spark/config.py` with `GOLD_PATH` and all Gold output paths.
+
+
+- [ ] Create/replace `src/spark/gold_pipeline.py` implementing the Spark Gold pipeline with:
+  - reading Silver
+  - computing 7 datasets
+  - validating each dataset
+  - writing each dataset
+  - PASS/FAIL console logging + metrics.
+- [ ] Add documentation `docs/spark/gold_pipeline.md`.
+- [ ] Run tests/regression suite and fix any failures.
 

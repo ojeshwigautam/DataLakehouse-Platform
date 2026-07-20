@@ -1,0 +1,10 @@
+* [33m33d063f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Implement Apache Airflow orchestration for end-to-end ETL pipeline
+* [33m6bebea3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m docs: add professional project documentation
+* [33m5d95289[m Update README.md
+* [33m8d3a395[m Add CI badge for Spark ETL workflow
+* [33mfaca4b5[m docs: add professional project documentation
+* [33m431281c[m docker: improve production containerization and compose setup
+* [33m43cd4b5[m Update README.md
+* [33mec7f4cc[m ci: add GitHub Actions workflow for automated testing
+* [33m590abde[m test: add comprehensive unit tests for Spark ETL pipeline
+* [33m9b1559a[m feat: implement Spark data reconciliation and quality reporting

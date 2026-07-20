@@ -1,9 +1,11 @@
 __pycache__/
-*.pyc
+*.py[cod]
 .pytest_cache/
 
 # Environment
 .env
+.venv/
+venv/
 
 # VS Code
 .vscode/
@@ -22,6 +24,9 @@ crash.log
 # Spark
 spark-warehouse/
 metastore_db/
+
+# Spark CRC files
+*.crc
 
 # Great Expectations
 great_expectations/uncommitted/
@@ -50,4 +55,4 @@ data/exports/
 # Runtime Logs
 # -------------------------------------------------
 
-logs/*.log
+logs/

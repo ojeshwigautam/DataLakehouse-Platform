@@ -1,8 +1,11 @@
-# TODO
+# Task: Update docker-compose.airflow.yml
 
-- [ ] Inspect src/storage/parquet_handler.py implementation for write() method.
-- [ ] Update ParquetHandler.write(): add `import shutil` and remove existing file/dir before writing.
-- [ ] Ensure path parent directory is created.
-- [ ] Fix indentation/formatting of df.to_parquet call.
-- [ ] Run unit tests / minimal verification (pytest).
+## Steps
+
+- [x] Analyze current `docker-compose.airflow.yml` and related files
+- [x] Confirm plan with user
+- [ ] **Step 1:** Write new `docker-compose.airflow.yml` with:
+  - User's proposed YAML structure (anchors, streamlined services)
+  - Lakehouse DB env vars added to `x-airflow-common` for DAG compatibility
+- [ ] **Step 2:** Verify the final file is consistent and valid YAML
 

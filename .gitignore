@@ -1,17 +1,35 @@
 __pycache__/
 *.pyc
+.pytest_cache/
+
+# Environment
 .env
+
+# VS Code
 .vscode/
 .idea/
-env
+env/
+
+# Logs
 *.log
-.env
-__pycache__/
-*.pyc
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Spark
+spark-warehouse/
+metastore_db/
+
+# Great Expectations
+great_expectations/uncommitted/
 
 # -------------------------------------------------
 # Generated Pipeline Data
 # -------------------------------------------------
+
 
 # Bronze incremental outputs
 data/bronze/incremental/

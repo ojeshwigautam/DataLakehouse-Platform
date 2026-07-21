@@ -26,24 +26,126 @@ from src.database.pipeline_audit import (
     fail_pipeline_audit,
 )
 
+from src.validation.bronze_validation import validate_bronze
+from src.validation.silver_validation import validate_silver
+from src.validation.gold_validation import validate_gold
 
 
+# ------------------------------------------------------------------
+# Stage 1 — Bronze
+# ------------------------------------------------------------------
+def run_bronze():
+    """STEP 2/9 : Load raw data and save to the Bronze layer.
+
+    This stage is self-contained — it reads its own input from disk
+    and writes its output to disk.  No DataFrame is passed in, making
+    it suitable for Airflow tasks where retries must be independent.
+    """
+    logger.info("STEP 2/9 : Bronze Layer")
+
+    df = load_dataset(RAW_DATASET)
+
+    save_to_bronze(df)
+
+    logger.info("Bronze Layer Completed")
 
 
+# ------------------------------------------------------------------
+# Stage 2 — Bronze Validation
+# ------------------------------------------------------------------
+def run_bronze_validation():
+    """STEP 3/8 : Validate Bronze layer data."""
+    logger.info("STEP 3/8 : Bronze Validation")
+    validate_bronze(BRONZE_DATASET)
+    logger.info("Bronze Validation Completed")
 
 
+# ------------------------------------------------------------------
+# Stage 3 — Silver
+# ------------------------------------------------------------------
+def run_silver():
+    """STEP 4/8 : Create Silver layer from Bronze."""
+    logger.info("STEP 4/8 : Silver Layer")
+    create_silver_layer()
+    logger.info("Silver Layer Completed")
 
 
+# ------------------------------------------------------------------
+# Stage 4 — Silver Validation
+# ------------------------------------------------------------------
+def run_silver_validation():
+    """STEP 5/8 : Validate Silver layer data."""
+    logger.info("STEP 5/8 : Silver Validation")
+    validate_silver(SILVER_DATASET)
+    logger.info("Silver Validation Completed")
 
 
+# ------------------------------------------------------------------
+# Stage 5 — Gold
+# ------------------------------------------------------------------
+def run_gold():
+    """STEP 6/8 : Create Gold layer from Silver."""
+    logger.info("STEP 6/8 : Gold Layer")
+    create_gold_layer()
+    logger.info("Gold Layer Completed")
 
 
+# ------------------------------------------------------------------
+# Stage 6 — Gold Validation
+# ------------------------------------------------------------------
+def run_gold_validation():
+    """STEP 7/8 : Validate Gold layer datasets."""
+    logger.info("STEP 7/8 : Gold Validation")
+    validate_gold()
+    logger.info("Gold Validation Completed")
+
+
+# ------------------------------------------------------------------
+# Stage 7 — PostgreSQL Load
+# ------------------------------------------------------------------
+def run_postgres():
+    """STEP 8/8 : Load Gold tables into PostgreSQL."""
+    logger.info("STEP 8/8 : PostgreSQL")
+    tables = load_gold_tables()
+    logger.info("PostgreSQL Load Completed")
+    return tables
+
+
+# ------------------------------------------------------------------
+# Stage 8 — PostgreSQL Validation
+# ------------------------------------------------------------------
+def run_postgres_validation():
+    """STEP 9/9 : Validate PostgreSQL tables."""
+    logger.info("STEP 9/9 : PostgreSQL Validation")
+    if not validate_postgresql_tables():
+        raise RuntimeError("PostgreSQL validation failed.")
+    logger.info("PostgreSQL Validation Completed")
+
+
+# ------------------------------------------------------------------
+# Stage — Data Quality
+# ------------------------------------------------------------------
+def run_data_quality():
+    """Run legacy data quality checks on the loaded dataset.
+
+    This stage is self-contained — it reads its own input from disk.
+    """
+    logger.info("Data Quality Checks")
+
+    df = load_dataset(RAW_DATASET)
+
+    validate_dataset(df)
+    run_data_quality_checks(df)
+    logger.info("Data Quality Checks Completed")
+
+
+# ==================================================================
+# Main Pipeline Orchestrator
+# ==================================================================
 def run_pipeline():
     """Execute the complete ETL pipeline."""
 
-
     start_time = datetime.now()
-
     run_id = None
     incremental_files = []
 
@@ -62,125 +164,59 @@ def run_pipeline():
         logger.info("=" * 70)
 
         # -------------------------------------------------
-        # Step 1 - Load
+        # STEP 1 — Bronze Layer (loads dataset internally)
         # -------------------------------------------------
-        logger.info("STEP 1/7 : Loading Dataset")
-
-
-
-
-        df = load_dataset(RAW_DATASET)
-
-        logger.info("Step 1 Completed")
+        run_bronze()
 
         # -------------------------------------------------
-        # Step 2 - Bronze
+        # STEP 2 — Bronze Validation
         # -------------------------------------------------
-        logger.info("STEP 2/7 : Bronze Layer")
-
-
-
-
-        save_to_bronze(df)
-
-        logger.info("Step 2 Completed")
+        run_bronze_validation()
 
         # -------------------------------------------------
-        # Step 3: Incremental Data Ingestion
+        # Silver Layer
         # -------------------------------------------------
+        run_silver()
 
-        logger.info("STEP 3/7 : Validation")
+        # -------------------------------------------------
+        # Silver Validation
+        # -------------------------------------------------
+        run_silver_validation()
 
+        # -------------------------------------------------
+        # Gold Layer
+        # -------------------------------------------------
+        run_gold()
 
+        # -------------------------------------------------
+        # Gold Validation
+        # -------------------------------------------------
+        run_gold_validation()
+
+        # -------------------------------------------------
+        # PostgreSQL Load
+        # -------------------------------------------------
+        loaded_tables = run_postgres()
+
+        # -------------------------------------------------
+        # PostgreSQL Validation
+        # -------------------------------------------------
+        run_postgres_validation()
+
+        # -------------------------------------------------
+        # Incremental Data Ingestion (legacy)
+        # -------------------------------------------------
+        logger.info("Incremental Data Ingestion")
         incremental_files = process_incremental_files()
-
-        logger.info(
-            f"Incremental batches processed : {len(incremental_files)}"
-        )
-
-        logger.info("Step 3 Completed")
+        logger.info(f"Incremental batches processed : {len(incremental_files)}")
 
         # -------------------------------------------------
-        # Step 4 - Validation
+        # Summary
         # -------------------------------------------------
-        logger.info("STEP 3/7 : Validation")
-
-
-
-
-
-
-
-        validate_dataset(df)
-
-        logger.info("Step 3 Completed")
-
-        # -------------------------------------------------
-        # Step 4 - Data Quality Checks
-        # -------------------------------------------------
-
-        logger.info(
-            "STEP 4/7 : Data Quality Checks"
-        )
-
-        run_data_quality_checks(df)
-
-        logger.info(
-            "Step 4 Completed"
-        )
-
-        # -------------------------------------------------
-        # Step 5 - Silver
-        # -------------------------------------------------
-
-        logger.info("STEP 5/7 : Silver Layer")
-
-
-
-        create_silver_layer()
-
-        logger.info("Step 5 Completed")
-
-
-        # -------------------------------------------------
-        # Step 6 - Gold
-        # -------------------------------------------------
-
-        logger.info("STEP 6/7 : Gold Layer")
-
-
-
-
-        create_gold_layer()
-        logger.info("Step 6 Completed")
-
-
-        logger.info("STEP 7/7 : PostgreSQL Database")
-
-
-
-        loaded_tables = load_gold_tables()
-        logger.info("Step 7 Completed")
-
-        logger.info("STEP 8/8 : PostgreSQL Validation")
-
-
-        database_valid = validate_postgresql_tables()
-
-        if not database_valid:
-            raise RuntimeError(
-                "PostgreSQL database validation failed"
-            )
-
-        logger.info("Step 8 Completed")
-
-
         end_time = datetime.now()
         execution_time = end_time - start_time
 
-        # Count generated Gold datasets (Gold layer writes Parquet files)
         gold_files = list(GOLD_DIR.glob("*.parquet"))
-
 
         logger.info("=" * 70)
         logger.info("PIPELINE EXECUTED SUCCESSFULLY")
@@ -197,18 +233,13 @@ def run_pipeline():
         logger.info("")
         logger.info("Incremental Processing")
         logger.info("-" * 70)
-        logger.info(
-            f"Incremental Batches Processed : {len(incremental_files)}"
-        )
+        logger.info(f"Incremental Batches Processed : {len(incremental_files)}")
 
         for file_path in incremental_files:
-            logger.info(
-                f"[OK] {file_path.name}"
-            )
+            logger.info(f"[OK] {file_path.name}")
 
         logger.info("")
         logger.info(f"Gold Datasets Generated : {len(gold_files)}")
-
 
         for file in gold_files:
             logger.info(f"[OK] {file.name}")
@@ -223,7 +254,6 @@ def run_pipeline():
         logger.info(f"Execution Time     : {execution_time}")
         logger.info("Pipeline Status    : SUCCESS")
 
-
         logger.info("=" * 70)
 
         complete_pipeline_audit(
@@ -233,7 +263,6 @@ def run_pipeline():
         )
 
         return True
-
 
     except Exception as error:
         logger.error("=" * 70)

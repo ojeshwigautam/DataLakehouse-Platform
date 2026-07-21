@@ -47,12 +47,80 @@ with DAG(
     ],
 ) as dag:
 
-    run_etl_pipeline = BashOperator(
-        task_id="run_etl_pipeline",
+    bronze_etl = BashOperator(
+        task_id="bronze_etl",
         bash_command=(
             f"{_db_env_exports()} "
             "&& cd /opt/airflow/project "
-            "&& python main.py"
+            "&& python -m src.tasks.bronze_task"
         ),
     )
+
+    bronze_validation = BashOperator(
+        task_id="bronze_validation",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.bronze_validation_task"
+        ),
+    )
+
+    silver_etl = BashOperator(
+        task_id="silver_etl",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.silver_task"
+        ),
+    )
+
+    silver_validation = BashOperator(
+        task_id="silver_validation",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.silver_validation_task"
+        ),
+    )
+
+    gold_etl = BashOperator(
+        task_id="gold_etl",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.gold_task"
+        ),
+    )
+
+    gold_validation = BashOperator(
+        task_id="gold_validation",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.gold_validation_task"
+        ),
+    )
+
+    postgres_load = BashOperator(
+        task_id="postgres_load",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.postgres_task"
+        ),
+    )
+
+    postgres_validation = BashOperator(
+        task_id="postgres_validation",
+        bash_command=(
+            f"{_db_env_exports()} "
+            "&& cd /opt/airflow/project "
+            "&& python -m src.tasks.postgres_validation_task"
+        ),
+    )
+
+    bronze_etl >> bronze_validation >> \
+    silver_etl >> silver_validation >> \
+    gold_etl >> gold_validation >> \
+    postgres_load >> postgres_validation
 

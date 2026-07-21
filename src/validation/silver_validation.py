@@ -2,6 +2,7 @@ import pandas as pd
 import pandera as pa
 from pandera import Check
 
+from src.storage.file_handler import FileHandler
 from src.validation.validation_utils import save_validation_report
 
 
@@ -48,7 +49,7 @@ SilverSchema = pa.DataFrameSchema(
 
 def validate_silver(file_path):
 
-    df = pd.read_csv(file_path)
+    df = FileHandler.read(file_path)
 
     if len(df) < 100000:
         save_validation_report(

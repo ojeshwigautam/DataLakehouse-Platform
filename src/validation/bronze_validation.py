@@ -3,6 +3,7 @@ import pandera.pandas as pa
 
 from pandera import Check
 
+from src.storage.file_handler import FileHandler
 from src.validation.validation_utils import save_validation_report
 
 
@@ -63,9 +64,9 @@ BronzeSchema = pa.DataFrameSchema(
 )
 
 
-def validate_bronze(file_path: str):
+def validate_bronze(file_path):
 
-    df = pd.read_csv(file_path)
+    df = FileHandler.read(file_path)
 
     if len(df) < 100000:
         save_validation_report(

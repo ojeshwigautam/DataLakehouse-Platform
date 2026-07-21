@@ -5,7 +5,6 @@ from sqlalchemy import create_engine
 
 from src.utils.logger import logger
 
-
 # Load environment variables from .env
 load_dotenv()
 
@@ -30,9 +29,7 @@ def get_database_engine():
     try:
         engine = create_engine(database_url)
 
-        logger.info(
-            f"PostgreSQL engine created for database: {DB_NAME}"
-        )
+        logger.info(f"PostgreSQL engine created for database: {DB_NAME}")
 
         return engine
 
@@ -40,4 +37,3 @@ def get_database_engine():
         logger.error("Failed to create PostgreSQL database engine")
         logger.error(error)
         raise
-

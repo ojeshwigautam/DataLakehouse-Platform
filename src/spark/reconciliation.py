@@ -11,13 +11,11 @@ schema/column metadata).
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any, Dict, List
 
 from pyspark.sql import DataFrame
 from pyspark.sql import functions as F
-
 
 _CRITICAL_NULL_COLUMNS: List[str] = [
     "order_unique_id",
@@ -75,7 +73,9 @@ def compare_schema(bronze_df: DataFrame, silver_df: DataFrame) -> Dict[str, Any]
     }
 
 
-def _count_duplicate_orders(df: DataFrame, order_unique_id_col: str = "order_unique_id") -> int:
+def _count_duplicate_orders(
+    df: DataFrame, order_unique_id_col: str = "order_unique_id"
+) -> int:
     if df is None or order_unique_id_col not in df.columns:
         return 0
 
@@ -132,7 +132,9 @@ def _null_validation(silver_df: DataFrame) -> str:
 
         # Handle NaN for floating-like types.
         if field.dataType.simpleString() in {"double", "float"}:
-            missing = silver_df.filter(F.col(col_name).isNull() | F.isnan(F.col(col_name))).count()
+            missing = silver_df.filter(
+                F.col(col_name).isNull() | F.isnan(F.col(col_name))
+            ).count()
         else:
             missing = silver_df.filter(F.col(col_name).isNull()).count()
 
@@ -154,7 +156,9 @@ def create_reconciliation_report(
     """Create the JSON-serializable reconciliation report."""
 
     if timestamp is None:
-        timestamp = datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+        timestamp = (
+            datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        )
 
     rc = compare_row_counts(bronze_df, silver_df)
     sc = compare_schema(bronze_df, silver_df)
@@ -174,4 +178,3 @@ def create_reconciliation_report(
         "null_validation": null_val,
         "duration_seconds": round(float(duration), 3),
     }
-

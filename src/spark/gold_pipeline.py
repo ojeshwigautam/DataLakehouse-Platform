@@ -9,32 +9,40 @@ import time
 
 from pyspark.sql import DataFrame
 
+from src.monitoring.logger import get_logger
 from src.spark.config import (
-    SILVER_PATH,
     DAILY_SALES_PATH,
-    MONTHLY_SALES_PATH,
-    SELLER_PERFORMANCE_PATH,
-    PAYMENT_SUMMARY_PATH,
     DELIVERY_SUMMARY_PATH,
+    MONTHLY_SALES_PATH,
+    PAYMENT_SUMMARY_PATH,
+    SELLER_PERFORMANCE_PATH,
+    SILVER_PATH,
     TOP_PRODUCTS_PATH,
     TOP_STATES_PATH,
 )
-from src.spark.readers import read_parquet
-from src.spark.session import get_spark
-from src.spark.writers import write_parquet
 from src.spark.gold_transforms import (
     daily_sales,
-    monthly_sales,
-    seller_performance,
-    payment_summary,
     delivery_summary,
+    monthly_sales,
+    payment_summary,
+    seller_performance,
     top_products,
     top_states,
 )
 from src.spark.gold_validators import validate_gold_dataset
+from src.spark.readers import read_parquet
+from src.spark.session import get_spark
+from src.spark.writers import write_parquet
+
+logger = get_logger("gold")
 
 
-def _validate(name: str, df: DataFrame, required_columns: list[str], dimension_columns: list[str] | None = None):
+def _validate(
+    name: str,
+    df: DataFrame,
+    required_columns: list[str],
+    dimension_columns: list[str] | None = None,
+):
     validate_gold_dataset(
         df,
         required_columns=required_columns,
@@ -43,13 +51,13 @@ def _validate(name: str, df: DataFrame, required_columns: list[str], dimension_c
 
 
 def main() -> None:
-    spark = get_spark()
+    get_spark()
 
     start_time = time.time()
 
-    print("=" * 40)
-    print("Spark Gold Pipeline")
-    print("=" * 40)
+    logger.info("=" * 40)
+    logger.info("Spark Gold Pipeline")
+    logger.info("=" * 40)
 
     silver_df = read_parquet(SILVER_PATH)
 
@@ -57,12 +65,24 @@ def main() -> None:
 
     daily = daily_sales(silver_df)
     artifacts.append(
-        ("Daily Sales", str(DAILY_SALES_PATH), daily, ["purchase_date", "orders", "revenue"], ["purchase_date"])
+        (
+            "Daily Sales",
+            str(DAILY_SALES_PATH),
+            daily,
+            ["purchase_date", "orders", "revenue"],
+            ["purchase_date"],
+        )
     )
 
     monthly = monthly_sales(silver_df)
     artifacts.append(
-        ("Monthly Sales", str(MONTHLY_SALES_PATH), monthly, ["month", "orders", "revenue"], ["month"])
+        (
+            "Monthly Sales",
+            str(MONTHLY_SALES_PATH),
+            monthly,
+            ["month", "orders", "revenue"],
+            ["month"],
+        )
     )
 
     seller_perf = seller_performance(silver_df)
@@ -125,24 +145,25 @@ def main() -> None:
 
     for label, path, df, required_cols, dim_cols in artifacts:
         try:
-            _validate(label, df, required_columns=required_cols, dimension_columns=dim_cols)
+            _validate(
+                label, df, required_columns=required_cols, dimension_columns=dim_cols
+            )
             rows_processed += df.count()
             write_parquet(df, path)
             created += 1
-            print(f"{label:<20} PASS")
+            logger.info(f"{label:<20} PASS")
         except Exception as e:
-            print(f"{label:<20} FAIL")
+            logger.error(f"{label:<20} FAIL | error={e}")
             raise
 
     exec_time = time.time() - start_time
 
-    print("=" * 40)
-    print(f"Gold Tables Created : {created}")
-    print(f"Execution Time : {exec_time:.1f} sec")
-    print(f"Rows Processed : {rows_processed}")
-    print("=" * 40)
+    logger.info("=" * 40)
+    logger.info(f"Gold Tables Created : {created}")
+    logger.info(f"Execution Time : {exec_time:.1f} sec")
+    logger.info(f"Rows Processed : {rows_processed}")
+    logger.info("=" * 40)
 
 
 if __name__ == "__main__":
     main()
-

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from pyspark.sql.functions import col, lower, trim, to_timestamp, upper
 from pyspark.sql import DataFrame
+from pyspark.sql.functions import col, lower, to_timestamp, trim, upper
 
 
 def clean_orders(df: DataFrame) -> DataFrame:
@@ -55,5 +55,3 @@ def clean_orders(df: DataFrame) -> DataFrame:
             df = df.filter(col(column) >= 0)
 
     return df
-
-

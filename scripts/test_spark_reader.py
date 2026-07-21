@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 
@@ -7,14 +6,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.config.settings import BRONZE_DATASET
-
-from src.spark.readers import read_parquet
-
+from src.config.settings import BRONZE_DATASET  # noqa: E402
+from src.spark.readers import read_parquet  # noqa: E402
 
 df = read_parquet(BRONZE_DATASET)
 
 df.printSchema()
 
 print(df.count())
-

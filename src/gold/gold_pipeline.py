@@ -1,21 +1,18 @@
 import pandas as pd
 
-from src.storage.file_handler import FileHandler
-
-from src.utils.logger import logger
-
-
 from src.config.settings import (
-    SILVER_DATASET,
-    GOLD_DIR,
     GOLD_DAILY_SALES,
+    GOLD_DELIVERY_SUMMARY,
+    GOLD_DIR,
     GOLD_MONTHLY_SALES,
-    GOLD_TOP_PRODUCTS,
-    GOLD_TOP_STATES,
     GOLD_PAYMENT_SUMMARY,
     GOLD_SELLER_PERFORMANCE,
-    GOLD_DELIVERY_SUMMARY,
+    GOLD_TOP_PRODUCTS,
+    GOLD_TOP_STATES,
+    SILVER_DATASET,
 )
+from src.storage.file_handler import FileHandler
+from src.utils.logger import logger
 
 
 def _find_column(df, possible_names):
@@ -235,21 +232,14 @@ def _create_delivery_summary(df):
     )
 
     delivery_df["delivery_days"] = (
-        delivery_df[delivered_column]
-        - delivery_df[purchase_column]
+        delivery_df[delivered_column] - delivery_df[purchase_column]
     ).dt.days
 
     summary = pd.DataFrame(
         {
-            "average_delivery_days": [
-                delivery_df["delivery_days"].mean()
-            ],
-            "minimum_delivery_days": [
-                delivery_df["delivery_days"].min()
-            ],
-            "maximum_delivery_days": [
-                delivery_df["delivery_days"].max()
-            ],
+            "average_delivery_days": [delivery_df["delivery_days"].mean()],
+            "minimum_delivery_days": [delivery_df["delivery_days"].min()],
+            "maximum_delivery_days": [delivery_df["delivery_days"].max()],
         }
     )
 
@@ -287,7 +277,5 @@ def create_gold_layer():
     logger.info("=" * 60)
 
 
-
 if __name__ == "__main__":
     create_gold_layer()
-

@@ -3,7 +3,6 @@ from sqlalchemy import inspect, text
 from src.database.connection import get_database_engine
 from src.utils.logger import logger
 
-
 EXPECTED_TABLES = [
     "daily_sales",
     "monthly_sales",
@@ -33,9 +32,7 @@ def validate_postgresql_tables():
 
         existing_tables = inspector.get_table_names()
 
-        logger.info(
-            f"Tables found in PostgreSQL: {len(existing_tables)}"
-        )
+        logger.info(f"Tables found in PostgreSQL: {len(existing_tables)}")
 
         with engine.connect() as connection:
 
@@ -43,9 +40,7 @@ def validate_postgresql_tables():
 
                 if table_name not in existing_tables:
 
-                    logger.error(
-                        f"[MISSING] {table_name}"
-                    )
+                    logger.error(f"[MISSING] {table_name}")
 
                     validation_results[table_name] = {
                         "exists": False,
@@ -54,23 +49,16 @@ def validate_postgresql_tables():
 
                     continue
 
-                query = text(
-                    f'SELECT COUNT(*) FROM "{table_name}"'
-                )
+                query = text(f'SELECT COUNT(*) FROM "{table_name}"')
 
-                row_count = connection.execute(
-                    query
-                ).scalar()
+                row_count = connection.execute(query).scalar()
 
                 validation_results[table_name] = {
                     "exists": True,
                     "rows": row_count,
                 }
 
-                logger.info(
-                    f"[OK] {table_name:<25} "
-                    f"Rows: {row_count}"
-                )
+                logger.info(f"[OK] {table_name:<25} " f"Rows: {row_count}")
 
         missing_tables = [
             table
@@ -83,19 +71,14 @@ def validate_postgresql_tables():
         if missing_tables:
 
             logger.error(
-                f"Database validation failed. "
-                f"Missing tables: {missing_tables}"
+                f"Database validation failed. " f"Missing tables: {missing_tables}"
             )
 
             return False
 
-        logger.info(
-            "PostgreSQL Database Validation Successful"
-        )
+        logger.info("PostgreSQL Database Validation Successful")
 
-        logger.info(
-            f"Validated Tables: {len(EXPECTED_TABLES)}"
-        )
+        logger.info(f"Validated Tables: {len(EXPECTED_TABLES)}")
 
         logger.info("=" * 60)
 
@@ -103,9 +86,7 @@ def validate_postgresql_tables():
 
     except Exception as error:
 
-        logger.error(
-            "PostgreSQL database validation failed"
-        )
+        logger.error("PostgreSQL database validation failed")
 
         logger.error(error)
 
@@ -118,4 +99,3 @@ def validate_postgresql_tables():
 
 if __name__ == "__main__":
     validate_postgresql_tables()
-

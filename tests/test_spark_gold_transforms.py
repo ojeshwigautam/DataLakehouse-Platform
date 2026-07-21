@@ -14,9 +14,24 @@ from src.spark.gold_transforms import (
 def test_daily_sales_aggregates_orders_and_revenue(spark):
     df = spark.createDataFrame(
         [
-            Row(order_purchase_timestamp="2026-01-01 10:00:00", orders="o1", revenue=10.0, payment_value=10.0),
-            Row(order_purchase_timestamp="2026-01-01 12:00:00", orders="o2", revenue=20.0, payment_value=20.0),
-            Row(order_purchase_timestamp="2026-01-02 09:00:00", orders="o3", revenue=5.0, payment_value=5.0),
+            Row(
+                order_purchase_timestamp="2026-01-01 10:00:00",
+                orders="o1",
+                revenue=10.0,
+                payment_value=10.0,
+            ),
+            Row(
+                order_purchase_timestamp="2026-01-01 12:00:00",
+                orders="o2",
+                revenue=20.0,
+                payment_value=20.0,
+            ),
+            Row(
+                order_purchase_timestamp="2026-01-02 09:00:00",
+                orders="o3",
+                revenue=5.0,
+                payment_value=5.0,
+            ),
         ]
     )
 
@@ -32,9 +47,19 @@ def test_daily_sales_aggregates_orders_and_revenue(spark):
 def test_monthly_sales_aggregates(spark):
     df = spark.createDataFrame(
         [
-            Row(order_purchase_timestamp="2026-01-01 10:00:00", orders="o1", revenue=10.0),
-            Row(order_purchase_timestamp="2026-01-15 10:00:00", orders="o2", revenue=20.0),
-            Row(order_purchase_timestamp="2026-02-01 10:00:00", orders="o3", revenue=5.0),
+            Row(
+                order_purchase_timestamp="2026-01-01 10:00:00",
+                orders="o1",
+                revenue=10.0,
+            ),
+            Row(
+                order_purchase_timestamp="2026-01-15 10:00:00",
+                orders="o2",
+                revenue=20.0,
+            ),
+            Row(
+                order_purchase_timestamp="2026-02-01 10:00:00", orders="o3", revenue=5.0
+            ),
         ]
     )
 
@@ -107,8 +132,14 @@ def test_payment_summary_groups_by_payment_type(spark):
 def test_delivery_summary_produces_delivery_status_and_avg_delivery_days(spark):
     df = spark.createDataFrame(
         [
-            Row(order_purchase_timestamp="2026-01-01 00:00:00", order_delivered_customer_date="2026-01-11 00:00:00"),
-            Row(order_purchase_timestamp="2026-01-05 00:00:00", order_delivered_customer_date=None),
+            Row(
+                order_purchase_timestamp="2026-01-01 00:00:00",
+                order_delivered_customer_date="2026-01-11 00:00:00",
+            ),
+            Row(
+                order_purchase_timestamp="2026-01-05 00:00:00",
+                order_delivered_customer_date=None,
+            ),
         ]
     )
 
@@ -123,8 +154,12 @@ def test_delivery_summary_produces_delivery_status_and_avg_delivery_days(spark):
 def test_top_products_and_top_states(spark):
     df = spark.createDataFrame(
         [
-            Row(product_category="cat1", customer_state="CA", orders="o1", revenue=10.0),
-            Row(product_category="cat1", customer_state="CA", orders="o2", revenue=20.0),
+            Row(
+                product_category="cat1", customer_state="CA", orders="o1", revenue=10.0
+            ),
+            Row(
+                product_category="cat1", customer_state="CA", orders="o2", revenue=20.0
+            ),
             Row(product_category="cat2", customer_state="NY", orders="o3", revenue=5.0),
         ]
     )
@@ -136,4 +171,3 @@ def test_top_products_and_top_states(spark):
     top_st = top_states(df).collect()
     assert top_st[0]["customer_state"] == "CA"
     assert float(top_st[0]["revenue"]) == 30.0
-

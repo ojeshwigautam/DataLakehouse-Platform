@@ -38,4 +38,3 @@ def save_reconciliation_report(
         json.dump(report, f, indent=2, ensure_ascii=False)
 
     return out_path
-

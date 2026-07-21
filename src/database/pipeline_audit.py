@@ -1,5 +1,5 @@
-from datetime import datetime
 import uuid
+from datetime import datetime
 
 from sqlalchemy import text
 
@@ -150,4 +150,3 @@ def fail_pipeline_audit(
         connection.execute(query, parameters)
 
     logger.info(f"Pipeline audit failed | Run ID : {run_id}")
-

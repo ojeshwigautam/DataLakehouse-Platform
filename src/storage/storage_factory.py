@@ -20,4 +20,3 @@ class StorageFactory:
             return ParquetHandler
 
         raise ValueError(f"Unsupported file type for storage: {suffix} ({path})")
-

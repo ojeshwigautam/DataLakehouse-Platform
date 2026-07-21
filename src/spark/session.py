@@ -1,4 +1,5 @@
 import sys
+
 from pyspark.sql import SparkSession
 
 from src.spark.config import (
@@ -11,12 +12,10 @@ from src.spark.config import (
 
 def get_spark() -> SparkSession:
     spark = (
-        SparkSession.builder
-        .appName(APP_NAME)
+        SparkSession.builder.appName(APP_NAME)
         .master(SPARK_MASTER)
         .config("spark.pyspark.python", sys.executable)
         .config("spark.pyspark.driver.python", sys.executable)
-        
         .config("spark.sql.shuffle.partitions", SHUFFLE_PARTITIONS)
         .config("spark.sql.adaptive.enabled", "true")
         .config(
@@ -28,4 +27,3 @@ def get_spark() -> SparkSession:
 
     spark.sparkContext.setLogLevel("WARN")
     return spark
-

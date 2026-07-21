@@ -1,15 +1,8 @@
-from pyspark.sql import Row
-from pyspark.sql.types import (
-    StructType,
-    StructField,
-    StringType,
-    DoubleType,
-)
-
 import pytest
+from pyspark.sql import Row
+from pyspark.sql.types import DoubleType, StringType, StructField, StructType
 
 from src.spark.validators import ValidationError, validate_silver_orders
-
 
 
 def test_validate_silver_orders_passes(spark):
@@ -130,22 +123,22 @@ def test_validate_silver_orders_fails_on_all_null_critical_column(spark):
         ),
     ]
 
-    schema = StructType([
-        StructField("order_unique_id", StringType(), False),
-        StructField("customer_city", StringType(), True),
-        StructField("customer_state", StringType(), True),
-        StructField("seller_city", StringType(), True),
-        StructField("seller_state", StringType(), True),
-        StructField("shipping_limit_date", StringType(), True),
-        StructField("order_purchase_timestamp", StringType(), True),
-        StructField("price", DoubleType(), True),
-        StructField("payment_value", DoubleType(), True),
-        StructField("freight_value", DoubleType(), True),
-    ])
+    schema = StructType(
+        [
+            StructField("order_unique_id", StringType(), False),
+            StructField("customer_city", StringType(), True),
+            StructField("customer_state", StringType(), True),
+            StructField("seller_city", StringType(), True),
+            StructField("seller_state", StringType(), True),
+            StructField("shipping_limit_date", StringType(), True),
+            StructField("order_purchase_timestamp", StringType(), True),
+            StructField("price", DoubleType(), True),
+            StructField("payment_value", DoubleType(), True),
+            StructField("freight_value", DoubleType(), True),
+        ]
+    )
 
     df = spark.createDataFrame(data, schema=schema)
 
     with pytest.raises(ValidationError, match="price.*entirely null"):
         validate_silver_orders(df)
-
-

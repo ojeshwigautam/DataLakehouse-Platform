@@ -37,5 +37,3 @@ PAYMENT_SUMMARY_PATH = GOLD_PATH / "payment_summary.parquet"
 DELIVERY_SUMMARY_PATH = GOLD_PATH / "delivery_summary.parquet"
 TOP_PRODUCTS_PATH = GOLD_PATH / "top_products.parquet"
 TOP_STATES_PATH = GOLD_PATH / "top_states.parquet"
-
-

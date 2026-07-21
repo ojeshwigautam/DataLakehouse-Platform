@@ -1,39 +1,36 @@
-from datetime import datetime
 import traceback
+from datetime import datetime
 
-from src.config.settings import (
-    RAW_DATASET,
-    BRONZE_DATASET,
-    SILVER_DATASET,
-    GOLD_DIR,
-)
-
-from src.utils.logger import logger
-
-from src.ingestion.load_dataset import load_dataset
-from src.ingestion.incremental_ingestion import process_incremental_files
 from src.bronze.save_to_bronze import save_to_bronze
-from src.processing.validate_dataset import validate_dataset
-from src.processing.data_quality import run_data_quality_checks
-from src.processing.silver_pipeline import create_silver_layer
-from src.gold.gold_pipeline import create_gold_layer
-
+from src.config.settings import BRONZE_DATASET, GOLD_DIR, RAW_DATASET, SILVER_DATASET
 from src.database.load_gold_tables import load_gold_tables
-from src.database.validate_tables import validate_postgresql_tables
 from src.database.pipeline_audit import (
-    start_pipeline_audit,
     complete_pipeline_audit,
     fail_pipeline_audit,
+    start_pipeline_audit,
 )
-
+from src.database.validate_tables import validate_postgresql_tables
+from src.gold.gold_pipeline import create_gold_layer
+from src.ingestion.incremental_ingestion import process_incremental_files
+from src.ingestion.load_dataset import load_dataset
+from src.monitoring.logger import get_logger
+from src.processing.data_quality import run_data_quality_checks
+from src.processing.silver_pipeline import create_silver_layer
+from src.processing.validate_dataset import validate_dataset
+from src.utils.decorators import handle_exceptions, log_execution, measure_time
 from src.validation.bronze_validation import validate_bronze
-from src.validation.silver_validation import validate_silver
 from src.validation.gold_validation import validate_gold
+from src.validation.silver_validation import validate_silver
+
+logger = get_logger("pipeline")
 
 
 # ------------------------------------------------------------------
 # Stage 1 — Bronze
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_bronze():
     """STEP 2/9 : Load raw data and save to the Bronze layer.
 
@@ -53,6 +50,9 @@ def run_bronze():
 # ------------------------------------------------------------------
 # Stage 2 — Bronze Validation
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_bronze_validation():
     """STEP 3/8 : Validate Bronze layer data."""
     logger.info("STEP 3/8 : Bronze Validation")
@@ -63,6 +63,9 @@ def run_bronze_validation():
 # ------------------------------------------------------------------
 # Stage 3 — Silver
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_silver():
     """STEP 4/8 : Create Silver layer from Bronze."""
     logger.info("STEP 4/8 : Silver Layer")
@@ -73,6 +76,9 @@ def run_silver():
 # ------------------------------------------------------------------
 # Stage 4 — Silver Validation
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_silver_validation():
     """STEP 5/8 : Validate Silver layer data."""
     logger.info("STEP 5/8 : Silver Validation")
@@ -83,6 +89,9 @@ def run_silver_validation():
 # ------------------------------------------------------------------
 # Stage 5 — Gold
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_gold():
     """STEP 6/8 : Create Gold layer from Silver."""
     logger.info("STEP 6/8 : Gold Layer")
@@ -93,6 +102,9 @@ def run_gold():
 # ------------------------------------------------------------------
 # Stage 6 — Gold Validation
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_gold_validation():
     """STEP 7/8 : Validate Gold layer datasets."""
     logger.info("STEP 7/8 : Gold Validation")
@@ -103,6 +115,9 @@ def run_gold_validation():
 # ------------------------------------------------------------------
 # Stage 7 — PostgreSQL Load
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_postgres():
     """STEP 8/8 : Load Gold tables into PostgreSQL."""
     logger.info("STEP 8/8 : PostgreSQL")
@@ -114,6 +129,9 @@ def run_postgres():
 # ------------------------------------------------------------------
 # Stage 8 — PostgreSQL Validation
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_postgres_validation():
     """STEP 9/9 : Validate PostgreSQL tables."""
     logger.info("STEP 9/9 : PostgreSQL Validation")
@@ -125,6 +143,9 @@ def run_postgres_validation():
 # ------------------------------------------------------------------
 # Stage — Data Quality
 # ------------------------------------------------------------------
+@log_execution
+@measure_time
+@handle_exceptions
 def run_data_quality():
     """Run legacy data quality checks on the loaded dataset.
 
@@ -142,6 +163,9 @@ def run_data_quality():
 # ==================================================================
 # Main Pipeline Orchestrator
 # ==================================================================
+@log_execution
+@measure_time
+@handle_exceptions
 def run_pipeline():
     """Execute the complete ETL pipeline."""
 
@@ -267,7 +291,7 @@ def run_pipeline():
     except Exception as error:
         logger.error("=" * 70)
         logger.error("PIPELINE FAILED")
-        logger.error(error)
+        logger.error(str(error))
         logger.error(traceback.format_exc())
         logger.error("=" * 70)
 
@@ -279,9 +303,6 @@ def run_pipeline():
                     error_message=str(error),
                 )
             except Exception as audit_error:
-                logger.error(
-                    f"Failed to update pipeline audit: {audit_error}"
-                )
+                logger.error(f"Failed to update pipeline audit: {audit_error}")
 
         return False
-

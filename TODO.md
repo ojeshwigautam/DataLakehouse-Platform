@@ -1,17 +1,14 @@
-# DAG Refactor TODO
+# Milestone 4 — CI/CD & Developer Experience
 
-- [x] Step 0: Read existing DAG and task files
-- [x] Step 1: Create plan and get approval
-- [x] Step 2: Remove `run_etl_pipeline` BashOperator
-- [x] Step 3: Add 8 new BashOperators:
-  - bronze_etl
-  - bronze_validation
-  - silver_etl
-  - silver_validation
-  - gold_etl
-  - gold_validation
-  - postgres_load
-  - postgres_validation
-- [x] Step 4: Add dependency chain
-- [x] Step 5: Verify final file
+## Steps
+
+- [x] Plan approved
+- [x] **1. Create `requirements-dev.txt`** (black, ruff, isort, pre-commit)
+- [x] **2. Update `requirements.txt`** (remove pytest, pytest-cov → pure runtime)
+- [x] **3. Create `.coveragerc`** (source paths, omit patterns)
+- [x] **4. Update `pytest.ini`** (add `addopts` referencing coverage config)
+- [x] **5. Create `.pre-commit-config.yaml`** (Black, isort, Ruff hooks)
+- [x] **6. Update `.gitignore`** (add htmlcov/, .ruff_cache/, .mypy_cache/, etc.)
+- [x] **7. Rewrite `.github/workflows/ci.yml`** (full pipeline with linting, tests, coverage, Docker build, Terraform)
+- [x] **8. Update `README.md`** (badges + dev workflow documentation)
 

@@ -12,6 +12,8 @@
 ![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 ![Great Expectations](https://img.shields.io/badge/Data%20Quality-Great%20Expectations-FF6B6B?style=flat-square)
 ![AWS S3](https://img.shields.io/badge/AWS-S3%20Ready-FF9900?style=flat-square&logo=amazons3&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=flat-square)
+![Code Style](https://img.shields.io/badge/Code%20Style-Black-000000?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=flat-square)
 
@@ -31,6 +33,7 @@
 - [Running with Docker](#running-with-docker)
 - [Running Locally](#running-locally)
 - [Running Tests](#running-tests)
+- [Development Workflow](#development-workflow)
 - [GitHub Actions](#github-actions)
 - [Gold Layer](#gold-layer)
 - [Incremental Processing](#incremental-processing)
@@ -379,7 +382,7 @@ Step 5/5: Gold                         ✓  7 tables loaded
 # Full test suite
 pytest tests/ -v
 
-# With coverage
+# With coverage (HTML report in htmlcov/)
 pytest tests/ -v --cov=src --cov-report=html
 
 # Unit tests only
@@ -391,31 +394,103 @@ pytest tests/integration/ -v
 
 ---
 
+## Development Workflow
+
+### Setup Development Environment
+
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+# Install runtime dependencies
+pip install -r requirements.txt
+
+# Install development dependencies
+pip install -r requirements-dev.txt
+```
+
+### Pre-commit Hooks
+
+This project uses **pre-commit** to automatically run formatting and linting checks before each commit.
+
+```bash
+# Install the pre-commit hooks
+pre-commit install
+
+# (Optional) Run hooks against all files
+pre-commit run --all-files
+```
+
+The pre-commit configuration (`.pre-commit-config.yaml`) runs:
+| Hook | Purpose |
+|---|---|
+| **Black** | Auto-formats Python code to consistent style |
+| **isort** | Sorts imports in a standard order |
+| **Ruff** | Lints code and auto-fixes common issues |
+
+### Run Local CI Checks
+
+Run the same checks that the CI pipeline executes, in order:
+
+```bash
+# 1. Formatting (Black)
+black --check .
+
+# 2. Import order (isort)
+isort --check-only --profile=black --line-length=88 .
+
+# 3. Static analysis (Ruff)
+ruff check .
+
+# 4. Tests with coverage
+pytest tests/ -v --cov=src --cov-report=term-missing --cov-config=.coveragerc
+
+# 5. Generate HTML coverage report
+pytest tests/ --cov=src --cov-report=html
+
+# 6. Verify Docker build
+docker compose build
+```
+
+### Fix Issues Automatically
+
+```bash
+# Auto-format code
+black .
+
+# Sort imports
+isort --profile=black --line-length=88 .
+
+# Auto-fix lint issues
+ruff check . --fix
+```
+
+---
+
 ## GitHub Actions
 
-Every push to `main` or `develop` triggers:
+Every push to `main` or `develop` triggers the CI pipeline with four parallel jobs:
 
-```yaml
-Jobs:
-
-Install Dependencies
-
-Execute PyTest Suite
-
-Validate Spark Transformations
-
-Verify ETL Pipeline
-```
+| Job | What it does |
+|---|---|
+| **Lint & Format Check** | Black formatting, isort import order, Ruff static analysis |
+| **Tests & Coverage** | PySpark verification, pytest execution, HTML coverage report |
+| **Docker Image Build** | Builds the ETL Docker image, validates docker-compose.yml |
+| **Terraform Validation** | `terraform fmt -check` and `terraform validate` (main branch only) |
 
 ```mermaid
 flowchart LR
-    A[Git Push] --> B[Lint Check]
-    B --> C[Unit Tests]
-    C --> D[Integration Tests]
-    D --> E{All Pass?}
-    E -->|Yes| F[✅ Build Green]
-    E -->|No| G[❌ Build Failed]
+    A[Git Push / PR] --> B[Lint & Format]
+    B --> C[Tests & Coverage]
+    C --> D[Docker Build]
+    C --> E[Terraform Validate]
+    D --> F[✅ CI Passes]
+    E --> F
 ```
+
+**Build status badge:**  
+[![Spark ETL CI](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/ojeshwigautam/DataLakehouse-Platform/actions/workflows/ci.yml)
 
 ---
 

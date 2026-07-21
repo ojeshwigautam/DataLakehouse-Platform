@@ -1,4 +1,11 @@
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
 
 # -------------------------------------------------
 # Project Root
@@ -43,6 +50,28 @@ LOG_DIR = PROJECT_ROOT / "logs"
 LOG_DIR.mkdir(exist_ok=True)
 
 # -------------------------------------------------
+# PostgreSQL Connection Settings
+# -------------------------------------------------
+
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "5432")
+DB_NAME = os.getenv("DB_NAME", "commerce_lakehouse")
+DB_USER = os.getenv("DB_USER", "postgres")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "postgres")
+
+# -------------------------------------------------
+# Metadata Schema
+# -------------------------------------------------
+
+METADATA_SCHEMA = os.getenv("METADATA_SCHEMA", "metadata")
+
+# -------------------------------------------------
+# Logging Level
+# -------------------------------------------------
+
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+
+# -------------------------------------------------
 # Gold Layer Output Files
 # -------------------------------------------------
 
@@ -71,5 +100,3 @@ for directory in [
     EXPORT_DIR,
 ]:
     directory.mkdir(parents=True, exist_ok=True)
-
-

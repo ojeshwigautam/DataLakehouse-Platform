@@ -13,4 +13,3 @@ def test_pipeline_execution_smoke():
     """
 
     assert True
-

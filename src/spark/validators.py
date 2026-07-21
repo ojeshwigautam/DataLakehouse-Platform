@@ -6,20 +6,16 @@ from typing import Iterable
 
 from pyspark.sql import DataFrame
 from pyspark.sql import functions as F
-from pyspark.sql.types import (
-    DecimalType,
-    DoubleType,
-    FloatType,
-)
+from pyspark.sql.types import DecimalType, DoubleType, FloatType
 
 
 class ValidationError(ValueError):
     pass
 
 
-
-
-def _required_columns_exist(df: DataFrame, required_columns: Iterable[str]) -> list[str]:
+def _required_columns_exist(
+    df: DataFrame, required_columns: Iterable[str]
+) -> list[str]:
     df_cols = set(df.columns)
     missing = [c for c in required_columns if c not in df_cols]
     return missing
@@ -52,17 +48,11 @@ def validate_silver_orders(df: DataFrame) -> None:
     missing = _required_columns_exist(df, required)
     if missing:
         raise ValidationError(
-            "Silver validation failed: Missing required columns: "
-            + ", ".join(missing)
+            "Silver validation failed: Missing required columns: " + ", ".join(missing)
         )
 
     # No duplicate order_unique_id
-    dup_count = (
-        df.groupBy("order_unique_id")
-        .count()
-        .filter(F.col("count") > 1)
-        .count()
-    )
+    dup_count = df.groupBy("order_unique_id").count().filter(F.col("count") > 1).count()
 
     if dup_count > 0:
         raise ValidationError(
@@ -78,13 +68,10 @@ def validate_silver_orders(df: DataFrame) -> None:
         "freight_value",
     ]
 
-
     def count_missing(df: DataFrame, field) -> int:
         column = field.name
         if isinstance(field.dataType, (DoubleType, FloatType, DecimalType)):
-            return df.filter(
-                F.col(column).isNull() | F.isnan(F.col(column))
-            ).count()
+            return df.filter(F.col(column).isNull() | F.isnan(F.col(column))).count()
 
         return df.filter(F.col(column).isNull()).count()
 
@@ -97,6 +84,3 @@ def validate_silver_orders(df: DataFrame) -> None:
             raise ValidationError(
                 f"Silver validation failed: Column '{field.name}' is entirely null"
             )
-
-
-

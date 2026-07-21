@@ -89,11 +89,9 @@ def seller_performance(df: DataFrame) -> DataFrame:
 
     delivery_days_expr = None
     if delivery_purchase_col and delivery_delivered_col:
-        delivery_days_expr = (
-            F.datediff(
-                F.to_date(F.col(delivery_delivered_col)),
-                F.to_date(F.col(delivery_purchase_col)),
-            )
+        delivery_days_expr = F.datediff(
+            F.to_date(F.col(delivery_delivered_col)),
+            F.to_date(F.col(delivery_purchase_col)),
         )
     else:
         # If delivery timestamps are missing, avg_delivery_days will be null.
@@ -143,13 +141,15 @@ def delivery_summary(df: DataFrame) -> DataFrame:
             "Delivery summary requires order_delivered_customer_date and order_purchase_timestamp"
         )
 
-    delivery_days = F.datediff(F.to_date(F.col(delivered_col)), F.to_date(F.col(purchase_col)))
+    delivery_days = F.datediff(
+        F.to_date(F.col(delivered_col)), F.to_date(F.col(purchase_col))
+    )
 
     # Task requests: delivery_status, avg_delivery_days.
     # Derive a simple status: delivered if delivered date not null, else not_delivered.
-    delivery_status = F.when(F.col(delivered_col).isNotNull(), F.lit("delivered")).otherwise(
-        F.lit("not_delivered")
-    )
+    delivery_status = F.when(
+        F.col(delivered_col).isNotNull(), F.lit("delivered")
+    ).otherwise(F.lit("not_delivered"))
 
     return (
         df.withColumn("delivery_status", delivery_status)
@@ -204,6 +204,4 @@ def top_states(df: DataFrame) -> DataFrame:
             F.sum(F.col(revenue_col)).alias("revenue"),
         )
         .orderBy(F.col("revenue").desc())
-        
     )
-

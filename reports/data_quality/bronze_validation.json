@@ -1,6 +1,6 @@
 {
     "layer": "bronze",
-    "status": "PASSED",
-    "message": "Bronze validation passed.",
-    "timestamp": "2026-07-21T07:53:35.931532"
+    "status": "FAILED",
+    "message": "Unexpected row count: 3",
+    "timestamp": "2026-07-21T14:16:36.449296"
 }

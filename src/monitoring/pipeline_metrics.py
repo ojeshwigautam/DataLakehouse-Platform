@@ -51,24 +51,16 @@ def get_pipeline_metrics():
     successful_runs = result["successful_runs"]
     failed_runs = result["failed_runs"]
 
-    success_rate = (
-        (successful_runs / total_runs) * 100
-        if total_runs > 0
-        else 0
-    )
+    success_rate = (successful_runs / total_runs) * 100 if total_runs > 0 else 0
 
     logger.info(f"Total Pipeline Runs       : {total_runs}")
     logger.info(f"Successful Runs           : {successful_runs}")
     logger.info(f"Failed Runs               : {failed_runs}")
     logger.info(f"Success Rate              : {success_rate:.2f}%")
     logger.info(
-        "Average Execution Time    : "
-        f"{result['avg_execution_time_seconds']} seconds"
+        "Average Execution Time    : " f"{result['avg_execution_time_seconds']} seconds"
     )
-    logger.info(
-        "Incremental Batches       : "
-        f"{result['total_incremental_batches']}"
-    )
+    logger.info("Incremental Batches       : " f"{result['total_incremental_batches']}")
 
     logger.info("=" * 60)
 
@@ -77,10 +69,8 @@ def get_pipeline_metrics():
         "successful_runs": successful_runs,
         "failed_runs": failed_runs,
         "success_rate": round(success_rate, 2),
-        "avg_execution_time_seconds":
-            result["avg_execution_time_seconds"],
-        "total_incremental_batches":
-            result["total_incremental_batches"],
+        "avg_execution_time_seconds": result["avg_execution_time_seconds"],
+        "total_incremental_batches": result["total_incremental_batches"],
     }
 
 
@@ -120,20 +110,11 @@ def get_latest_pipeline_run():
     logger.info(f"Status           : {result['status']}")
     logger.info(f"Started          : {result['start_time']}")
     logger.info(f"Completed        : {result['end_time']}")
-    logger.info(
-        f"Execution Time   : "
-        f"{result['execution_time_seconds']} seconds"
-    )
-    logger.info(
-        f"Incremental Runs : "
-        f"{result['incremental_batches']}"
-    )
+    logger.info(f"Execution Time   : " f"{result['execution_time_seconds']} seconds")
+    logger.info(f"Incremental Runs : " f"{result['incremental_batches']}")
 
     if result["error_message"]:
-        logger.info(
-            f"Error            : "
-            f"{result['error_message']}"
-        )
+        logger.info(f"Error            : " f"{result['error_message']}")
 
     logger.info("=" * 60)
 
@@ -143,4 +124,3 @@ def get_latest_pipeline_run():
 if __name__ == "__main__":
     get_pipeline_metrics()
     get_latest_pipeline_run()
-

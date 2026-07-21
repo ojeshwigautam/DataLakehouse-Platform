@@ -117,4 +117,3 @@ def test_clean_orders_filters_negative_numeric_values_and_converts_timestamps(sp
 
     # sanity: conversion produced non-null timestamps for at least one row
     assert cleaned.filter(cleaned.order_purchase_timestamp.isNotNull()).count() == 1
-

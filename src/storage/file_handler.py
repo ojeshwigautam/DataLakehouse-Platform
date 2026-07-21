@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Union
+from typing import Union
 
 import pandas as pd
 
@@ -18,4 +18,3 @@ class FileHandler:
     def write(df: pd.DataFrame, path: Union[str, Path], **kwargs) -> None:
         handler = StorageFactory.get_handler(path)
         handler.write(df, path, **kwargs)
-

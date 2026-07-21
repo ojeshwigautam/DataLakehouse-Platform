@@ -1,13 +1,7 @@
-from pathlib import Path
 import pandas as pd
 
+from src.config.settings import BRONZE_DATASET, BRONZE_INCREMENTAL_DIR, SILVER_DIR
 from src.storage.file_handler import FileHandler
-
-from src.config.settings import (
-    BRONZE_DATASET,
-    BRONZE_INCREMENTAL_DIR,
-    SILVER_DIR,
-)
 from src.utils.logger import logger
 
 
@@ -146,4 +140,3 @@ def create_silver_layer():
 
 if __name__ == "__main__":
     create_silver_layer()
-

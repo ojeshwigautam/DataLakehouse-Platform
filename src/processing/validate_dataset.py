@@ -1,31 +1,33 @@
 import pandas as pd
 
+from src.monitoring.logger import get_logger
+
+logger = get_logger("pipeline")
+
 
 def validate_dataset(df: pd.DataFrame):
     """
     Validate dataset quality before processing.
     """
 
-    print("=" * 60)
-    print("DATA VALIDATION REPORT")
-    print("=" * 60)
+    logger.info("=" * 60)
+    logger.info("DATA VALIDATION REPORT")
+    logger.info("=" * 60)
 
-    print(f"\nRows : {len(df)}")
-    print(f"Columns : {len(df.columns)}")
+    logger.info(f"Rows : {len(df)}")
+    logger.info(f"Columns : {len(df.columns)}")
 
     duplicate_rows = df.duplicated().sum()
 
-    print(f"\nDuplicate Rows : {duplicate_rows}")
+    logger.info(f"Duplicate Rows : {duplicate_rows}")
 
     missing_values = df.isnull().sum().sum()
 
-    print(f"Missing Values : {missing_values}")
+    logger.info(f"Missing Values : {missing_values}")
 
-    print("\nData Types")
+    logger.info("Data Types")
+    logger.info("-" * 60)
+    for col_name, col_dtype in df.dtypes.items():
+        logger.info(f"  {col_name:<30} {col_dtype}")
 
-    print("-" * 60)
-
-    print(df.dtypes)
-
-    print("\nValidation Completed Successfully")
-
+    logger.info("Validation Completed Successfully")

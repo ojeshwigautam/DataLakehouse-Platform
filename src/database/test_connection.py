@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 
@@ -11,9 +12,12 @@ DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 DATABASE_URL = (
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}"
-    f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}" f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
+
+from src.monitoring.logger import get_logger  # noqa: E402
+
+logger = get_logger("postgres")
 
 try:
     engine = create_engine(DATABASE_URL)
@@ -22,19 +26,18 @@ try:
         result = connection.execute(text("SELECT version();"))
         version = result.fetchone()
 
-        print("=" * 60)
-        print("POSTGRESQL CONNECTION TEST")
-        print("=" * 60)
-        print("Database connection successful!")
-        print(f"Database : {DB_NAME}")
-        print(f"Host     : {DB_HOST}")
-        print(f"Port     : {DB_PORT}")
-        print(f"Version  : {version[0]}")
-        print("=" * 60)
+        logger.info("=" * 60)
+        logger.info("POSTGRESQL CONNECTION TEST")
+        logger.info("=" * 60)
+        logger.info("Database connection successful!")
+        logger.info(f"Database : {DB_NAME}")
+        logger.info(f"Host     : {DB_HOST}")
+        logger.info(f"Port     : {DB_PORT}")
+        logger.info(f"Version  : {version[0]}")
+        logger.info("=" * 60)
 
 except Exception as error:
-    print("=" * 60)
-    print("DATABASE CONNECTION FAILED")
-    print("=" * 60)
-    print(error)
-
+    logger.error("=" * 60)
+    logger.error("DATABASE CONNECTION FAILED")
+    logger.error("=" * 60)
+    logger.error(str(error))

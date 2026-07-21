@@ -17,7 +17,6 @@ def test_compare_row_counts(spark):
     assert rc["rows_removed"] == 1
 
 
-
 def test_compare_schema(spark):
     bronze = spark.createDataFrame([Row(a=1, b=2)])
     silver = spark.createDataFrame([Row(a=1)])
@@ -25,7 +24,6 @@ def test_compare_schema(spark):
     assert sc["status"] == "FAIL"
     assert "b" in sc["missing_columns"]
     assert sc["extra_columns"] == []
-
 
 
 def test_duplicate_summary_counts_duplicates(spark):
@@ -51,13 +49,31 @@ def test_duplicate_summary_counts_duplicates(spark):
 def test_create_reconciliation_report_schema_and_keys(spark):
     bronze = spark.createDataFrame(
         [
-            Row(order_unique_id="o1", order_purchase_timestamp="2026-01-01", price=10.0, payment_value=11.0, freight_value=1.0),
-            Row(order_unique_id="o2", order_purchase_timestamp="2026-01-02", price=20.0, payment_value=21.0, freight_value=2.0),
+            Row(
+                order_unique_id="o1",
+                order_purchase_timestamp="2026-01-01",
+                price=10.0,
+                payment_value=11.0,
+                freight_value=1.0,
+            ),
+            Row(
+                order_unique_id="o2",
+                order_purchase_timestamp="2026-01-02",
+                price=20.0,
+                payment_value=21.0,
+                freight_value=2.0,
+            ),
         ]
     )
     silver = spark.createDataFrame(
         [
-            Row(order_unique_id="o1", order_purchase_timestamp="2026-01-01", price=10.0, payment_value=11.0, freight_value=1.0),
+            Row(
+                order_unique_id="o1",
+                order_purchase_timestamp="2026-01-01",
+                price=10.0,
+                payment_value=11.0,
+                freight_value=1.0,
+            ),
         ]
     )
 
@@ -74,4 +90,3 @@ def test_create_reconciliation_report_schema_and_keys(spark):
     assert "schema_validation" in report
     assert "null_validation" in report
     assert isinstance(report["duration_seconds"], float)
-

@@ -1,0 +1,33 @@
+[run]
+source = src
+omit =
+    */__init__.py
+    */migrations/*
+    */tests/*
+    */.eggs/*
+    tests/*
+    scripts/*
+    airflow/*
+    notebooks/*
+    docs/*
+    setup.py
+    conftest.py
+
+[report]
+# Fail if under 80%
+fail_under = 80
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    def __str__
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    logger.debug
+    logger.info
+
+[html]
+directory = htmlcov
+
+[xml]
+output = coverage.xml
+

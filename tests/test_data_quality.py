@@ -2,12 +2,12 @@ import pandas as pd
 import pytest
 
 from src.processing.data_quality import (
-    check_empty_dataset,
-    check_required_columns,
-    check_duplicate_rows,
     check_critical_nulls,
+    check_duplicate_rows,
+    check_empty_dataset,
     check_numeric_values,
     check_order_ids,
+    check_required_columns,
     check_timestamp_values,
     run_data_quality_checks,
 )
@@ -89,9 +89,7 @@ def test_missing_required_column_raises_error():
 
     df = create_valid_dataframe()
 
-    df = df.drop(
-        columns=["order_id"]
-    )
+    df = df.drop(columns=["order_id"])
 
     with pytest.raises(
         ValueError,
@@ -112,12 +110,7 @@ def test_duplicate_rows_check():
         ignore_index=True,
     )
 
-    assert (
-        check_duplicate_rows(
-            duplicate_df
-        )
-        is True
-    )
+    assert check_duplicate_rows(duplicate_df) is True
 
 
 def test_critical_nulls_pass():
@@ -217,4 +210,3 @@ def test_complete_data_quality_pipeline():
     df = create_valid_dataframe()
 
     assert run_data_quality_checks(df) is True
-

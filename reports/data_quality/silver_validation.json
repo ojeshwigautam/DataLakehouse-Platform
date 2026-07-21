@@ -1,6 +1,6 @@
 {
     "layer": "silver",
-    "status": "PASSED",
-    "message": "Silver validation passed successfully.",
-    "timestamp": "2026-07-21T07:53:45.232942"
+    "status": "FAILED",
+    "message": "Invalid order_status values found.",
+    "timestamp": "2026-07-21T14:16:42.055830"
 }

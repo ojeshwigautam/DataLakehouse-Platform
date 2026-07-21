@@ -10,4 +10,3 @@ def test_gold_outputs_placeholder():
     """
 
     assert True
-

@@ -52,4 +52,3 @@ print()
 
 print(f"CSV Memory Usage    : {csv_mem/1024/1024:.2f} MB")
 print(f"Parquet Memory Usage: {parquet_mem/1024/1024:.2f} MB")
-

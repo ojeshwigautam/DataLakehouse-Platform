@@ -11,68 +11,69 @@ The platform processes the Brazilian Olist E-Commerce dataset (113,390+ records)
 ## Architecture Diagram
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart TB
     subgraph Sources["DATA SOURCES"]
-        CSV[("Brazilian Olist<br/>E-Commerce CSV<br/>113,390 rows<br/>38 columns")]
+        CSV[("Brazilian Olist - E-Commerce CSV - 113,390 rows - 38 columns")]
     end
 
     subgraph Ingestion["INGESTION LAYER"]
-        FD[File Discovery<br/><code>FileDiscoverer</code>]
-        CHK[Checksum<br/><code>calculate_sha256</code>]
-        IL[Incremental Loader<br/><code>IncrementalLoader</code>]
-        FT[File Tracker<br/><code>FileTracker</code>]
+        FD[File Discovery - FileDiscoverer]
+        CHK[Checksum - calculate_sha256]
+        IL[Incremental Loader - IncrementalLoader]
+        FT[File Tracker - FileTracker]
     end
 
-    subgraph Bronze["BRONZE LAYER — Immutable Raw"]
-        B_SAVE[save_to_bronze<br/><code>src/bronze/save_to_bronze.py</code>]
-        B_VALID[Bronze Validation<br/>Pandera Schema<br/><code>src/validation/</code>]
-        B_PARQUET[("Parquet Format<br/>Snappy Compression<br/>Partitioned")]
+    subgraph Bronze["BRONZE LAYER - Immutable Raw"]
+        B_SAVE[save_to_bronze - src/bronze/save_to_bronze.py]
+        B_VALID[Bronze Validation - Pandera Schema - src/validation/]
+        B_PARQUET[("Parquet Format - Snappy Compression - Partitioned")]
     end
 
     subgraph Spark["SPARK PROCESSING"]
-        SPARK_SESSION[SparkSession<br/>local[*] · AQE · 8 partitions]
-        SILVER_SPARK[Silver Transforms<br/><code>clean_orders()</code>]
-        SPARK_RECON[Reconciliation<br/>Bronze vs Silver]
+        SPARK_SESSION[SparkSession - local - AQE - 8 partitions]
+        SILVER_SPARK[Silver Transforms - clean_orders()]
+        SPARK_RECON[Reconciliation - Bronze vs Silver]
     end
 
-    subgraph Silver["SILVER LAYER — Cleaned & Standardized"]
-        SILVER_PANDAS[Silver Pipeline<br/>Pandas<br/><code>src/processing/</code>]
-        S_VALID[Silver Validation<br/>Pandera + Spark Validators<br/><code>src/validation/</code>]
-        S_PARQUET[("Parquet Format<br/>Deduplicated<br/>Standardized")]
+    subgraph Silver["SILVER LAYER - Cleaned and Standardized"]
+        SILVER_PANDAS[Silver Pipeline - Pandas - src/processing/]
+        S_VALID[Silver Validation - Pandera + Spark Validators]
+        S_PARQUET[("Parquet Format - Deduplicated - Standardized")]
     end
 
-    subgraph Gold["GOLD LAYER — Business Analytics"]
-        G_PANDAS[Gold Pipeline<br/>Pandas<br/><code>src/gold/</code>]
-        G_SPARK[Spark Gold<br/>Distributed Aggregations<br/><code>src/spark/</code>]
-        G_VALID[Gold Validation<br/>Strict Schema<br/><code>src/validation/</code>]
-        G_TABLES[("7 Business Tables<br/>Parquet Format")]
+    subgraph Gold["GOLD LAYER - Business Analytics"]
+        G_PANDAS[Gold Pipeline - Pandas - src/gold/]
+        G_SPARK[Spark Gold - Distributed Aggregations - src/spark/]
+        G_VALID[Gold Validation - Strict Schema - src/validation/]
+        G_TABLES[("7 Business Tables - Parquet Format")]
     end
 
-    subgraph Warehouse["WAREHOUSE & ANALYTICS"]
-        PG_LOAD[PostgreSQL Loader<br/><code>load_gold_tables()</code>]
-        PG_VALID[PostgreSQL Validation<br/>Table Existence + Row Counts]
-        POSTGRES[("PostgreSQL 15<br/>commerce_lakehouse")]
-        QUERIES[Analytics Queries<br/><code>sql/analytics_queries.sql</code>]
+    subgraph Warehouse["WAREHOUSE AND ANALYTICS"]
+        PG_LOAD[PostgreSQL Loader - load_gold_tables()]
+        PG_VALID[PostgreSQL Validation - Table Existence + Row Counts]
+        POSTGRES[("PostgreSQL 15 - commerce_lakehouse")]
+        QUERIES[Analytics Queries - sql/analytics_queries.sql]
     end
 
     subgraph Orchestration["ORCHESTRATION"]
-        PIPELINE[ETL Pipeline<br/><code>src/pipeline/etl_pipeline.py</code>]
-        AIRFLOW[Airflow DAG<br/><code>commerce_lakehouse_dag.py</code>]
-        DOCKER[Docker Compose<br/>PostgreSQL · ETL · Spark · Airflow]
-        CI[GitHub Actions CI/CD<br/>Lint · Test · Build · IaC]
+        PIPELINE[ETL Pipeline - src/pipeline/etl_pipeline.py]
+        AIRFLOW[Airflow DAG - commerce_lakehouse_dag.py]
+        DOCKER[Docker Compose - PostgreSQL, ETL, Spark, Airflow]
+        CI[GitHub Actions CI/CD - Lint, Test, Build, IaC]
     end
 
-    subgraph Metadata["METADATA & MONITORING"]
-        MM[MetadataManager<br/><code>src/metadata/</code>]
-        METRICS[PipelineMetrics<br/><code>src/monitoring/</code>]
-        AUDIT[Pipeline Audit<br/><code>pipeline_audit</code>]
-        LOGS[Structured Logging<br/>Per-component log files]
-        WM[WatermarkManager<br/>Incremental Tracking]
+    subgraph Metadata["METADATA AND MONITORING"]
+        MM[MetadataManager - src/metadata/]
+        METRICS[PipelineMetrics - src/monitoring/]
+        AUDIT[Pipeline Audit - pipeline_audit]
+        LOGS[Structured Logging - Per-component log files]
+        WM[WatermarkManager - Incremental Tracking]
     end
 
     subgraph Infra["INFRASTRUCTURE"]
-        TF[Terraform<br/>AWS · S3 · IAM · EC2]
-        S3[("AWS S3<br/>Cloud Storage<br/>Ready")]
+        TF[Terraform - AWS, S3, IAM, EC2]
+        S3[("AWS S3 - Cloud Storage - Ready")]
     end
 
     %% Connections
@@ -220,19 +221,20 @@ Validates that all 7 expected tables exist in PostgreSQL and have non-zero row c
 The Airflow DAG (`airflow/dags/commerce_lakehouse_dag.py`) orchestrates the full pipeline:
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
-    DISCOVER[Discover<br/>New Files] --> CHOICE{New Files?}
-    CHOICE -->|Yes| INCREMENTAL[Incremental<br/>Loader]
+    DISCOVER[Discover New Files] --> CHOICE{New Files?}
+    CHOICE -->|Yes| INCREMENTAL[Incremental Loader]
     CHOICE -->|No| SKIP[Skip]
     INCREMENTAL --> BRONZE[Bronze ETL]
-    BRONZE --> BRONZE_VAL[Bronze<br/>Validation]
+    BRONZE --> BRONZE_VAL[Bronze Validation]
     BRONZE_VAL --> SILVER[Silver ETL]
-    SILVER --> SILVER_VAL[Silver<br/>Validation]
+    SILVER --> SILVER_VAL[Silver Validation]
     SILVER_VAL --> GOLD[Gold ETL]
-    GOLD --> GOLD_VAL[Gold<br/>Validation]
-    GOLD_VAL --> PG[PostgreSQL<br/>Load]
-    PG --> PG_VAL[PostgreSQL<br/>Validation]
-    PG_VAL --> METADATA[Update<br/>Metadata]
+    GOLD --> GOLD_VAL[Gold Validation]
+    GOLD_VAL --> PG[PostgreSQL Load]
+    PG --> PG_VAL[PostgreSQL Validation]
+    PG_VAL --> METADATA[Update Metadata]
 ```
 
 - **Schedule:** `@daily`
@@ -294,13 +296,14 @@ Validation reports are saved as JSON to `reports/data_quality/`.
 The incremental processing architecture ensures idempotent and efficient data ingestion:
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
-    NEW[New File<br/>Arrives] --> CHK[Compute SHA-256<br/>Checksum]
+    NEW[New File Arrives] --> CHK[Compute SHA-256 Checksum]
     CHK --> DB{In Database?}
-    DB -->|Yes| SKIP[Skip — Already<br/>Processed]
-    DB -->|No| LOAD[Load & Process]
-    LOAD --> APPEND[Append to Bronze<br/>Incremental Layer]
-    APPEND --> UPDATE[Update Metadata<br/>FileTracker + Watermark]
+    DB -->|Yes| SKIP[Skip - Already Processed]
+    DB -->|No| LOAD[Load and Process]
+    LOAD --> APPEND[Append to Bronze Incremental Layer]
+    APPEND --> UPDATE[Update Metadata - FileTracker + Watermark]
 ```
 
 **Key Components:**
@@ -347,12 +350,13 @@ Reusable timer utility used across all pipeline stages.
 The GitHub Actions CI pipeline (`ci.yml`) runs on every push to `main`/`develop` and on PRs:
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
-    PUSH[Git Push / PR] --> LINT[Lint & Format Check<br/>Black · isort · Ruff]
-    LINT --> TEST[Tests & Coverage<br/>PySpark · pytest · 80%+]
-    TEST --> DOCKER[Docker Image Build<br/>ETL Container]
-    TEST --> TF_VALID[Terraform Validation<br/>fmt · validate]
-    DOCKER --> PASS[✅ CI Passes]
+    PUSH[Git Push / PR] --> LINT[Lint and Format Check - Black, isort, Ruff]
+    LINT --> TEST[Tests and Coverage - PySpark, pytest, 80 percent+]
+    TEST --> DOCKER[Docker Image Build - ETL Container]
+    TEST --> TF_VALID[Terraform Validation - fmt, validate]
+    DOCKER --> PASS[CI Passes]
     TF_VALID --> PASS
 ```
 

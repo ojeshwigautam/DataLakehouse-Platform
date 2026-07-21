@@ -102,68 +102,69 @@ This platform solves these challenges by implementing a **Medallion Data Lakehou
 ## 🏛️ Solution Architecture
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart TB
-    subgraph Sources["📦 DATA SOURCES"]
-        CSV[("Olist E-Commerce<br/>CSV · 113,390 rows")]
-        INCR[("Incremental<br/>Parquet Files")]
+    subgraph Sources["DATA SOURCES"]
+        CSV[("Olist E-Commerce - CSV - 113,390 rows")]
+        INCR[("Incremental Parquet Files")]
     end
 
-    subgraph Ingestion["⬇️ INGESTION"]
+    subgraph Ingestion["INGESTION"]
         direction TB
-        FD[File Discovery<br/><code>FileDiscoverer</code>]
-        CHK[Checksum Dedup<br/><code>SHA-256</code>]
-        IL[Incremental Loader<br/><code>IncrementalLoader</code>]
+        FD[File Discovery - FileDiscoverer]
+        CHK[Checksum Dedup - SHA-256]
+        IL[Incremental Loader - IncrementalLoader]
     end
 
-    subgraph Bronze["🥉 BRONZE LAYER"]
-        B_SAVE[Immutable Raw Copy<br/><code>save_to_bronze</code>]
-        B_VALID[Pandera Validation<br/>Schema · Nulls · Ranges]
-        B_PARQUET[("Parquet · Snappy<br/>Partitioned")]
+    subgraph Bronze["BRONZE LAYER - Immutable Raw"]
+        B_SAVE[Immutable Raw Copy - save_to_bronze]
+        B_VALID[Pandera Validation - Schema, Nulls, Ranges]
+        B_PARQUET[("Parquet - Snappy - Partitioned")]
     end
 
-    subgraph Silver["🥈 SILVER LAYER"]
-        S_PANDAS[Pandas Pipeline<br/>Dedup · Clean · Standardize]
-        S_SPARK[Spark Pipeline<br/>Distributed ETL · AQE]
-        S_VALID[Validation<br/>Pandera + Spark Validators]
-        S_PARQUET[("Cleaned Parquet<br/>Deduplicated")]
+    subgraph Silver["SILVER LAYER - Cleaned"]
+        S_PANDAS[Pandas Pipeline - Dedup, Clean, Standardize]
+        S_SPARK[Spark Pipeline - Distributed ETL, AQE]
+        S_VALID[Validation - Pandera + Spark Validators]
+        S_PARQUET[("Cleaned Parquet - Deduplicated")]
     end
 
-    subgraph Gold["🥇 GOLD LAYER"]
-        G_PANDAS[7 Business Aggregations<br/><code>gold_pipeline</code>]
-        G_SPARK[Spark Gold<br/>Distributed Aggregations]
-        G_VALID[Strict Schema Validation<br/>7 Gold Datasets]
-        G_TABLES[("7 Analytics Tables<br/>Parquet")]
+    subgraph Gold["GOLD LAYER - Business Analytics"]
+        G_PANDAS[7 Business Aggregations - gold_pipeline]
+        G_SPARK[Spark Gold - Distributed Aggregations]
+        G_VALID[Strict Schema Validation - 7 Gold Datasets]
+        G_TABLES[("7 Analytics Tables - Parquet")]
     end
 
-    subgraph Warehouse["🗄️ WAREHOUSE & ANALYTICS"]
-        PG_LOAD[PostgreSQL Loader<br/><code>load_gold_tables</code>]
-        PG[(PostgreSQL 15<br/>commerce_lakehouse)]
-        QUERIES[Analytics Queries<br/>SQL · Power BI]
+    subgraph Warehouse["WAREHOUSE and ANALYTICS"]
+        PG_LOAD[PostgreSQL Loader - load_gold_tables]
+        PG[(PostgreSQL 15 - commerce_lakehouse)]
+        QUERIES[Analytics Queries - SQL, Power BI]
     end
 
-    subgraph Orchestration["⚙️ ORCHESTRATION"]
-        PIPELINE[Python ETL Pipeline<br/><code>etl_pipeline.py</code>]
-        DAG[Airflow DAG<br/><code>commerce_lakehouse_dag</code>]
-        DOCKER[Docker Compose<br/>PostgreSQL · Spark · ETL · Airflow]
-        CI[GitHub Actions CI/CD<br/>Lint · Test · Build · Deploy]
+    subgraph Orchestration["ORCHESTRATION"]
+        PIPELINE[Python ETL Pipeline - etl_pipeline.py]
+        DAG[Airflow DAG - commerce_lakehouse_dag]
+        DOCKER[Docker Compose - PostgreSQL, Spark, ETL, Airflow]
+        CI[GitHub Actions CI/CD - Lint, Test, Build, Deploy]
     end
 
-    subgraph Observability["📊 OBSERVABILITY"]
-        LOG[Structured Logging<br/>6 Component Loggers]
-        METRICS[Pipeline Metrics<br/>Per-stage Execution]
-        MONITOR[Monitoring Dashboard<br/>PipelineMonitor]
-        AUDIT[Pipeline Audit<br/>Run ID · Duration · Status]
+    subgraph Observability["OBSERVABILITY"]
+        LOG[Structured Logging - 6 Component Loggers]
+        METRICS[Pipeline Metrics - Per-stage Execution]
+        MONITOR[Monitoring Dashboard - PipelineMonitor]
+        AUDIT[Pipeline Audit - Run ID, Duration, Status]
     end
 
-    subgraph Metadata["📝 METADATA"]
-        MM[MetadataManager<br/>4 PostgreSQL Tables]
-        FT[FileTracker<br/>Checksum Registry]
-        WM[WatermarkManager<br/>Incremental State]
+    subgraph Metadata["METADATA"]
+        MM[MetadataManager - 4 PostgreSQL Tables]
+        FT[FileTracker - Checksum Registry]
+        WM[WatermarkManager - Incremental State]
     end
 
-    subgraph Infra["☁️ INFRASTRUCTURE"]
-        TF[Terraform<br/>AWS · S3 · IAM · EC2]
-        S3[(AWS S3<br/>Cloud Storage)]
+    subgraph Infra["INFRASTRUCTURE"]
+        TF[Terraform - AWS, S3, IAM, EC2]
+        S3[(AWS S3 - Cloud Storage)]
     end
 
     %% Data flow
@@ -272,20 +273,22 @@ Aggregates clean Silver data into **7 business-ready analytics tables**.
 ## 🔄 ETL Workflow
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
-    RAW[Raw CSV Files] --> DISCOVER[File Discovery<br/><code>FileDiscoverer</code>]
-    DISCOVER --> CHECKSUM[Checksum<br/><code>SHA-256</code>]
-    CHECKSUM --> META{Already<br/>Processed?}
-    META -->|No| BRONZE[Bronze Layer<br/>Immutable Parquet]
-    META -->|Yes| SKIP[⏭️ Skip]
-    BRONZE --> B_VALID[Bronze Validation<br/>Pandera Schema]
-    B_VALID --> SILVER[Silver Layer<br/>Pandas / Spark]
-    SILVER --> S_VALID[Silver Validation<br/>Pandera + Spark]
-    S_VALID --> GOLD[Gold Layer<br/>7 Business Tables]
-    GOLD --> G_VALID[Gold Validation<br/>Strict Schemas]
-    G_VALID --> PG[PostgreSQL<br/>Warehouse]
-    PG --> PG_VALID[PG Validation<br/>Table Existence]
-    PG_VALID --> ANALYTICS[📊 Analytics<br/>SQL · Power BI]
+    RAW[Raw CSV Files]
+    RAW --> DISCOVER[File Discovery - FileDiscoverer]
+    DISCOVER --> CHECKSUM[Checksum - SHA-256]
+    CHECKSUM --> META{Already Processed?}
+    META -->|No| BRONZE[Bronze Layer - Immutable Parquet]
+    META -->|Yes| SKIP[Skip]
+    BRONZE --> B_VALID[Bronze Validation - Pandera Schema]
+    B_VALID --> SILVER[Silver Layer - Pandas or Spark]
+    SILVER --> S_VALID[Silver Validation - Pandera + Spark]
+    S_VALID --> GOLD[Gold Layer - 7 Business Tables]
+    GOLD --> G_VALID[Gold Validation - Strict Schemas]
+    G_VALID --> PG[PostgreSQL Warehouse]
+    PG --> PG_VALID[PG Validation - Table Existence]
+    PG_VALID --> ANALYTICS[Analytics - SQL, Power BI]
 
     style BRONZE fill:#cd7f32,color:#fff
     style SILVER fill:#c0c0c0,color:#000
@@ -346,7 +349,10 @@ graph TD
     ROOT --> SRC[src/]
     ROOT --> TERRAFORM[terraform/]
     ROOT --> TESTS[tests/]
-    ROOT --> ROOT_FILES[docker-compose.yml<br/>Dockerfile<br/>main.py<br/>requirements.txt<br/>README.md]
+    ROOT --> ROOT_FILES[docker-compose.yml]
+    ROOT --> DOCKERFILE[Dockerfile]
+    ROOT --> MAIN[main.py]
+    ROOT --> REQS[requirements.txt]
 
     SRC --> INGESTION[ingestion/]
     SRC --> BRONZE[bronze/]
@@ -600,13 +606,14 @@ python -m src.tasks.postgres_task
 The incremental processing pipeline ensures **idempotent** data ingestion — running the same batch twice produces identical results.
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
     A[New File Arrives] --> B[Compute SHA-256]
-    B --> C{Checksum<br/>in Database?}
-    C -->|No| D[Load & Transform]
-    C -->|Yes| E[Skip — Already<br/>Processed]
+    B --> C{Checksum in Database?}
+    C -->|No| D[Load and Transform]
+    C -->|Yes| E[Skip - Already Processed]
     D --> F[Append to Bronze]
-    F --> G[Update Metadata<br/>FileTracker + Watermark]
+    F --> G[Update Metadata - FileTracker + Watermark]
 ```
 
 ### Process Incremental Files
@@ -718,12 +725,13 @@ docker compose config --quiet && echo "✅ Valid"
 ### CI Pipeline (GitHub Actions)
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
-    PUSH[Push / PR] --> LINT[Lint & Format<br/>Black · isort · Ruff]
-    LINT --> TEST[Tests & Coverage<br/>PySpark · pytest · 80%+]
-    TEST --> DOCKER[Docker Build<br/>ETL Image · Compose Check]
-    TEST --> TF[Terraform Validate<br/>fmt · validate]
-    DOCKER --> PASS[✅ CI Passes]
+    PUSH[Push / PR] --> LINT[Lint and Format - Black, isort, Ruff]
+    LINT --> TEST[Tests and Coverage - PySpark, pytest, 80 percent+]
+    TEST --> DOCKER[Docker Build - ETL Image, Compose Check]
+    TEST --> TF[Terraform Validate - fmt, validate]
+    DOCKER --> PASS[CI Passes]
     TF --> PASS
 ```
 
@@ -795,30 +803,31 @@ LIMIT 5;
 ### Multi-Layer Validation
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart TB
-    subgraph Bronze["🥉 BRONZE VALIDATION"]
-        B1[Pandera Schema<br/>Required Columns]
+    subgraph Bronze["BRONZE VALIDATION"]
+        B1[Pandera Schema - Required Columns]
         B2[Non-null Constraints]
         B3[Positive Numeric Values]
         B4[Min Row Count: 100k+]
     end
 
-    subgraph Silver["🥈 SILVER VALIDATION"]
+    subgraph Silver["SILVER VALIDATION"]
         S1[Pandera Schema]
-        S2[Row Count ≥ 100k]
-        S3[Allowed Order Statuses<br/>8 Valid Values]
+        S2[Row Count greater than 100k]
+        S3[Allowed Order Statuses - 8 Valid Values]
         S4[Zero Duplicates]
-        S5[Spark Validators<br/>Critical Nulls · Duplicate IDs]
+        S5[Spark Validators - Critical Nulls, Duplicate IDs]
     end
 
-    subgraph Gold["🥇 GOLD VALIDATION"]
-        G1[Strict Pandera Schema<br/>Dataset-specific Columns]
+    subgraph Gold["GOLD VALIDATION"]
+        G1[Strict Pandera Schema - Dataset-specific Columns]
         G2[Non-null Dimensions]
-        G3[Revenue ≥ 0]
-        G4[Spark Gold Validators<br/>Row Count · Required Cols]
+        G3[Revenue positive or zero]
+        G4[Spark Gold Validators - Row Count, Required Cols]
     end
 
-    subgraph Database["🗄️ POSTGRESQL VALIDATION"]
+    subgraph Database["POSTGRESQL VALIDATION"]
         D1[7 Tables Exist]
         D2[Non-zero Row Counts]
     end

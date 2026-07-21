@@ -7,56 +7,57 @@ This document describes the complete ETL workflow of the Unified Commerce Lakeho
 ## Pipeline Overview
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart TB
-    subgraph Raw["🏁 RAW FILES"]
-        HIST[Historical<br/>Dataset]
-        INCR[Incremental<br/>Batches]
+    subgraph Raw["RAW FILES"]
+        HIST[Historical Dataset]
+        INCR[Incremental Batches]
     end
 
     subgraph Stage1["STAGE 1: Discover"]
-        FD[File Discovery<br/><code>FileDiscoverer</code>]
-        CHK[Checksum<br/><code>calculate_sha256</code>]
+        FD[File Discovery - FileDiscoverer]
+        CHK[Checksum - calculate_sha256]
     end
 
     subgraph Stage2["STAGE 2: Ingestion"]
-        IL[Incremental Loader<br/><code>IncrementalLoader</code>]
-        FT[File Tracker<br/><code>FileTracker</code>]
-        WM[Watermark Manager<br/><code>WatermarkManager</code>]
+        IL[Incremental Loader - IncrementalLoader]
+        FT[File Tracker - FileTracker]
+        WM[Watermark Manager - WatermarkManager]
     end
 
     subgraph Stage3["STAGE 3: Bronze"]
-        LOAD[Load Dataset<br/><code>load_dataset</code>]
-        BRONZE[Save to Bronze<br/><code>save_to_bronze</code>]
-        B_VALID[Bronze Validation<br/><code>validate_bronze</code>]
+        LOAD[Load Dataset - load_dataset]
+        BRONZE[Save to Bronze - save_to_bronze]
+        B_VALID[Bronze Validation - validate_bronze]
     end
 
     subgraph Stage4["STAGE 4: Silver"]
-        SILVER_P[Silver Pipeline<br/><code>create_silver_layer</code>]
-        SILVER_S[Spark Silver<br/><code>create_spark_silver</code>]
-        S_VALID[Silver Validation<br/><code>validate_silver</code>]
+        SILVER_P[Silver Pipeline - create_silver_layer]
+        SILVER_S[Spark Silver - create_spark_silver]
+        S_VALID[Silver Validation - validate_silver]
     end
 
     subgraph Stage5["STAGE 5: Gold"]
-        GOLD_P[Gold Pipeline<br/><code>create_gold_layer</code>]
-        GOLD_S[Spark Gold<br/><code>main</code>]
-        G_VALID[Gold Validation<br/><code>validate_gold</code>]
+        GOLD_P[Gold Pipeline - create_gold_layer]
+        GOLD_S[Spark Gold - main]
+        G_VALID[Gold Validation - validate_gold]
     end
 
     subgraph Stage6["STAGE 6: Warehouse"]
-        PG_LOAD[PostgreSQL Load<br/><code>load_gold_tables</code>]
-        PG_VALID[PG Validation<br/><code>validate_postgresql_tables</code>]
+        PG_LOAD[PostgreSQL Load - load_gold_tables]
+        PG_VALID[PG Validation - validate_postgresql_tables]
     end
 
-    subgraph Stage7["📊 ANALYTICS"]
-        PG[(PostgreSQL<br/>7 Tables)]
-        BI[Power BI<br/>Dashboard]
-        QUERIES[SQL Analytics<br/>Queries]
+    subgraph Stage7["ANALYTICS"]
+        PG[(PostgreSQL - 7 Tables)]
+        BI[Power BI - Dashboard]
+        QUERIES[SQL Analytics - Queries]
     end
 
     subgraph Meta["METADATA"]
-        MM[MetadataManager<br/>Pipeline Runs · Files · Metrics]
-        AUDIT[Pipeline Audit<br/>Run ID · Status · Duration]
-        LOG[Structured Logs<br/>Per-component]
+        MM[MetadataManager - Pipeline Runs, Files, Metrics]
+        AUDIT[Pipeline Audit - Run ID, Status, Duration]
+        LOG[Structured Logs - Per-component]
     end
 
     %% Flow connections
@@ -409,8 +410,9 @@ Pre-built SQL queries include:
 ### Python Pipeline (`main.py`)
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart TB
-    START[main.py] --> RUN[<code>run_pipeline()</code>]
+    START[main.py] --> RUN[run_pipeline()]
     RUN --> AUDIT_START[Start Pipeline Audit]
     AUDIT_START --> BRONZE[Step 1: Bronze Layer]
     BRONZE --> B_VAL[Step 2: Bronze Validation]
@@ -422,7 +424,7 @@ flowchart TB
     PG --> PG_VAL[Step 8: PostgreSQL Validation]
     PG_VAL --> INCR[Incremental Processing]
     INCR --> AUDIT_COMPLETE[Complete Pipeline Audit]
-    AUDIT_COMPLETE --> FINISH[✅ SUCCESS]
+    AUDIT_COMPLETE --> FINISH[SUCCESS]
 ```
 
 ### Airflow DAG (`commerce_lakehouse_dag.py`)

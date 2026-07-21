@@ -34,10 +34,19 @@ from src.validation.gold_validation import validate_gold
 # ------------------------------------------------------------------
 # Stage 1 — Bronze
 # ------------------------------------------------------------------
-def run_bronze(df):
-    """STEP 2/8 : Save raw data to the Bronze layer."""
-    logger.info("STEP 2/8 : Bronze Layer")
+def run_bronze():
+    """STEP 2/9 : Load raw data and save to the Bronze layer.
+
+    This stage is self-contained — it reads its own input from disk
+    and writes its output to disk.  No DataFrame is passed in, making
+    it suitable for Airflow tasks where retries must be independent.
+    """
+    logger.info("STEP 2/9 : Bronze Layer")
+
+    df = load_dataset(RAW_DATASET)
+
     save_to_bronze(df)
+
     logger.info("Bronze Layer Completed")
 
 
@@ -116,9 +125,15 @@ def run_postgres_validation():
 # ------------------------------------------------------------------
 # Stage — Data Quality
 # ------------------------------------------------------------------
-def run_data_quality(df):
-    """Run legacy data quality checks on the loaded dataset."""
+def run_data_quality():
+    """Run legacy data quality checks on the loaded dataset.
+
+    This stage is self-contained — it reads its own input from disk.
+    """
     logger.info("Data Quality Checks")
+
+    df = load_dataset(RAW_DATASET)
+
     validate_dataset(df)
     run_data_quality_checks(df)
     logger.info("Data Quality Checks Completed")
@@ -149,19 +164,12 @@ def run_pipeline():
         logger.info("=" * 70)
 
         # -------------------------------------------------
-        # STEP 1 — Load Dataset
+        # STEP 1 — Bronze Layer (loads dataset internally)
         # -------------------------------------------------
-        logger.info("STEP 1/9 : Loading Dataset")
-        df = load_dataset(RAW_DATASET)
-        logger.info("Step 1 Completed")
+        run_bronze()
 
         # -------------------------------------------------
-        # STEP 2 — Bronze Layer
-        # -------------------------------------------------
-        run_bronze(df)
-
-        # -------------------------------------------------
-        # Bronze Validation
+        # STEP 2 — Bronze Validation
         # -------------------------------------------------
         run_bronze_validation()
 

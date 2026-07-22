@@ -15,7 +15,7 @@ from sqlalchemy import (
     BigInteger,
     Column,
     DateTime,
-    Double,
+    Float,
     Integer,
     String,
     Text,
@@ -89,5 +89,5 @@ class PipelineMetric(Base):
     run_id = Column(UUID(as_uuid=True), nullable=False)
     stage = Column(String(50), nullable=False)
     rows_processed = Column(BigInteger, nullable=True, default=0)
-    duration_seconds = Column(Double, nullable=True)
+    duration_seconds = Column(Float, nullable=True)
     status = Column(String(20), nullable=False, default="RUNNING")

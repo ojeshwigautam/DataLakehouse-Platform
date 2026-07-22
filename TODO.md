@@ -1,40 +1,25 @@
-# Mermaid Diagram Fix Plan
+# Fix: FileTracker Double-Insert Bug
 
-## Problem
-Mermaid diagrams in documentation files are not rendering on GitHub due to HTML tags (`<br/>`, `<code>`) inside node labels, and complexity issues.
+## Status: ✅ ALL STEPS COMPLETE
 
-## Diagrams Fixed (Completed)
+### 1. Fix `src/metadata/file_tracker.py` ✅
+- [x] Remove `self.mark_processed(file_name, file_path, run_id)` from `prevent_duplicate()`
+- [x] Remove `run_id` parameter from `prevent_duplicate()` signature
+- [x] Update docstring for `prevent_duplicate()`
 
-### README.md - 7 Diagrams - ALL FIXED ✓
+### 2. Fix `src/ingestion/incremental_loader.py` ✅
+- [x] Update `_filter_new_files()` caller to not pass `run_id` to `prevent_duplicate()`
+- [x] Remove redundant `calculate_sha256(fp)` in `run()` before `mark_processed()`
+- [x] Update `get_new_files()` caller to not pass `run_id` to `prevent_duplicate()`
 
-| # | Diagram | Status | Changes |
-|---|---------|--------|---------|
-| 1 | Solution Architecture (flowchart TB) | ✓ Fixed | Removed HTML tags, simplified labels, added `htmlLabels: false` |
-| 2 | ETL Workflow (flowchart LR) | ✓ Fixed | Removed HTML tags, simplified labels, added `htmlLabels: false` |
-| 3 | Repository Structure (graph TD) | ✓ Fixed | Split multi-line node into separate single-line nodes |
-| 4 | Incremental ETL (flowchart LR) | ✓ Fixed | Removed `<br/>` tags, simplified labels, added `htmlLabels: false` |
-| 5 | CI Pipeline (flowchart LR) | ✓ Fixed | Removed `<br/>` tags, simplified labels, added `htmlLabels: false` |
-| 6 | Validation Framework (flowchart TB) | ✓ Fixed | Removed `<br/>` tags, removed emoji/special chars, added `htmlLabels: false` |
-| 7 | Project Roadmap (gantt) | ✓ No changes needed | No HTML tags present |
+### 3. Fix `tests/test_file_tracker.py` ✅
+- [x] Update `test_prevent_duplicate_returns_false_first_time` — remove `run_id`, verify `mark_processed` NOT called
+- [x] Update `test_prevent_duplicate_returns_true_for_duplicate` — remove `run_id`
 
-### docs/Architecture.md - Diagrams - FIXED
-| # | Diagram | Status | Changes |
-|---|---------|--------|---------|
-| 1 | Architecture Diagram (flowchart TB) | ✓ Fixed | Removed `<br/>`, `<code>` tags, added `htmlLabels: false` |
-| 2 | Airflow Orchestration (flowchart LR) | ✓ Fixed | Removed `<br/>` tags, added `htmlLabels: false` |
-| 3 | Incremental Processing (flowchart LR) | ✓ Fixed | Removed `<br/>` tags, added `htmlLabels: false` |
-| 4 | CI/CD Pipeline (flowchart LR) | ✓ Fixed | Removed `<br/>` tags, added `htmlLabels: false` |
+### 4. Fix `tests/test_incremental_loader.py` ✅
+- [x] Update `test_partial_duplicates` mock signature to match new `prevent_duplicate(file_path)`
+- [x] Update `test_update_metadata` to pre-initialise lazy components
 
-### docs/project-flow.md - Diagrams - ALL FIXED ✓
-| # | Diagram | Status | Changes |
-|---|---------|--------|---------|
-| 1 | Pipeline Overview (flowchart TB) | ✓ Fixed | Removed `<br/>`, `<code>` tags, emoji, added `htmlLabels: false` |
-| 2 | Python Pipeline (flowchart TB) | ✓ Fixed | Removed `<code>` tag, emoji, added `htmlLabels: false` |
+### 5. Run tests ✅
+- [x] All 18 tests passing (`test_file_tracker.py` + `test_incremental_loader.py`)
 
-## Approach Used
-- Removed all HTML tags (`<br/>`, `<code>`) from Mermaid node labels
-- Used simpler plain-text labels with `-` or `()` separators
-- Added `%%{init: {"flowchart": {"htmlLabels": false}} }%%` config headers to all flowchart diagrams
-- For Repository Structure diagram, split multi-line node into individual single-line nodes
-- Removed emoji characters from subgraph names that could cause rendering issues
-- Kept the overall structure and data flow intact

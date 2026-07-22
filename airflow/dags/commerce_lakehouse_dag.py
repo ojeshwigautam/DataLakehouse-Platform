@@ -27,7 +27,11 @@ def _db_env_exports() -> str:
 
 
 def _check_for_new_files() -> str:
-    """Check the incremental folder for new (unprocessed) files.
+    """Check the incremental folder for new files (filesystem-only check).
+
+    Uses :class:`FileDiscoverer` directly — **no database connection**
+    is required.  This ensures the branching decision works even when
+    PostgreSQL is temporarily unreachable.
 
     Returns the task ID to branch to:
         - ``incremental_loader`` if new files exist,
@@ -38,15 +42,16 @@ def _check_for_new_files() -> str:
     # Add project root to path so we can import our modules
     sys.path.insert(0, "/opt/airflow/project")
 
-    from src.ingestion.incremental_loader import IncrementalLoader
+    from src.config.settings import INCREMENTAL_DATA_DIR
+    from src.ingestion.file_discovery import FileDiscoverer
     from src.utils.logger import logger
 
-    loader = IncrementalLoader()
-    new_files = loader.get_new_files()
+    discoverer = FileDiscoverer(base_path=INCREMENTAL_DATA_DIR)
+    files = discoverer.discover_files()
 
-    logger.info(f"Airflow branch check: {len(new_files)} new file(s) found")
+    logger.info(f"Airflow branch check: {len(files)} file(s) found")
 
-    if new_files:
+    if files:
         return "incremental_loader"
     return "skip_incremental"
 

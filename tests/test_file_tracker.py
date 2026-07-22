@@ -112,18 +112,19 @@ class TestFileTrackerDuplicateDetection:
         assert len(checksum) == 64
 
     def test_prevent_duplicate_returns_false_first_time(self, tracker, temp_file):
-        """Should return (False, checksum) for new files."""
+        """Should return (False, checksum) for new files without marking."""
         tracker._mock_session.query.return_value.filter_by.return_value.first.return_value = (
             None
         )
 
         was_processed, checksum = tracker.prevent_duplicate(
             file_path=temp_file,
-            run_id="test-run-id",
         )
 
         assert was_processed is False
         assert isinstance(checksum, str)
+        # prevent_duplicate should NOT mark the file — the caller does that
+        assert not tracker._mock_session.add.called
 
     def test_prevent_duplicate_returns_true_for_duplicate(self, tracker, temp_file):
         """Should return (True, checksum) for already-processed files.
@@ -138,8 +139,9 @@ class TestFileTrackerDuplicateDetection:
 
         was_processed, checksum = tracker.prevent_duplicate(
             file_path=temp_file,
-            run_id="test-run-id",
         )
 
         assert was_processed is True
         assert isinstance(checksum, str)
+        # prevent_duplicate should NOT mark the file — just check
+        assert not tracker._mock_session.add.called

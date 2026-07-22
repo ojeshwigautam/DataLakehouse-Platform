@@ -10,6 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, Tuple
 
+from sqlalchemy import exc as sqlalchemy_exc
 from sqlalchemy.orm import Session
 
 from src.database.connection import get_database_engine
@@ -67,17 +68,25 @@ class FileTracker:
         processed successfully.
 
         Returns True if a record exists with status='SUCCESS'.
+        Raises sqlalchemy_exc.OperationalError on DB connectivity issues.
         """
-        with Session(self.engine) as session:
-            exists = (
-                session.query(ProcessedFile)
-                .filter_by(
-                    file_name=file_name,
-                    checksum=checksum,
-                    status="SUCCESS",
+        try:
+            with Session(self.engine) as session:
+                exists = (
+                    session.query(ProcessedFile)
+                    .filter_by(
+                        file_name=file_name,
+                        checksum=checksum,
+                        status="SUCCESS",
+                    )
+                    .first()
                 )
-                .first()
+        except sqlalchemy_exc.OperationalError as error:
+            logger.error(
+                f"DB connectivity error in is_processed("
+                f"file_name={file_name}): {error}"
             )
+            raise
 
         if exists:
             logger.info(
@@ -102,19 +111,27 @@ class FileTracker:
         """Compute the file's checksum and record it as processed.
 
         Returns the computed checksum string.
+        Raises sqlalchemy_exc.OperationalError on DB connectivity issues.
         """
         checksum = self.compute_checksum(file_path)
 
-        with Session(self.engine) as session:
-            record = ProcessedFile(
-                file_name=file_name,
-                checksum=checksum,
-                processed_timestamp=datetime.now(),
-                run_id=run_id,
-                status=status,
+        try:
+            with Session(self.engine) as session:
+                record = ProcessedFile(
+                    file_name=file_name,
+                    checksum=checksum,
+                    processed_timestamp=datetime.now(),
+                    run_id=run_id,
+                    status=status,
+                )
+                session.add(record)
+                session.commit()
+        except sqlalchemy_exc.OperationalError as error:
+            logger.error(
+                f"DB connectivity error in mark_processed("
+                f"file_name={file_name}): {error}"
             )
-            session.add(record)
-            session.commit()
+            raise
 
         logger.info(
             f"File marked processed | file={file_name} | "
@@ -129,14 +146,17 @@ class FileTracker:
     def prevent_duplicate(
         self,
         file_path: Path,
-        run_id: str,
     ) -> Tuple[bool, Optional[str]]:
-        """Check if a file has already been processed; if not,
-        compute its checksum and record it.
+        """Check if a file has already been processed.
+
+        This method only **checks** for duplicates — it does NOT
+        mark the file as processed. The caller is responsible for
+        calling :meth:`mark_processed` only after the file has been
+        successfully loaded (Bronze write), ensuring that a failed
+        load does not record a false-positive processed file.
 
         Args:
-            file_path: Path to the file to process.
-            run_id:    The current pipeline run ID.
+            file_path: Path to the file to check.
 
         Returns:
             (was_already_processed, checksum_or_None)
@@ -144,9 +164,22 @@ class FileTracker:
         file_name = file_path.name
         checksum = self.compute_checksum(file_path)
 
-        if self.is_processed(file_name, checksum):
-            logger.info(f"Skipping duplicate file | file={file_name}")
-            return True, checksum
+        try:
+            if self.is_processed(file_name, checksum):
+                logger.info(f"Skipping duplicate file | file={file_name}")
+                return True, checksum
 
-        self.mark_processed(file_name, file_path, run_id)
-        return False, checksum
+            # DO NOT mark here.
+            # The caller will mark the file only after successful processing.
+            return False, checksum
+
+        except sqlalchemy_exc.OperationalError as error:
+            logger.error(
+                f"Database unavailable for prevent_duplicate("
+                f"file={file_name}). Treating as unprocessed. "
+                f"Error: {error}"
+            )
+            # When DB is unreachable, we return (False, checksum) to
+            # allow the pipeline to proceed with processing. The file
+            # will be re-evaluated on the next run when DB is back.
+            return False, checksum

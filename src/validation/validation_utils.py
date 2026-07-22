@@ -19,6 +19,7 @@ def save_validation_report(layer: str, success: bool, message: str):
     }
 
     report_file = REPORT_DIR / f"{layer.lower()}_validation.json"
+    report_file.parent.mkdir(parents=True, exist_ok=True)
 
     with open(report_file, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=4)

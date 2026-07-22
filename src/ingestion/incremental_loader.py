@@ -25,6 +25,7 @@ Usage::
         print("No new files to process.")
 """
 
+import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -85,8 +86,33 @@ class IncrementalLoader:
         self._run_id = run_id
 
         self._discoverer = FileDiscoverer(base_path=self.incremental_dir)
-        self._file_tracker = FileTracker()
-        self._metadata_mgr = MetadataManager()
+        # Defer DB-dependent initialisation so that lightweight operations
+        # (e.g. file discovery in the Airflow branch check) do NOT require
+        # a database connection.
+        self._file_tracker: Optional[FileTracker] = None
+        self._metadata_mgr: Optional[MetadataManager] = None
+
+    # ── Lazy initializers (DB-dependent) ──────────────────────────
+
+    def _get_file_tracker(self) -> FileTracker:
+        """Lazy-initialise and return the ``FileTracker`` instance.
+
+        The tracker opens a database connection, so we defer its
+        creation until it is actually needed.
+        """
+        if self._file_tracker is None:
+            self._file_tracker = FileTracker()
+        return self._file_tracker
+
+    def _get_metadata_mgr(self) -> MetadataManager:
+        """Lazy-initialise and return the ``MetadataManager`` instance.
+
+        The manager opens a database connection, so we defer its
+        creation until it is actually needed.
+        """
+        if self._metadata_mgr is None:
+            self._metadata_mgr = MetadataManager()
+        return self._metadata_mgr
 
     # ── Public entry point ─────────────────────────────────────────
 
@@ -114,7 +140,11 @@ class IncrementalLoader:
         start_time = time.time()
         result = IncrementalResult()
 
-        effective_run_id = run_id or self._run_id or "manual-run"
+        effective_run_id = (
+            run_id
+            or self._run_id
+            or str(uuid.uuid4())
+        )
 
         logger.info("=" * 60)
         logger.info("INCREMENTAL LOADER (Checksum-based)")
@@ -126,7 +156,10 @@ class IncrementalLoader:
         logger.info(f"Incremental Folder : {len(all_files)} file(s)")
 
         # 2. Filter new files
-        new_files = self._filter_new_files(all_files)
+        new_files = self._filter_new_files(
+            all_files,
+            effective_run_id,
+        )
         result.new_files = new_files
         result.new_files_count = len(new_files)
         result.already_processed = len(all_files) - len(new_files)
@@ -151,8 +184,7 @@ class IncrementalLoader:
 
             # 5. Update metadata (mark all new files as processed)
             for fp in new_files:
-                calculate_sha256(fp)
-                self._file_tracker.mark_processed(
+                self._get_file_tracker().mark_processed(
                     file_name=fp.name,
                     file_path=fp,
                     run_id=effective_run_id,
@@ -162,7 +194,7 @@ class IncrementalLoader:
             # 6. Update watermark
             latest_file = new_files[-1] if new_files else None
             if latest_file:
-                self._metadata_mgr.update_watermark(
+                self._get_metadata_mgr().update_watermark(
                     pipeline_name="incremental_loader",
                     last_processed_file=latest_file.name,
                     last_processed_timestamp=datetime.now(),
@@ -190,6 +222,7 @@ class IncrementalLoader:
     def _filter_new_files(
         self,
         files: List[Path],
+        run_id: str,  # noqa: ARG001 — kept for backward-compatible signature
     ) -> List[Path]:
         """Return only files that have NOT been processed before.
 
@@ -197,13 +230,20 @@ class IncrementalLoader:
         filename and checksum.  If a file has the same name but different
         content (or same content but different name) it is still skipped
         when the checksum matches a previously-processed record.
+
+        Parameters
+        ----------
+        files : List[Path]
+            File paths to check.
+        run_id : str
+            UUID string for the current pipeline run (unused; kept for
+            backward-compatible signature).
         """
         new_files: List[Path] = []
 
         for fp in files:
-            was_processed, _ = self._file_tracker.prevent_duplicate(
+            was_processed, _ = self._get_file_tracker().prevent_duplicate(
                 file_path=fp,
-                run_id=self._run_id or "discovery-pass",
             )
 
             if not was_processed:
@@ -283,9 +323,19 @@ class IncrementalLoader:
         This is a lighter-weight alternative to ``run()`` when you only
         need to know *which* files would be processed, without loading
         them.
+
+        Parameters
+        ----------
+        run_id : str, optional
+            Pipeline run ID. Auto-generated as UUID if not provided.
         """
+        effective_run_id = (
+            run_id
+            or self._run_id
+            or str(uuid.uuid4())
+        )
         all_files = self._discoverer.discover_files()
-        return self._filter_new_files(all_files)
+        return self._filter_new_files(all_files, effective_run_id)
 
     def load_new_files(
         self,
@@ -343,7 +393,7 @@ class IncrementalLoader:
         """
         for fp in file_paths:
             calculate_sha256(fp)
-            self._file_tracker.mark_processed(
+            self._get_file_tracker().mark_processed(
                 file_name=fp.name,
                 file_path=fp,
                 run_id=run_id,
@@ -352,7 +402,7 @@ class IncrementalLoader:
 
         latest_file = file_paths[-1] if file_paths else None
         if latest_file:
-            self._metadata_mgr.update_watermark(
+            self._get_metadata_mgr().update_watermark(
                 pipeline_name="incremental_loader",
                 last_processed_file=latest_file.name,
                 last_processed_timestamp=datetime.now(),

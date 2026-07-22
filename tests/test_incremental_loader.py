@@ -4,12 +4,13 @@ Tests for the Incremental Loader orchestration.
 
 import tempfile
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pandas as pd
 import pytest
 
 from src.ingestion.incremental_loader import IncrementalLoader
+from src.metadata.file_tracker import FileTracker
 
 # ── Fixtures ───────────────────────────────────────────────────────
 
@@ -41,12 +42,15 @@ def sample_csv_files(tmp_incremental_dir: Path) -> list:
 
 @pytest.fixture
 def loader(tmp_incremental_dir: Path, tmp_bronze_dir: Path) -> IncrementalLoader:
-    """An IncrementalLoader with mocked metadata components."""
+    """An IncrementalLoader with pre-initialised mocked metadata components."""
     loader = IncrementalLoader(
         incremental_dir=tmp_incremental_dir,
         bronze_dir=tmp_bronze_dir,
         run_id="test-run-id",
     )
+    # Pre-initialise lazy components with mocks so tests can patch on them
+    loader._file_tracker = MagicMock(spec=FileTracker)
+    loader._metadata_mgr = MagicMock()
     return loader
 
 
@@ -108,7 +112,7 @@ class TestIncrementalLoader:
         # Simulate first file is duplicate, second is new
         call_count = [0]
 
-        def mock_prevent_duplicate(file_path, run_id):
+        def mock_prevent_duplicate(file_path):
             call_count[0] += 1
             if call_count[0] == 1:
                 return (True, "dup_checksum")  # Already processed
@@ -212,6 +216,8 @@ class TestIncrementalLoaderHelpers:
             incremental_dir=tmp_incremental_dir,
             bronze_dir=tmp_bronze_dir,
         )
+        loader._file_tracker = MagicMock(spec=FileTracker)
+        loader._metadata_mgr = MagicMock()
 
         with patch.object(
             loader._file_tracker,
@@ -248,6 +254,8 @@ class TestIncrementalLoaderHelpers:
             incremental_dir=tmp_incremental_dir,
             bronze_dir=tmp_bronze_dir,
         )
+        loader._file_tracker = MagicMock(spec=FileTracker)
+        loader._metadata_mgr = MagicMock()
 
         with patch.object(loader._file_tracker, "mark_processed") as mock_mark:
             with patch.object(loader._metadata_mgr, "update_watermark") as mock_wm:
